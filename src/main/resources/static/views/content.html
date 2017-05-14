@@ -1,0 +1,275 @@
+<header ng-controller="NavbarController">
+    <div class="container" ng-hide="currentPath === '/'">
+        <div class="intro-text">
+            <div class="intro-lead-in">Welcome on Our Site!</div>
+            <div class="intro-heading">It's nice that you visited us</div>
+            <li ng-if="!email"><a href="/login" class="page-scroll btn btn-xl">Sign In</a></li>
+        </div>
+    </div>
+</header>
+<div style="margin-top: 20px">
+
+
+    <section id="homeDiv">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Services</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+    <span class="fa-stack fa-4x">
+    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+    <i class="glyphicon glyphicon-copy fa-stack-1x fa-inverse"></i>
+    </span>
+                    <h4 class="service-heading">Create survey</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
+                        architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+    <span class="fa-stack fa-4x">
+    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+    <i class="glyphicon glyphicon-check fa-stack-1x fa-inverse"></i>
+    </span>
+                    <h4 class="service-heading">Share polls</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
+                        architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+    <span class="fa-stack fa-4x">
+    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+    <i class="glyphicon glyphicon-stats fa-stack-1x fa-inverse"></i>
+    </span>
+                    <h4 class="service-heading">Watch statistics</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
+                        architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid Section ///Ankietka-->
+    <section id="portfolio" class="bg-light-gray" ng-controller="SurveysController">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Surveys</h2>
+                    <h3 class="section-subheading text-muted">Become a creator of a huge database.
+                        Support our experts.</h3>
+
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">
+
+
+
+
+
+                    <a   id="{{s.id}}"  alt="{{s.id}}" class="portfolio-link" data-toggle="modal"
+
+                       ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}">
+
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="views/images/portfolio/roundicons.png" class="img-responsive" alt="{{s.id}}">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>{{s.title}}</h4>
+                        <p class="text-muted">Graphic Design</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br> <br> <br> <br>
+        <div class="col-sm-12 bg-light-gray" >
+
+            <div>
+                <h2 align="center">{{ankietka.title}}</h2>
+                <br> <br>
+                <div class="col-sm-offset-2">
+                    <div ng-repeat="(indexQ, q) in ankietka.question">
+                        <h4>{{q.question}}</h4>
+                        <form>
+                            <div ng-repeat="(indexQ, a) in q.answers">
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio">{{a.answer}}
+                                </label>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- Edycja auta -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+
+
+
+
+
+
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edytuj</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <div>
+                            <h2 align="center">{{ankietka.title}}</h2>
+                            <br> <br>
+                            <div class="col-sm-offset-2">
+                                <div ng-repeat="(indexQ, q) in ankietka.question">
+                                    <h4>{{q.question}}</h4>
+                                    <form>
+                                        <div ng-repeat="(indexQ, a) in q.answers">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio">{{a.answer}}
+                                            </label>
+                                        </div>
+                                        <br>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                        <button type="button" class="btn btn-primary" ng-click="editCar()">Zapisz zmiany</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br> <br> <br> <br>
+    </section>
+
+    <!-- About Section -->
+    <section id="aboutDiv">
+
+
+        <div class="col-lg-12 text-center">
+            <h2>What our customers say</h2>
+        </div>
+        <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe, Vice President, Comment Box</span>
+                    </h4>
+                </div>
+                <div class="item">
+                    <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+                </div>
+                <div class="item">
+                    <h4>"Could I... BE any more happy with this
+                        company?"<br><span>Chandler Bing, Actor, FriendsAlot</span>
+                    </h4>
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+
+
+    </section>
+    <section id="contact">
+        <div class="container" ng-controller="SendMessageController">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required
+                                           data-validation-required-message="Please enter your name."
+                                           ng-model="nameOfMessage">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" id="email"
+                                           required
+                                           data-validation-required-message="Please enter your email address."
+                                           ng-model="emailOfMessage">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <!--<div class="form-group">-->
+                                <!--<input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required-->
+                                <!--data-validation-required-message="Please enter your phone number.">-->
+                                <!--<p class="help-block text-danger"></p>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+<textarea class="form-control" placeholder="Your Message *" id="message" required
+          data-validation-required-message="Please enter a message."
+          ng-model="messageOfMessage"></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div></div>
+                                <button type="submit" class="btn btn-xl" ng-click="sendMessage()">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+

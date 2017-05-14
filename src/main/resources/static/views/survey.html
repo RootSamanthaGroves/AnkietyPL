@@ -1,0 +1,62 @@
+<section id="portfolio" class="bg-light-gray">
+
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">
+
+
+
+
+
+            <a   id="{{s.id}}"  alt="{{s.id}}" class="portfolio-link" data-toggle="modal"
+
+                 ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}">
+
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content">
+                        <i class="fa fa-plus fa-3x"></i>
+                    </div>
+                </div>
+                <img src="img/portfolio/roundicons.png" class="img-responsive" alt="{{s.id}}">
+            </a>
+            <div class="portfolio-caption">
+                <h4>{{s.title}}</h4>
+                <p class="text-muted">Graphic Design</p>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <br> <br> <br> <br>
+    <div class="col-sm-12 bg-light-gray" >
+
+        <div>
+            <h2 align="center">{{ankietka.title}}</h2>
+            <br> <br>
+            <div class="col-sm-offset-2">
+                <div ng-repeat="(indexQ, q) in ankietka.question">
+                    <h4>{{q.question}}</h4>
+                    <form>
+                        <div ng-repeat="(indexQ, a) in q.answers">
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio">{{a.answer}}
+                            </label>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+        </div>
+
+
+
+    </div>
+</section>
+

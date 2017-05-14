@@ -1,0 +1,19 @@
+<div class="col-sm-12 bg-light-gray" ng-controller="SurveysController">
+    <h2 align="center">{{ankietka.title}}</h2>
+    <br> <br>
+    <div class="col-sm-offset-2">
+        <div ng-repeat="(indexQ, q) in ankietka.question">
+            <h4>{{q.question}}</h4>
+            <form>
+                <div ng-repeat="(indexQ, a) in q.answers">
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio">{{a.answer}}
+                    </label>
+                </div>
+                <br>
+            </form>
+        </div>
+
+    </div>
+
+</div>

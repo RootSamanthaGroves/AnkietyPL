@@ -1,0 +1,43 @@
+<header ng-controller="LoginController">
+    <div class="container" ng-hide="currentPath === '/'">
+        <div class="intro-text">
+
+            <!--<div class="intro-lead-in">Welcome To Our Studio!</div>-->
+            <div class="intro-heading">Welcome Login To The Site</div>
+            <form>
+                <div class=" col-sm-offset-4 col-sm-10 tab-pane active ex2 intro-heading" id="logowanie">
+                    <div ng-class="{'has-error is-focused' : authenticationError}">
+                        <!--<div class="input-group col-sm-4">-->
+                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i> </span>-->
+                            <!--<input id="login"com.modelodel="username" type="text" class="form-control"-->
+                                   <!--required="required" placeholder="login"/>-->
+                            <!--<span ng-show="authenticationError" class="help-block" >Please check your credentials and try again.</span>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="login" ng-model="username" type="text" class="form-control"
+                               required="required" placeholder="login" />
+                    </div>
+
+
+                    <div class="input-group col-sm-4">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="password" ng-model="password" type="password" class="form-control"
+                               required="required" placeholder="password" />
+                    </div>
+                    <div class="input-group col-sm-4">
+                        <button class="page-scroll btn btn-xl" ng-click="login()">Zaloguj się</button>
+                    </div>
+
+                </div>
+            </form>
+
+
+
+
+            <!--<li ng-if="!email"><a href="/login" class="page-scroll btn btn-xl">Sign In</a></li>-->
+        </div>
+    </div>
+</header>
