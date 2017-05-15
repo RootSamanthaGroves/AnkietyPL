@@ -79,17 +79,6 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     loadAllAnswersFromDb();
 
 
-    $rootScope.loadAllSurveyFromDb = function () {
-        var Survey = $resource('survey/all', {}, {
-            query: {method: 'get', isArray: true, cancellable: true}
-        });
-
-        Survey.query(function (response) {
-            $scope.survey = response;
-        });
-    };
-    $rootScope.loadAllSurveyFromDb();
-
     $scope.loadAllSurveyFromDb = function () {
         var Survey = $resource('survey/all', {}, {
             query: {method: 'get', isArray: true, cancellable: true}
@@ -97,29 +86,85 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
 
         Survey.query(function (response) {
             $scope.survey = response;
-            // console.log("LoadAllSurveys -> "+$scope.survey);
         });
     };
     $scope.loadAllSurveyFromDb();
 
+    // $rootScope.loadAllSurveyFromDb = function () {
+    //     var Survey = $resource('survey/all', {}, {
+    //         query: {method: 'get', isArray: true, cancellable: true}
+    //     });
+    //
+    //     Survey.query(function (response) {
+    //         $scope.survey = response;
+    //         // console.log("LoadAllSurveys -> "+$scope.survey);
+    //     });
+    // };
+    // $rootScope.loadAllSurveyFromDb();
 
-    $scope.delete = function (Id) {
-        alert("The Survey Deleted Successfully!!! Please refresh the page ");
 
-        $http({
-            method: 'DELETE',
-            url: '/survey/delete/id/' + Id
-        }).success(function (data) {
-            //Showing Success message
-            $scope.status = "The Survey Deleted Successfully!!!";
-            alert('Delete User');
-            loadAllSurveyFromDb();
-        })
-            .error(function (error) {
-                //Showing error message
-                $scope.status = 'Unable to delete a person: ' + error.message;
-            });
-    }
+    $scope.loadAllSurvey = function (id) {
+        $scope.idSurvey = id;
+
+        SurveyService
+            .loadAllSurvey()
+            .then(function (response) {
+                if (response.status == 200) {
+                    $rootScope.ankietka = response.data;
+
+                    console.log($scope.ankietka);
+
+                } else {
+                    console.log($scope.ankietka + " zaladowano ankiety");
+                }
+            })
+    };
+
+
+    $scope.delete = function (id) {
+        SurveyService
+            .deleteSurvey(id)
+            .then(function (response) {
+                if (response.status == 200) {
+                    $rootScope.ankietka = response.data;
+                    console.log($scope.ankietka);
+                    SurveyService.loadAllSurvey().then(function (response2) {
+                        if(response2 === 200){
+                            $rootScope.ankietka = response2.data;
+                            console.log("udało sie")
+                            $route.reload();
+                        }
+                    })
+                } else {
+                    SurveyService.loadAllSurvey().then(function (response2) {
+                        if(response2 === 200){
+                            $rootScope.ankietka = response2.data;
+                            console.log("udało sie")
+                        }
+                    })
+                    console.log($rootScope.ankietka + " zaladowano ankiety");
+                }
+            })
+    };
+
+
+    // $scope.delete = function (Id) {
+    //     alert("The Survey Deleted Successfully!!! Please refresh the page ");
+    //
+    //     $http({
+    //         method: 'DELETE',
+    //         url: '/survey/delete/id/' + Id
+    //     }).success(function (data) {
+    //         //Showing Success message
+    //         $scope.status = "The Survey Deleted Successfully!!!";
+    //         alert('Delete User');
+    //
+    //     })
+    //         .error(function (error) {
+    //             //Showing error message
+    //             $scope.status = 'Unable to delete a person: ' + error.message;
+    //         });
+    // };
 
 
 

@@ -1,4 +1,4 @@
-<section id="portfolio" class="bg-light-gray">
+<section id="portfolio" class="bg-light-gray" ng-controller="SurveysController">
 
 
     <div class="row">
@@ -17,10 +17,13 @@
                         <i class="fa fa-plus fa-3x"></i>
                     </div>
                 </div>
-                <img src="img/portfolio/roundicons.png" class="img-responsive" alt="{{s.id}}">
+                <img src="views/images/portfolio/roundicons.png" class="img-responsive" alt="{{s.id}}">
             </a>
             <div class="portfolio-caption">
                 <h4>{{s.title}}</h4>
+                <button class=" btn btn-primary btn-block btn btn-danger"
+                        ng-click="delete(s.id)">&#x2718; Delete
+                </button>
                 <p class="text-muted">Graphic Design</p>
             </div>
 

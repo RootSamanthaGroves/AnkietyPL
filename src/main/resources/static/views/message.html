@@ -1,19 +1,18 @@
-<header ng-controller="NavbarController" class="container-fluid">
+<header class="container-fluid" ng-controller="NavbarController">
 
 
     <div class="container-fluid" ng-hide="currentPath === '/'">
 
-        <div class="intro-text  container-fluid">
+        <div class="intro-text  container-fluid" class="bg-light-gray">
 
 
-
-            <div class="user container-fluid " ng-controller="AccountController" >
+            <div class="user container-fluid " ng-controller="SendMessageController">
                 <div class="container">
                     <br/>
                     <br/>
                     <br/>
 
-                    <h3>Users id DataBase</h3>
+                    <h3>Message </h3>
                     <div class="row">
                         <div class="col-md-11">
                             <br/>
@@ -21,25 +20,23 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>firstName</th>
-                                    <th>lastName</th>
-                                    <th>email</th>
-                                    <th>Edit</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+
 
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                <tr ng-repeat="u in user |orderBy:'firstname'">
+                                <tr ng-repeat="u in message |orderBy:'id'">
 
-                                    <td >{{ u.id }}</td>
-                                    <td>{{ u.firstName }}</td>
-                                    <td>{{ u.lastName }}</td>
+                                    <td>{{ u.id }}</td>
+                                    <td>{{ u.name }}</td>
                                     <th>{{ u.email }}</th>
-                                    <th>
-                                        <button class="btn btn-info" ng-click="editUser(u.id)">&#9998; Show
-                                        </button>
-                                    </th>
+                                    <td>{{ u.message }}</td>
+
+
                                 </tr>
                                 </tbody>
                             </table>
@@ -50,7 +47,6 @@
 
                 </div>
             </div>
-
 
 
         </div>

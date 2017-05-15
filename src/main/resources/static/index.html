@@ -89,23 +89,25 @@
                 <li><a class="page-scroll" href="#portfolio" ng-hide="currentPath === '/'">Survey</a></li>
                 <li><a class="page-scroll" href="#aboutDiv" ng-hide="currentPath === '/'">About</a></li>
                 <li><a class="page-scroll" href="#contact">Contact</a></li>
-                <li class="dropdown">
+                <li ng-if="email" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">Konto
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" style="background-color: #222222">
                         <li><a href="index.html#/user"><i class="glyphicon glyphicon-user"></i>Users </a></li>
                         <li><a href="index.html#/survey">Surveys</a></li>
+                        <li><a href="index.html#/createSurvey">Create survey</a></li>
                         <li><a href="index.html#/user/account">Me account</a></li>
-                        <li><a href="index.html#/messsage">Message</a></li>
-                        <li><a href="index.html#/analysis">Analysis& Visualisation</a></li>
+                        <li><a href="index.html#/message">Message</a></li>
+                        <li><a href="index.html#/analisys">Analysis& Visualisation</a></li>
+                        <li><a href="index.html#/test">test</a></li>
                     </ul>
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul  class="nav navbar-nav navbar-right">
                 <li class="hidden"><a href="#page-top"></a></li>
-                <li ng-if="email"><a href="index.html#/user/account"><span
+                <li ng-if="email"><a href=""><span
                         class="glyphicon glyphicon-user fa fa-shield"></span>
                     {{email}}</a></li>
 
@@ -117,7 +119,7 @@
                 <!--<li ng-if="!email"><a href="#/login"><span class="glyphicon glyphicon-log-in fa fa-shield"></span> Login</a>-->
                 <!--</li>-->
 
-                <li ng-if="!email"><a href="#/login"><i class="glyphicon glyphicon-lock"></i> Logowanie</a></li>
+                <li ng-if="!email"><a href="index.html#/login"><i class="glyphicon glyphicon-lock"></i> Logowanie</a></li>
 
             </ul>
         </div>
@@ -156,7 +158,7 @@
 </footer>
 
 
-<!--Logowanie-->
+<!--Rejestracja-->
 <div class="portfolio-modal modal fade" id="signUp" tabindex="-1" role="dialog" aria-hidden="true">
 
 

@@ -1,8 +1,6 @@
 angular.module('myApp').controller('AccountController', function ($scope, $resource, $http, $localStorage) {
-        $scope.message = 'Hello  ';
-    $scope.email;
-    $scope.firstName;
-    $scope.lastName;
+
+
     $scope.zalogowany = "";
 
     $scope.showMe = false;

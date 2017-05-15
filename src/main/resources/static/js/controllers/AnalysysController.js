@@ -5,11 +5,12 @@
 
 angular.module('myApp').controller('AnalysisController', function ($scope, $resource, $http, $rootScope, $routeParams) {
         $scope.message = 'Hello from AnalysisController';
+
         $scope.survey;
         $scope.path;
-        $scope.rules="";
+
         $scope.TaRules;
-        var rulesOBJ;
+
 
 
 
@@ -20,10 +21,21 @@ angular.module('myApp').controller('AnalysisController', function ($scope, $reso
 
         Rules.query(function (response) {
             $scope.rules = response;
-             console.log("Load -> "+$scope.rules);
+             // console.log("Load -> "+$scope.rules);
         });
-    };
+    };loadAllRules();
 
+    var loadRules = function () {
+        alert("ffff");
+        // var rules = $resource('analysis/rules', {}, {
+        //     query: {method: 'get', isArray: true, cancellable: true}
+        // });
+        // rules.query(function (response) {
+        //     $scope.rules = response;
+        //     // console.log("LoadAllQuestions -> "+$scope.questions);
+        // });
+    };
+    loadRules();
 
 
 
@@ -51,6 +63,4 @@ angular.module('myApp').controller('AnalysisController', function ($scope, $reso
         }
 
 
-
-    }
-);
+});

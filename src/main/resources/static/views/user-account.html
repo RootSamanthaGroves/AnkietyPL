@@ -1,15 +1,33 @@
-<header class="user" ng-controller="NavbarController">
-    <div class="container" ng-hide="currentPath === '/'">
-        <div class="intro-text">
-            <div class="intro-lead-in"></div>
-            <div class="intro-heading"></div>
+
+
+<section id="portfolio" class="bg-light-gray">
+
+
+    <div class="row">
+<div class="createSurvey" ng-controller="NavbarController">
+
+    <div class="container col-xs-8">
+        <div class="col-lg-offset-4 col-md-4">
+                                 <span class="fa-stack fa-4x">
+                                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                 <i class="glyphicon glyphicon-user  fa-stack-1x fa-inverse"></i>
+                                 </span>
+            <h4 class="service-heading">{{myname}} {{mylastname}}</h4>
+
+            <h4 class="service-heading">{{myemail}}</h4>
+            <h4 class="service-heading">{{myrole}}</h4>
+            <button class="btn btn-info" ng-click="editUser(u)">&#9998; Edit my account
+            </button>
         </div>
     </div>
-</header>
-<!--<section class="bg-darkest-gray">-->
-<!--</section>-->
 
-<section id="account" class="bg-light-gray" ng-if="!email">
+
+</div>
+    </div>
+</section>
+
+
+<section id="account" class="bg-light-gray" >
 
 
 
@@ -286,93 +304,93 @@
                 <h3></h3>
                 <p></p>
 
-                <div class=portfolio" ng-controller="SurveysController">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 text-center">
-                                <h2 class="section-heading">Surveys delete</h2>
-                                <h3 class="section-subheading text-muted"></h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">
-                                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                                    <div class="portfolio-hover">
-                                        <div class="portfolio-hover-content">
-                                            <i class="fa fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <img src="images/portfolio/roundicons.png" class="img-responsive"
-                                         alt="{{s.id}}">
-                                </a>
-                                <div class="portfolio-caption">
-                                    <h4>{{s.title}}</h4>
+                <!--<div class=portfolio" ng-controller="SurveysController">-->
+                    <!--<div class="container">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-lg-12 text-center">-->
+                                <!--<h2 class="section-heading">Surveys delete</h2>-->
+                                <!--<h3 class="section-subheading text-muted"></h3>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">-->
+                                <!--<a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">-->
+                                    <!--<div class="portfolio-hover">-->
+                                        <!--<div class="portfolio-hover-content">-->
+                                            <!--<i class="fa fa-plus fa-3x"></i>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<img src="images/portfolio/roundicons.png" class="img-responsive"-->
+                                         <!--alt="{{s.id}}">-->
+                                <!--</a>-->
+                                <!--<div class="portfolio-caption">-->
+                                    <!--<h4>{{s.title}}</h4>-->
 
-                                    <button class=" btn btn-primary btn-block btn btn-danger"
-                                            ng-click="delete(s.id)">&#x2718; Delete
-                                    </button>
-                                </div>
+                                    <!--<button class=" btn btn-primary btn-block btn btn-danger"-->
+                                            <!--ng-click="delete(s.id)">&#x2718; Delete-->
+                                    <!--</button>-->
+                                <!--</div>-->
 
 
-                            </div>
+                            <!--</div>-->
 
-                        </div>
-                    </div>
-                </div>
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
 
             </div>
-            <div id="messageToMe" class="tab-pane fade">
+            <!--<div id="messageToMe" class="tab-pane fade">-->
 
-                <div class="messageToMe">
+                <!--<div class="messageToMe">-->
 
-                    <div ng-controller="SendMessageController">
+                    <!--<div ng-controller="SendMessageController">-->
 
-                        <div class="container">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <h3>Message To Me</h3>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <br/>
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>email</th>
-                                            <th>text</th>
-
-
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        <tr ng-repeat="m in message">
-
-                                            <td>{{ m.id }}</td>
-                                            <td>{{ m.name }}</td>
-                                            <th>{{ m.email }}</th>
-                                            <th>{{ m.message }}</th>
-
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
+                        <!--<div class="container">-->
+                            <!--<br/>-->
+                            <!--<br/>-->
+                            <!--<br/>-->
+                            <!--<h3>Message To Me</h3>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<br/>-->
+                                    <!--<table class="table table-hover">-->
+                                        <!--<thead>-->
+                                        <!--<tr>-->
+                                            <!--<th>Id</th>-->
+                                            <!--<th>Name</th>-->
+                                            <!--<th>email</th>-->
+                                            <!--<th>text</th>-->
 
 
-                            </div>
+                                        <!--</tr>-->
+                                        <!--</thead>-->
 
-                        </div>
+                                        <!--<tbody>-->
+                                        <!--<tr ng-repeat="m in message">-->
 
-                    </div>
+                                            <!--<td>{{ m.id }}</td>-->
+                                            <!--<td>{{ m.name }}</td>-->
+                                            <!--<th>{{ m.email }}</th>-->
+                                            <!--<th>{{ m.message }}</th>-->
 
-                </div>
+                                        <!--</tr>-->
+                                        <!--</tbody>-->
+                                    <!--</table>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
 
-            </div>
+
+                            <!--</div>-->
+
+                        <!--</div>-->
+
+                    <!--</div>-->
+
+                <!--</div>-->
+
+            <!--</div>-->
             <div id="analysis" class="tab-pane fade">
 
                 <div class="messageToMe">

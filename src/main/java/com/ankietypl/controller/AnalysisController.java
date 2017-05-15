@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("analysis")
+@RequestMapping("analysys")
 public class AnalysisController {
 
     /**
@@ -34,7 +34,7 @@ public class AnalysisController {
         Instances data;
         String result = "";
         try {
-            data = loadData("dataAnkietyweka.csv");
+            data = loadData("static/data/dataAnkietyweka.csv");
             result = rulesAssociativ(data, "0.9", "10");
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,8 +80,11 @@ public class AnalysisController {
      * @return
      * @throws IOException
      */
-    public static Instances loadData(String filePath)
+
+    @GetMapping("data")
+    public static Instances loadData(String filePath )
             throws IOException {
+//         Instances dataLoad = loadData("static/data/dataAnkietyweka.csv");
         CSVLoader loader = new CSVLoader(); //Utworzenie obiektu czytajacego dane z formatu CSV
         loader.setSource(new File(filePath)); //Ustawienie pliku do odczytania
         Instances data = loader.getDataSet(); //Odczytanie danych z pliku

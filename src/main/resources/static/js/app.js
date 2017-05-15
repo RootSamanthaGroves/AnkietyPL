@@ -41,6 +41,16 @@ myApp.config(function ($routeProvider) {
             controller: 'OneSurveyController'
         })
 
+        .when('/createSurvey', {
+            templateUrl: 'views/createSurvey.html',
+            controller: 'SurveysController'
+        })
+
+        .when('/test', {
+            templateUrl: 'views/test.html',
+            controller: 'TestController'
+        })
+
         .otherwise({redirectTo: '/'});
 });
 

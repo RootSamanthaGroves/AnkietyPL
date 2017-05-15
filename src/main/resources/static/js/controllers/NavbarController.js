@@ -9,10 +9,11 @@ angular.module('myApp').controller('NavbarController', function ($http, $scope, 
             .then(function (response) {
                 if (response.status == 200) {
                     $rootScope.email = response.data.email; //rootScope umozliwia wyswietlanei w dowolnym miejscu
-                    $rootScope.name = response.data.firstName;
-                    $rootScope.role = response.data.role;
+                    $rootScope.myname = response.data.firstName;
+                    $rootScope.mylastname=response.data.lastName
+                    $rootScope.myrole = response.data.role;
                     $rootScope.id = response.data.id;
-                    console.log("navbar  name " + $localStorage.firstName + " " + $localStorage.role + " " + $rootScope.id);
+                    // console.log("navbar  name " + $localStorage.firstName + " " + $localStorage.role + " " + $rootScope.id);
 
                     if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
                         $rootScope.admin = true;
@@ -34,6 +35,8 @@ angular.module('myApp').controller('NavbarController', function ($http, $scope, 
             .logoutUser()
             .then(function (response) {
                 if (response.status == 200) {
+                    // alert('Zostałeś wylogowany.');
+                    $location.path('/');
                     $location.path('/');
                 }
             })

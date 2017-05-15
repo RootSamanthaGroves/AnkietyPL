@@ -66,9 +66,14 @@ angular.module('myApp').controller('LoginController', function ($scope, $resourc
                                 $localStorage.showTopMenu = true;
                                 $rootScope.showNavbar = true;
                                 $rootScope.showTopMenu = true;
-                                $localStorage.firstName = response.data.name;
+                                // $localStorage.firstName = response.data.name;
                                 $localStorage.role = response.data.role;
                                 $rootScope.id = response.data.id;
+
+                                // $rootScope.myname= response.data.firstName;
+                                // $rootScope.mylastname= response.data.lastName;
+                                // // $rootScope.myemail= response.data.myemail;
+                                // $rootScope.myrole= response.data.role;
                                 $location.path('/');
                             })
                         } else {

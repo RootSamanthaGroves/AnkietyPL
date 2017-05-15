@@ -1,0 +1,188 @@
+
+<div class="bg-light-gray">
+    <div class="createSurvey" ng-controller="SurveysController">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-md-1">
+                </div>
+                <div class="bgform">
+                    <div class="col-md-10">
+                        <div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="bgform">
+                                <div class="form-group">
+                                    <h2>Create survey</h2>
+                                    <hr class="colorgraph" align="center">
+                                    <br/>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <label>Title:</label>
+                                            <input type="text" class="form-control"
+                                                   id="titleOfSurvey"
+                                                   placeholder="Title"
+                                                   ng-model="titleOfSurvey"/>
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12">
+                                            </br>
+
+                                            <button type="button" class="btn btn-warning" id="addSurvey"
+                                                    ng-click="saveSurvey()"> Add
+                                                survey
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <br/>
+                                </div>
+
+
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <hr class="colorgraph">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Question:</label>
+                                                        <input type="text" class="form-control"
+                                                               id="questionOfSurvey"
+                                                               placeholder="Question"
+                                                               ng-model="questionOfSurvey"/>
+
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                            <button type="button" class="btn btn-warning"
+                                                    id="saveQuestion"
+                                                    ng-click="saveQuestion()">
+                                                Add
+                                                question
+                                            </button>
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <hr class="colorgraph">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Answer:</label>
+                                                        <input type="text" class="form-control"
+                                                               id="answerOfSurvey"
+                                                               placeholder="Answer"
+                                                               ng-model="answerOfSurvey"/>
+
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                            </div>
+                                            <button type="button" class="btn btn-warning"
+                                                    id="saveAnswer"
+                                                    ng-click="saveAnswer()">
+                                                Add
+                                                answer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12">
+
+
+                                    <div class="col-md-6 col-sm-6">
+
+                                        </br>
+                                        <div class="panel panel-warning">
+                                            <div class="panel-heading">Added questions</div>
+                                            <div class="panel-body">
+                                                <table>
+                                                    <tbody>
+                                                    <tr ng-repeat="q in questions">
+                                                        <td>
+                                                            <input type="radio" alt=q.id
+                                                                   ng-click="selectQ(q.id)">
+                                                            {{q.question}}
+                                                            <div ng-repeat="(index,a) in q.answers">
+                                                                <li>{{q.answers[index].answer}}</li>
+                                                            </div>
+
+                                                        </td>
+                                                        <td><a href="" class="btn btn-danger"
+                                                               ng-click="deleteQuestion(q.id)">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                        </a></td>
+                                                        <td><a href="" class="btn btn-info "
+                                                               ng-click="editQuestion(q.id)">
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                        </a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        </br>
+                                        <div class="panel panel-warning">
+                                            <div class="panel-heading">Added answers</div>
+                                            <div class="panel-body">
+
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                    <tr ng-repeat="a in answer">
+
+                                                        <td><input type="checkbox"
+                                                                   ng-checked="exists(a, selected)"
+                                                                   ng-click="toggle(a, selected)"
+                                                                   alt="a.id">
+                                                            {{a.answer}}
+                                                        </td>
+                                                        <td><a href="" class="btn btn-danger"
+                                                               ng-click="deleteAnswer(a.id)">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                        </a></td>
+                                                        <td><a href="" class="btn btn-info "
+                                                               ng-click="editAnswer(a.id,a.answer)">
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                        </a></td>
+
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>
+                    Connect the question with answers
+
+                </h3>
+                <div align="center">
+                    <button type="button" class="btn btn-warning" id="saveRelations"
+                            ng-click="saveRelations()">
+                        Add relations
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

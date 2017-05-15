@@ -57,6 +57,7 @@ angular.module('myApp').service('LoginService', function ($http) {
             url: url
         }).then(function successCallback(response) {
             return response;
+
         }, function errorCallback(response) {
             return response.status;
         });

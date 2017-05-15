@@ -28,7 +28,7 @@ angular.module('myApp').controller('SendMessageController', function ($scope, $r
             query: {method: 'get', isArray: true, cancellable: true}
         });
         User.query(function (response) {
-            //alert(response); teraz w response masz to co bys widzial w postmanie takiego jsona
+
             $scope.message = response;
         });
     };

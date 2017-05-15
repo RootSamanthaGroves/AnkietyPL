@@ -4,13 +4,13 @@
 package com.ankietypl.controller;
 
 import com.ankietypl.model.Survey;
+import com.ankietypl.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.ankietypl.repository.SurveyRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,11 +48,15 @@ import java.util.Optional;
             Survey s = surveyRepository.findOne(id.get());
             surveyRepository.removeOne(id.get());
             if (s != null) {
+                System.out.println(HttpStatus.OK);
                 return new ResponseEntity(s, new HttpHeaders(), HttpStatus.OK);
             } else {
+                System.out.println(HttpStatus.NOT_FOUND);
+
                 return new ResponseEntity(new HttpHeaders(), HttpStatus.NOT_FOUND);
             }
         } else {
+            System.out.println(HttpStatus.BAD_REQUEST);
             return new ResponseEntity(new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
     }
