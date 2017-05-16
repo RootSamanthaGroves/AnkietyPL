@@ -1,0 +1,36 @@
+<section id="portfolio" class="bg-light-gray" >
+
+    <div class="row">
+    <br> <br> <br> <br>
+        <div ng-controller="AnalysisController">
+            <input type="file" class="form-control"
+                   id="path"
+                   placeholder="path"
+                   ng-model="path"/>
+    <div class="col-sm-12 bg-light-gray"  ng-controller="DataController">
+
+        <button type="button" class="btn btn-warning"
+                ng-click="loadRules()"> Show rules
+        </button>
+
+        <button type="button" class="btn btn-warning"
+                ng-click="showData()"> Show data
+        </button>
+
+        <!--<div ng-repeat="q in rules">{{q}}</div>-->
+
+<h5> {{rulesweka}}</h5>
+
+        <div ng-repeat="da in dataweka track by $index">
+
+            <h5> {{da}}</h5>
+
+        </div>
+
+
+    </div>
+    </div>
+
+
+</section>
+

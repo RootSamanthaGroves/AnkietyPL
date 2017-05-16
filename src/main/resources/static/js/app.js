@@ -32,9 +32,9 @@ myApp.config(function ($routeProvider) {
             templateUrl: 'views/message.html',
             controller: 'SendMessageController'
         })
-        .when('/analisys', {
-            templateUrl: 'views/analisys.html',
-            controller: 'AnalysysController'
+        .when('/data', {
+            templateUrl: 'views/data.html',
+            controller: 'DataController'
         })
         .when('/oneSurvey', {
             templateUrl: 'views/oneSurvey.html',

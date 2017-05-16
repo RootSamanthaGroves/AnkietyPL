@@ -3,64 +3,66 @@
  */
 
 
-angular.module('myApp').controller('AnalysisController', function ($scope, $resource, $http, $rootScope, $routeParams) {
-        $scope.message = 'Hello from AnalysisController';
-
-        $scope.survey;
-        $scope.path;
-
-        $scope.TaRules;
+angular.module('myApp').controller('AnalysisController', function ($scope, $resource, $http) {
 
 
+        // alert("babaababab");
 
-
-    $scope.loadAllRules = function () {
-        var Rules = $resource('analysis/rules', {}, {
-            query: {method: 'get', isString: true, cancellable: true}
-        });
-
-        Rules.query(function (response) {
-            $scope.rules = response;
-             // console.log("Load -> "+$scope.rules);
-        });
-    };loadAllRules();
-
-    var loadRules = function () {
-        alert("ffff");
-        // var rules = $resource('analysis/rules', {}, {
-        //     query: {method: 'get', isArray: true, cancellable: true}
-        // });
-        // rules.query(function (response) {
-        //     $scope.rules = response;
-        //     // console.log("LoadAllQuestions -> "+$scope.questions);
-        // });
-    };
-    loadRules();
+        // $scope.survey;
+        // $scope.path;
+        //
+        // $scope.TaRules;
 
 
 
 
-        $scope.showRules = function () {
-            $http({
-                method: 'GET',
-                url: 'analysis/rules/',
-                 dataType: "Object"
-            }).success(function (data) {
+    //  var loadAllRules = function () {
+    //     var Rules = $resource('analysis/rules', {}, {
+    //         query: {method: 'get', isString: true, cancellable: true}
+    //     });
+    //
+    //     Rules.query(function (response) {
+    //         $scope.rules = response;
+    //          // console.log("Load -> "+$scope.rules);
+    //     });
+    // };loadAllRules();
 
-                alert(data);
-                var rulesObj = {
-                    r: data
+    // var loadRules = function () {
+    //     alert("ffff");
+    //     // var rules = $resource('analysis/rules', {}, {
+    //     //     query: {method: 'get', isArray: true, cancellable: true}
+    //     // });
+    //     // rules.query(function (response) {
+    //     //     $scope.rules = response;
+    //     //     // console.log("LoadAllQuestions -> "+$scope.questions);
+    //     // });
+    // };
+    // loadRules();
 
-                };
-                $scope.rules=rulesObj;
-                alert(rulesObj+'udało się');
 
-            })
-                .error(function (error) {
-                    $scope.rules="nie ma nic";
 
-                });
-        }
+        //
+        // $scope.showRules = function () {
+        //     $http({
+        //         method: 'GET',
+        //         url: 'analysis/rules/',
+        //          dataType: "Object"
+        //     }).success(function (data) {
+        //
+        //         alert(data);
+        //         var rulesObj = {
+        //             r: data
+        //
+        //         };
+        //         $scope.rules=rulesObj;
+        //         alert(rulesObj+'udało się');
+        //
+        //     })
+        //         .error(function (error) {
+        //             $scope.rules="nie ma nic";
+        //
+        //         });
+        // };showRules();
 
 
 });
