@@ -13,18 +13,12 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
         var lastName = $scope.lastNameOfUser;
         var password = $scope.passwordOfUser;
-        // var acountRole ="ROLE_ADMIN";
-        // alert(firstName);
 
-         //to tylko dla testu czy dane sie pobieraja, w google chrome ctrl+shif j otwiera conosle do debuga
-        //degug //tak sie wlacza debugger w js
-
-        //Potrzebujemy stworzyc nasz obiekt, ktorego zadamy w Javie patrz RequestBody
         var userObject = {
             email: email,
             firstName: firstName,
             lastName: lastName,
-            password: password,
+            password: password
             // acountRole: acountRole
 
         };

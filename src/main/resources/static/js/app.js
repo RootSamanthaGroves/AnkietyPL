@@ -46,10 +46,6 @@ myApp.config(function ($routeProvider) {
             controller: 'SurveysController'
         })
 
-        .when('/test', {
-            templateUrl: 'views/test.html',
-            controller: 'TestController'
-        })
 
         .otherwise({redirectTo: '/'});
 });
