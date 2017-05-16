@@ -123,6 +123,7 @@ public class AnalysisController {
                 for (int j = 0; j < instance.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
                 {
 
+
 //                    textValue += instance.stringValue(j) + ", "; //Pobranie wartosci atrybutu o podanym numerze (tzn. pobranie tekstowej reprezentacji wartosci)
                     //textValueW= textValue+ instance.stringValue(j);
                     System.out.println(instance.stringValue(j));
