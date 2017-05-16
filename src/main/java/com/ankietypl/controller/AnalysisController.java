@@ -118,6 +118,7 @@ public class AnalysisController {
 
                 Instance instance = data.instance(i); //Pobranie obiektu (wiersza danych) o podanym numerze
 
+                
                 sb.append(i);
                 sb.append(" ");
                 for (int j = 0; j < instance.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
