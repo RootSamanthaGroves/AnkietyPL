@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 
-<head>>
+<head>
     <script src="AngularJS/angular.min.js"></script>
     <script src="AngularJS/angular-resource.js"></script>
     <script src="AngularJS/angular-route.js"></script>
@@ -57,6 +57,17 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
 
+    <!--biblioteka wykresy-->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+
+
+
+    <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+     <script type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js"></script>
     <!-- Theme CSS -->
     <link href="zold/Survey/css/agency.min.css" rel="stylesheet">
 
@@ -127,11 +138,11 @@
     </div>
 </nav>
 
-<div ng-view></div>
+<div class="row" ng-view></div>
 
 
-<footer>
-    <div class="container">
+<footer class="">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
                 <span class="copyright">Copyright &copy; Dominika Sporzyńska 2016</span>

@@ -16,6 +16,10 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     $scope.items = [];
     $scope.selected = [];
 
+    $('input[type=file]').change(function () {
+        console.dir(this.files[0])
+    })
+
     $scope.toggle = function (item, list) {
         var idx = list.indexOf(item);
         if (idx > -1) {
@@ -89,18 +93,6 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         });
     };
     $scope.loadAllSurveyFromDb();
-
-    // $rootScope.loadAllSurveyFromDb = function () {
-    //     var Survey = $resource('survey/all', {}, {
-    //         query: {method: 'get', isArray: true, cancellable: true}
-    //     });
-    //
-    //     Survey.query(function (response) {
-    //         $scope.survey = response;
-    //         // console.log("LoadAllSurveys -> "+$scope.survey);
-    //     });
-    // };
-    // $rootScope.loadAllSurveyFromDb();
 
 
     $scope.loadAllSurvey = function (id) {
