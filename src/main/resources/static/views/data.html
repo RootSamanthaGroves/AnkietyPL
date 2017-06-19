@@ -38,17 +38,22 @@
 
         <h2 align="center">{{ankietka.title}}</h2>
         <div align="center " class="col-sm-10 col-sm-offset-1">
-            <select ng-model="selectAtribute" class="form-control btn-default"
-                    ng-init="selectAtribute = atributeList[0]">
-                <option ng-repeat="(indexQ, q) in ankietka.question" value="{{q.id}} ">
+            <select ng-model="selectAtribute" class="form-control btn-default" id="Atribute"
+                    ng-init="selectAtribute = atributeList[0]"  ng-change="change(selectAtribute)">
+                <option ng-repeat="(indexQ, q) in ankietka.question" value="{{q.id}} " selected>
                     <h4>{{q.question}}</h4>
                 </option>
             </select>
         </div>
 
 
+
         <div class="col-sm-12 bg-light-gray" align="center">
 
+            <!--<button type="button" class="btn btn-warning"-->
+                    <!--ng-click="showStatistic()"> Show statistics-->
+            <!--</button>-->
+            <div style="max-width: 90% ;height: 500px" id="chartdiv"></div>
             <button type="button" class="btn btn-warning"
                     ng-click="loadRules()"> Show rules
             </button>
@@ -57,12 +62,6 @@
                     ng-click="showData()"> Show data
             </button>
 
-
-            <div style="max-width: 90% ;height: 500px" id="chartdiv"></div>
-
-            <button type="button" class="btn btn-warning"
-                    ng-click="showStatistic()"> Show statistics
-            </button>
 
             <!--<div ng-repeat="q in rules">{{q}}</div>-->
 
