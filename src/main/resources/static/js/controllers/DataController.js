@@ -7,10 +7,17 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         $scope.firstname;
         $scope.lastname;
         $scope.rules = [];
+        $scope.minUfnosc = [];
 
-        var zmiana = function (id) {
-            $scope.selectAtribute = id;
-        }
+
+        var minUfnosc = function () {
+
+            for (i = 4; i < 10; i = i + 5 / 10) {
+                $scope.minUfnosc.push(i / 10);
+                console.log(i);
+            }
+        };
+        minUfnosc();
 
 
         $scope.loadAllSurveyFromDb = function () {
@@ -41,20 +48,6 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         };
 
 
-        // $('select').on('change', function () {
-        //
-        //     var isDirty = !this.options[this.selectedIndex].selectAtribute;
-        //
-        //     if (isDirty) {
-        //         $scope.showStatistic();
-        //
-        //     } else {
-        //
-        //
-        //     }
-        // });
-
-
         $scope.loadOneSurvey = function (id) {
             $scope.idSurvey = id;
 
@@ -76,14 +69,17 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
         $scope.loadRules = function (path) {
 
-            // alert("test");
-            rules = $resource('analysis/rules', {}, {
+            // @param n    Liczba regul do policzenia (standardowo: 10)
+            //* @param c    Minmalna ufnosc reguly (standardowo: 0.9).
+            var x = document.getElementById("ufnosc").value;
+            // console.log(x + " " + $scope.liczbaRegul);
+            rules = $resource('analysis/rules/'+x+"/"+$scope.liczbaRegul    , {}, {
                 query: {method: 'get', isArray: true, cancellable: true}
             });
 
             rules.query(function (response) {
                 $scope.rulesweka = response;
-                alert(response); //teraz w response masz to co bys widzial w postmanie takiego jsona
+                // alert(response); //teraz w response masz to co bys widzial w postmanie takiego jsona
                 // $scope.rules = response; // widoku będziesz używał teraz people
             });
 
@@ -104,10 +100,10 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
         };
 
-    $scope.change = function(id) {
-        $scope.showStatistic();
-        console.log(id);
-    };
+        $scope.change = function (id) {
+            $scope.showStatistic();
+            console.log(id);
+        };
 
 
         $scope.showStatistic = function () {
@@ -118,7 +114,6 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
 
             data.query(function (response) {
-
 
 
                     var atributes = [];
