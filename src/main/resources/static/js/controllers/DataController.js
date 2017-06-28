@@ -6,7 +6,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         $scope.user;
         $scope.firstname;
         $scope.lastname;
-        $scope.rules = [];
+        var rules = [];
         $scope.minUfnosc = [];
 
 
@@ -14,7 +14,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
             for (i = 4; i < 10; i = i + 5 / 10) {
                 $scope.minUfnosc.push(i / 10);
-                console.log(i);
+                // console.log(i);
             }
         };
         minUfnosc();
@@ -73,17 +73,66 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
             //* @param c    Minmalna ufnosc reguly (standardowo: 0.9).
             var x = document.getElementById("ufnosc").value;
             // console.log(x + " " + $scope.liczbaRegul);
-            rules = $resource('analysis/rules/'+x+"/"+$scope.liczbaRegul    , {}, {
+            rules = $resource('analysis/rules/' + x + "/" + $scope.liczbaRegul, {}, {
                 query: {method: 'get', isArray: true, cancellable: true}
             });
 
             rules.query(function (response) {
-                $scope.rulesweka = response;
-                // alert(response); //teraz w response masz to co bys widzial w postmanie takiego jsona
-                // $scope.rules = response; // widoku będziesz używał teraz people
+                alert("1 "+response[2]);
+                 $scope.rulesweka = response;
+                // var m = "Hello world!";
+                // var text = $scope.rulesweka;
+                // var firstIndex = 0;
+                // var len = text.length
+                 // var r = "";
+                 // $scope.rules = "";
+                var i = 0;
+                // var t = "";
+
+
+                var text = "";
+                while (response[i]) {
+                    text = response[i] + "<br>";
+                    i++;
+                }
+                document.getElementById("demo").innerHTML = text;
+                // while (text.charAt(i)) {
+                //     if (temp === ",") {
+                //        var rules = " <p>   " + text.slice(firstIndex, i - 1) + " </p> <br>";
+                //         var res = text.substring(firstIndex, i - 1);
+                //         r = text.slice(firstIndex, i - 1);// console.log(r);
+                //         firstIndex = i + 1;
+                //
+                //     }
+                //     t += r + "<br>";
+                //     i++;
+                // }
+                // document.getElementById("demo").innerHTML = text;
+
+               //  for (i = 1; i < len; i++) {
+               //
+               //      var temp = text.charAt(i);
+               //
+               //      if (temp === ",") {
+               //          r = text.slice(firstIndex, i - 1);// console.log(r);
+               //          $scope.rules += "<br>";
+               //          $scope.rules = "<br>" + r + " <br>";
+               //          var res = text.substring(firstIndex, i - 1);
+               //
+               //          firstIndex = i + 1;
+               //
+               //      }
+               //  }
+               //  rules += " <br> " +r + " <br>";
+               //  r = text.slice(firstIndex, i - 1);
+               // alert( text.slice(firstIndex, i - 1));
+                // document.getElementById("demo").innerHTML = $scope.rules;
+
             });
 
         };
+
+
         $scope.showData = function () {
 
             alert("data");

@@ -39,44 +39,71 @@
         <h2 align="center">{{ankietka.title}}</h2>
         <div align="center " class="col-sm-10 col-sm-offset-1">
             <select ng-model="selectAtribute" class="form-control btn-default" id="Atribute"
-                    ng-init="selectAtribute = atributeList[0]"  ng-change="change(selectAtribute)">
-                <option ng-repeat="(indexQ, q) in ankietka.question" value="{{q.id}} " selected>
+                    ng-init="selectAtribute = atributeList[0]" ng-change="change(selectAtribute)">
+                <option ng-repeat="(indexQ, q) in ankietka.question" value="{{q.id}}" selected>
                     <h4>{{q.question}}</h4>
                 </option>
             </select>
         </div>
-
-
-
-        <div class="col-sm-12 bg-light-gray" align="center">
-
-            <!--<button type="button" class="btn btn-warning"-->
-                    <!--ng-click="showStatistic()"> Show statistics-->
-            <!--</button>-->
+        <div class="col-sm-10 col-md-offset-1 bg-light-gray" align="center">
             <div style="max-width: 90% ;height: 500px" id="chartdiv"></div>
-            <button type="button" class="btn btn-warning"
-                    ng-click="loadRules()"> Show rules
-            </button>
+            <div class="row ">
 
-            <button type="button" class="btn btn-warning"
-                    ng-click="showData()"> Show data
-            </button>
+                <div class="col-md-10">
+                    <label>Liczba reguł:</label>
+                    <input type="range" min="1" max="100" ng-model="liczbaRegul"/>
+                </div>
+
+                <div class="col-md-2">
+                    <p id="liczbaRegul" ng-model="liczbaRegul">{{liczbaRegul}}</p>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3">
+                    <label>Minimalna ufność reguły:</label>
+                </div>
+
+                <div class=" col-md-2">
+                    <select  ng-model="ufnosc"class="form-control btn-default" id="ufnosc"
+                            ng-init="ufnosc = minUfnoscList[0]">
+                        <option ng-repeat="b in minUfnosc " value="{{b}}"selected >{{b}}</option>
+                    </select>
+                </div>
+
+            </div>
 
 
+            <div class="row col-md-4">
+                <button type="button" class="btn btn-warning btn-block"
+                        ng-click="loadRules()"> Show rules
+                </button>
+            </div>
+            <div class=" row col-md-4 ">
+                <button type="button" class="btn btn-warning btn-block"
+                        ng-click="showData()"> Show data
+                </button>
+            </div>
+
+            <br>
+            <br>
             <!--<div ng-repeat="q in rules">{{q}}</div>-->
+            <div align="left">
+                <p style="margin-left: 20px" id="demo"> </p>
+            </div>
 
-            <!--&lt;!&ndash;<h5> {{rulesweka}}</h5>&ndash;&gt;-->
+
+            <!--<h5 align="left"> {{rulesweka}}</h5>-->
             <!--&lt;!&ndash;<h5> {{statictic}}</h5>&ndash;&gt;-->
 
-            <!--&lt;!&ndash;<div align="center" ng-repeat="da in dataweka track by $index">&ndash;&gt;-->
+            <div align="center" ng-repeat="da in dataweka track by $index">
 
-            <!--&lt;!&ndash;<h5> {{da}}</h5>&ndash;&gt;-->
+                <!--&lt;!&ndash;<h5> {{da}}</h5>&ndash;&gt;-->
 
-            <!--</div>-->
+                </div>
 
 
+            </div>
         </div>
-    </div>
 
 </section>
 
