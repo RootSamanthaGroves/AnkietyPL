@@ -64,9 +64,9 @@
                 </div>
 
                 <div class=" col-md-2">
-                    <select  ng-model="ufnosc"class="form-control btn-default" id="ufnosc"
+                    <select ng-model="ufnosc" class="form-control btn-default" id="ufnosc"
                             ng-init="ufnosc = minUfnoscList[0]">
-                        <option ng-repeat="b in minUfnosc " value="{{b}}"selected >{{b}}</option>
+                        <option ng-repeat="b in minUfnosc " value="{{b}}" selected>{{b}}</option>
                     </select>
                 </div>
 
@@ -88,7 +88,7 @@
             <br>
             <!--<div ng-repeat="q in rules">{{q}}</div>-->
             <div align="left">
-                <p style="margin-left: 20px" id="demo"> </p>
+                <p style="margin-left: 20px" id="demo"></p>
             </div>
 
 
@@ -99,11 +99,26 @@
 
                 <!--&lt;!&ndash;<h5> {{da}}</h5>&ndash;&gt;-->
 
-                </div>
-
-
             </div>
+
+            <div class=" row col-md-4 ">
+                <button type="button" class="btn btn-warning btn-block"
+                        ng-click="wsparcieUfnosc()"> Pokarz wsparcie i ufność
+                </button>
+            </div>
+            <br>
+            <br>
+            <br>
+
+
+            <div align="center " class="col-sm-10 col-sm-offset-1">
+                <div id="chartContainer" style="height: 550px; width: 100%;">
+                </div>
+            </div>
+
+
         </div>
+    </div>
 
 </section>
 

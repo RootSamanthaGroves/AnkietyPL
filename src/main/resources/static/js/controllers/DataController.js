@@ -14,7 +14,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
             for (i = 4; i < 10; i = i + 5 / 10) {
                 $scope.minUfnosc.push(i / 10);
-                // console.log(i);
+
             }
         };
         minUfnosc();
@@ -38,9 +38,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 .then(function (response) {
                     if (response.status == 200) {
                         $rootScope.ankietka = response.data;
-
                         console.log($scope.ankietka);
-
                     } else {
                         console.log($scope.ankietka + " zaladowano ankiety");
                     }
@@ -56,11 +54,8 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 .then(function (response) {
                     if (response.status == 200) {
                         $rootScope.ankietka = response.data;
-
-
                         $scope.selectAtribute = $scope.ankietka.question.length;
                         $scope.showStatistic();
-
                     } else {
                         console.log($scope.ankietka + " sdasdsa");
                     }
@@ -72,61 +67,20 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
             // @param n    Liczba regul do policzenia (standardowo: 10)
             //* @param c    Minmalna ufnosc reguly (standardowo: 0.9).
             var x = document.getElementById("ufnosc").value;
-            // console.log(x + " " + $scope.liczbaRegul);
             rules = $resource('analysis/rules/' + x + "/" + $scope.liczbaRegul, {}, {
                 query: {method: 'get', isArray: true, cancellable: true}
             });
 
             rules.query(function (response) {
-                alert("1 "+response[2]);
-                 $scope.rulesweka = response;
-                // var m = "Hello world!";
-                // var text = $scope.rulesweka;
-                // var firstIndex = 0;
-                // var len = text.length
-                 // var r = "";
-                 // $scope.rules = "";
+                alert("1 " + response[2]);
+                $scope.rulesweka = response;
                 var i = 0;
-                // var t = "";
-
-
                 var text = "";
                 while (response[i]) {
                     text = response[i] + "<br>";
                     i++;
                 }
                 document.getElementById("demo").innerHTML = text;
-                // while (text.charAt(i)) {
-                //     if (temp === ",") {
-                //        var rules = " <p>   " + text.slice(firstIndex, i - 1) + " </p> <br>";
-                //         var res = text.substring(firstIndex, i - 1);
-                //         r = text.slice(firstIndex, i - 1);// console.log(r);
-                //         firstIndex = i + 1;
-                //
-                //     }
-                //     t += r + "<br>";
-                //     i++;
-                // }
-                // document.getElementById("demo").innerHTML = text;
-
-               //  for (i = 1; i < len; i++) {
-               //
-               //      var temp = text.charAt(i);
-               //
-               //      if (temp === ",") {
-               //          r = text.slice(firstIndex, i - 1);// console.log(r);
-               //          $scope.rules += "<br>";
-               //          $scope.rules = "<br>" + r + " <br>";
-               //          var res = text.substring(firstIndex, i - 1);
-               //
-               //          firstIndex = i + 1;
-               //
-               //      }
-               //  }
-               //  rules += " <br> " +r + " <br>";
-               //  r = text.slice(firstIndex, i - 1);
-               // alert( text.slice(firstIndex, i - 1));
-                // document.getElementById("demo").innerHTML = $scope.rules;
 
             });
 
@@ -163,10 +117,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
 
             data.query(function (response) {
-
-
                     var atributes = [];
-
                     for (i = 0; i < response.length; i++) {
                         atributes.push({
                             lable: response[i][0],
@@ -201,6 +152,85 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
         };
 
+
+        $scope.wsparcieUfnosc = function () {
+
+            data = $resource('analysis/supportAndTrust', {}, {
+                query: {method: 'get', isArray: true, cancellable: true}
+            });
+
+
+            data.query(function (response) {
+
+
+                    var atributes = [];
+
+                    for (i = 0; i < response.length; i++) {
+                        atributes.push({
+                            x: response[i][0],
+                            y: Number(response[i][1])
+                        });
+                    }
+
+
+
+              var wykres= function () {
+                  var chart = new CanvasJS.Chart("chartContainer",
+                      {
+                          title:{
+                              text: "Wykres statystyk",
+                              fontSize: 20
+                          },
+                          animationEnabled: true,
+                          axisX: {
+                              title:"Ufność",
+                              titleFontSize: 18
+
+                          },
+                          axisY:{
+                              title: "Wsparcie",
+                              titleFontSize: 16
+                          },
+                          legend: {
+                              verticalAlign: 'bottom',
+                              horizontalAlign: "center"
+                          },
+
+                          data: [
+                              {
+                                  type: "scatter",
+                                  markerType: "square",
+                                  toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong> Ufność</strong> {x} <br/><strong> Wsparcie</strong></span> {y}sec",
+
+                                  name: "Reguła",
+                                  showInLegend: true,
+                                   dataPoints: atributes,
+
+                              }	,
+
+                          ],
+                          legend:{
+                              cursor:"pointer",
+                              itemclick : function(e) {
+                                  if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                      e.dataSeries.visible = false;
+                                  }
+                                  else {
+                                      e.dataSeries.visible = true;
+                                  }
+                                  chart.render();
+                              }
+                          }
+                      });
+
+                  chart.render();
+              }
+                    wykres();
+                    console.log(response);
+                }
+            );
+
+        };
 
     }
 );
