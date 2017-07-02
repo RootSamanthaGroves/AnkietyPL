@@ -26,6 +26,7 @@ public class AnalysisController {
 
 
   public static double [][] tabOfSupportAndTrust;
+//  public static double
 
     /**
      * Metoda przedkazuje wygenerowane reguły asocjacyjne.
@@ -69,8 +70,11 @@ public class AnalysisController {
 
         double w = 0.0;
         double u = 0.0;
+        double lift = 0.0;
+        double uO = 0.0;
         double totalS;
         double premiseS;
+        double premiseC;
 
         String[] options = Utils.splitOptions("-N " + n + " -C " + c);
         apriori = new Apriori();
@@ -81,7 +85,7 @@ public class AnalysisController {
         System.out.println(" reguly" + rules);
         StringBuilder sb = new StringBuilder();
 
-        //   String[][] dataInTable = dataFromInnstancesToTable(data);
+
         String[] nameAtributes = new String[data.numAttributes()];
         List<String> rulesList = new ArrayList<>();
 
@@ -122,19 +126,26 @@ public class AnalysisController {
             rulesList.add(rulesAsString.toString());
         }
 
-       tabOfSupportAndTrust = new double[n][2];
+       tabOfSupportAndTrust = new double[n][4];
         System.out.println(rulesAsString.toString() + "oiuytre");
         int i = 0;
         for (AssociationRule rule : r) {
             totalS = Integer.valueOf(rule.getTotalSupport());
             premiseS = Integer.valueOf(rule.getPremiseSupport());
+            premiseC= Integer.valueOf(rule.getConsequenceSupport());
+
             w = Double.valueOf(totalS / count);
-//            System.out.println("wsparcie =" + w + " " + count + " " + totalS + " " + premiseS);
+            System.out.println("wsparcie =" + w + " " + count + " " + totalS + " " + premiseS);
             u = totalS / premiseS;
+            uO = Double.valueOf(premiseC / count);
+            lift = u / uO;
+
 //            System.out.println("ufnosc =" + u);
 //            tabOfSupportAndTrust[i][0] = w;
             tabOfSupportAndTrust[i][1] = u;
             tabOfSupportAndTrust[i][0]= w;
+            tabOfSupportAndTrust[i][2] = uO;
+            tabOfSupportAndTrust[i][3]= lift;
 
             sb.append(rule.toString());
 //            System.out.print(rule.getPremise() + " ");
@@ -161,9 +172,11 @@ public class AnalysisController {
     public  ResponseEntity<?> getsupportAndTrust() {
         double [][] result = new double[tabOfSupportAndTrust.length][tabOfSupportAndTrust[0].length];
         for (int i = 0; i < result.length; i++) {
-            System.out.println(tabOfSupportAndTrust[i][0]+ " "+ tabOfSupportAndTrust[i][1]);
+            System.out.println(tabOfSupportAndTrust[i][0]+ " "+ tabOfSupportAndTrust[i][1]+ " "+ tabOfSupportAndTrust[i][2]+ " "+ tabOfSupportAndTrust[i][3]);
             result[i][0] = tabOfSupportAndTrust[i][0];
             result[i][1] = tabOfSupportAndTrust[i][1];
+            result[i][2] = tabOfSupportAndTrust[i][2];
+            result[i][3] = tabOfSupportAndTrust[i][3];
         }
 
         return ResponseEntity.ok(result);

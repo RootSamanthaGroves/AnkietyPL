@@ -6,6 +6,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         $scope.user;
         $scope.firstname;
         $scope.lastname;
+        $scope.liczbaRegul=10;
         var rules = [];
         $scope.minUfnosc = [];
 
@@ -76,12 +77,17 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 $scope.rulesweka = response;
                 var i = 0;
                 var text = "";
+                $scope.rules = [];
                 while (response[i]) {
+                    // $scope.rules[i]=response[i];
+                    // console.log(i+" "+$scope.rules[i][i]);
+
                     text = response[i] + "<br>";
                     i++;
                 }
                 document.getElementById("demo").innerHTML = text;
                 $scope.wsparcieUfnosc();
+                console.log(" to to" + $scope.rules[0]);
 
             });
 
@@ -166,68 +172,209 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
                     var atributes = [];
 
+
                     for (i = 0; i < response.length; i++) {
+                        // console.log($scope.rules[i])
                         atributes.push({
                             x: response[i][0],
-                            y: Number(response[i][1])
+                            y: Number(response[i][1]),
+                            r: i + 1
+
                         });
+
                     }
 
 
+                    var wykres = function () {
+                        var chart = new CanvasJS.Chart("chartContainer2",
+                            {
+                                title: {
+                                    text: "Wykres statystyk",
+                                    fontSize: 20
+                                },
+                                animationEnabled: true,
+                                axisX: {
+                                    title: "Ufność",
+                                    titleFontSize: 18
 
-              var wykres= function () {
-                  var chart = new CanvasJS.Chart("chartContainer",
-                      {
-                          title:{
-                              text: "Wykres statystyk",
-                              fontSize: 20
-                          },
-                          animationEnabled: true,
-                          axisX: {
-                              title:"Ufność",
-                              titleFontSize: 18
+                                },
+                                axisY: {
+                                    title: "Wsparcie",
+                                    titleFontSize: 16
+                                },
+                                legend: {
+                                    verticalAlign: 'bottom',
+                                    horizontalAlign: "center"
+                                },
 
-                          },
-                          axisY:{
-                              title: "Wsparcie",
-                              titleFontSize: 16
-                          },
-                          legend: {
-                              verticalAlign: 'bottom',
-                              horizontalAlign: "center"
-                          },
+                                data: [
+                                    {
+                                        type: "scatter",
+                                        markerType: "square",
+                                        toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong> " +
+                                        "Ufność</strong> {x} <br/><strong> Wsparcie</strong></span> {y} <br/><strong> REGUŁA</strong></span>{r}",
 
-                          data: [
-                              {
-                                  type: "scatter",
-                                  markerType: "square",
-                                  toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong> Ufność</strong> {x} <br/><strong> Wsparcie</strong></span> {y}sec",
+                                        name: "Reguła",
+                                        showInLegend: true,
+                                        dataPoints: atributes,
 
-                                  name: "Reguła",
-                                  showInLegend: true,
-                                   dataPoints: atributes,
+                                    },
 
-                              }	,
+                                ],
+                                legend: {
+                                    cursor: "pointer",
+                                    itemclick: function (e) {
+                                        if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                            e.dataSeries.visible = false;
+                                        }
+                                        else {
+                                            e.dataSeries.visible = true;
+                                        }
+                                        chart.render();
+                                    }
+                                }
+                            });
 
-                          ],
-                          legend:{
-                              cursor:"pointer",
-                              itemclick : function(e) {
-                                  if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                                      e.dataSeries.visible = false;
-                                  }
-                                  else {
-                                      e.dataSeries.visible = true;
-                                  }
-                                  chart.render();
-                              }
-                          }
-                      });
-
-                  chart.render();
-              }
+                        chart.render();
+                    }
                     wykres();
+                    $scope.wykresLiniowyStatystyk();
                     console.log(response);
+                }
+            );
+
+        };
+
+        $scope.wykresLiniowyStatystyk = function () {
+
+            data = $resource('analysis/supportAndTrust', {}, {
+                query: {method: 'get', isArray: true, cancellable: true}
+            });
+
+
+            data.query(function (response) {
+
+
+                    var lift = [];
+                    var ufnosc = [];
+                    var wsparcie = [];
+                    var oczekiwanaUfnosc = [];
+
+                    for (i = 0; i < response.length; i++) {
+                        // console.log($scope.rules[i])
+                        ufnosc.push({
+                            x: i+1,
+                            y:response[i][0]
+
+                        });
+                        wsparcie.push({
+                            x: i+1,
+                            y:response[i][1]
+
+                        });
+                        oczekiwanaUfnosc.push({
+                            x: i+1,
+                            y:response[i][2]
+
+                        });
+                        lift.push({
+                            x:i+1,
+                            y: response[i][3],
+
+                        });
+
+                    }
+
+
+                    var wykres4 = function () {
+                        var chart = new CanvasJS.Chart("chartContainer",
+                            {
+                                zoomEnabled: false,
+                                animationEnabled: true,
+                                title: {
+                                    text: "Wykres liniowy statystyk"
+                                },
+                                axisY2: {
+                                valueFormatString: "0.0 bn",
+
+                                maximum: 1.2,
+                                interval: .5,
+                                interlacedColor: "#F5F5F5",
+                                gridColor: "#D7D7D7",
+
+                                tickColor: "#D7D7D7"
+                            },
+                                axisX: {
+                                    title: "Indeks reguły",
+                                    titleFontSize: 18
+
+                                },
+                                theme: "theme2",
+                                toolTip: {
+                                    shared: true
+                                },
+                                legend: {
+                                    verticalAlign: "bottom",
+                                    horizontalAlign: "center",
+                                    fontSize: 15,
+                                    fontFamily: "Lucida Sans Unicode"
+
+                                },
+                                data: [
+                                    {
+                                        type: "line",
+                                        lineThickness: 3,
+                                        axisYType: "secondary",
+                                        showInLegend: true,
+                                        name: "Lift",
+                                        dataPoints: lift
+                                    },
+                                    {
+                                        type: "line",
+                                        lineThickness: 3,
+                                        showInLegend: true,
+                                        name: "Wsparcie",
+                                        axisYType: "secondary",
+                                        dataPoints: wsparcie
+                                    },
+                                    {
+                                        type: "line",
+                                        lineThickness: 3,
+                                        showInLegend: true,
+                                        name: "Oczekiwana ufność",
+                                        axisYType: "secondary",
+                                        dataPoints: oczekiwanaUfnosc
+                                    },
+                                    {
+                                        type: "line",
+                                        lineThickness: 3,
+                                        showInLegend: true,
+                                        name: "Ufność",
+                                        axisYType: "secondary",
+                                        dataPoints: ufnosc
+                                    }
+
+
+                                ],
+                                legend: {
+                                    cursor: "pointer",
+                                    itemclick: function (e) {
+                                        if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                            e.dataSeries.visible = false;
+                                        }
+                                        else {
+                                            e.dataSeries.visible = true;
+                                        }
+                                        chart.render();
+                                    }
+                                }
+                            });
+
+                        chart.render();
+
+                    }
+                    wykres4();
+                    // console.log(response);
                 }
             );
 
@@ -235,3 +382,4 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
     }
 );
+
