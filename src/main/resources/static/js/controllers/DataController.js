@@ -72,7 +72,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
             });
 
             rules.query(function (response) {
-                alert("1 " + response[2]);
+                // alert("1 " + response[2]);
                 $scope.rulesweka = response;
                 var i = 0;
                 var text = "";
@@ -81,6 +81,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                     i++;
                 }
                 document.getElementById("demo").innerHTML = text;
+                $scope.wsparcieUfnosc();
 
             });
 

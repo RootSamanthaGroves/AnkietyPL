@@ -1,6 +1,6 @@
-<section id="portfolio" class="bg-light-gray" xmlns:max-width="http://www.w3.org/1999/xhtml">
+<section id="portfolio" xmlns:max-width="http://www.w3.org/1999/xhtml">
 
-    <div class="row">
+    <div class="row ">
         <br> <br> <br> <br>
         <!--<div ng-controller="AnalysisController">-->
         <!--<input type="file" class="form-control"-->
@@ -8,15 +8,16 @@
         <!--placeholder="path"-->
         <!--ng-model="path"/>-->
 
-        <div class="bg-light-gray">
+        <div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">Dostępne ankiety</h2>
+                        <h4 class="section-heading">Wybierz ankietę</h4>
+                        <br> <br> <br> <br>
                     </div>
                 </div>
-
-                <div class="row">
+                <div class="row NavbarController ">
                     <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">
                         <a id="{{s.id}}" alt="{{s.id}}" class="portfolio-link" data-toggle="modal"
                            ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}">
@@ -31,94 +32,163 @@
                             <h4>{{s.title}}</h4>
                         </div>
                     </div>
+
+
                 </div>
+                <br> <br> <br> <br>
             </div>
         </div>
 
+        <div>
+            <div class="jumbotron">
+                <h2 align="center">{{ankietka.title}}</h2>
+                <div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 0px">
+                    <select ng-model="selectAtribute" class="form-control btn-default" id="Atribute"
+                            ng-init="selectAtribute = atributeList[0]" ng-change="change(selectAtribute)">
+                        <option ng-repeat="(indexQ, q) in ankietka.question" value="{{q.id}}" selected>
+                            <h4>{{q.question}}</h4>
+                        </option>
+                    </select>
+                </div>
+                <br> <br> <br> <br>
+                <div class="col-sm-10 col-md-offset-1 " align="center">
+                    <button type="button" class="btn btn-warning btn-block" data-toggle="collapse" data-target="#demoq">
+                        Wykres
+                    </button>
 
-        <h2 align="center">{{ankietka.title}}</h2>
-        <div align="center " class="col-sm-10 col-sm-offset-1">
-            <select ng-model="selectAtribute" class="form-control btn-default" id="Atribute"
-                    ng-init="selectAtribute = atributeList[0]" ng-change="change(selectAtribute)">
-                <option ng-repeat="(indexQ, q) in ankietka.question" value="{{q.id}}" selected>
-                    <h4>{{q.question}}</h4>
-                </option>
-            </select>
+
+                </div>
+                <div class="row"><br> <br> <br> <br></div>
+            </div>
+
         </div>
-        <div class="col-sm-10 col-md-offset-1 bg-light-gray" align="center">
-            <div style="max-width: 90% ;height: 500px" id="chartdiv"></div>
-            <div class="row ">
 
-                <div class="col-md-10">
-                    <label>Liczba reguł:</label>
-                    <input type="range" min="1" max="100" ng-model="liczbaRegul"/>
-                </div>
 
-                <div class="col-md-2">
-                    <p id="liczbaRegul" ng-model="liczbaRegul">{{liczbaRegul}}</p>
-                </div>
+        <div class="col-sm-10 col-md-offset-1 " align="center">
+
+            <br> <br>
+            <div id="demoq" class="collapse">
+                <div style="max-width: 70% ;height: 800px; margin-top: 10px" id="chartdiv"></div>
+            </div>
+
+        </div>
+
+
+        <div>
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Wygeneruj reguły </h2>
+                <h4 class="section-heading">Zaznacz prenerencje</h4>
+                <br> <br> <br> <br>
+            </div>
+
+            <div class="col-sm-10 col-md-offset-1 " align="center" style="margin-bottom: 30px">
+                <br> <br> <br> <br>
+                <p id="liczbaRegul" ng-model="liczbaRegul"> Liczba reguł: {{liczbaRegul}}</p>
+                <input type="range" class="btn-danger" min="1" max="100" ng-model="liczbaRegul"/>
+
             </div>
             <div class="row ">
-                <div class="col-md-3">
-                    <label>Minimalna ufność reguły:</label>
+                <div class="col-md-3 col-md-offset-3 " align="center" style="margin-bottom: 10px">
+                    <p>Minimalna ufność reguły:</p>
                 </div>
-
                 <div class=" col-md-2">
                     <select ng-model="ufnosc" class="form-control btn-default" id="ufnosc"
                             ng-init="ufnosc = minUfnoscList[0]">
                         <option ng-repeat="b in minUfnosc " value="{{b}}" selected>{{b}}</option>
                     </select>
                 </div>
-
             </div>
 
 
-            <div class="row col-md-4">
-                <button type="button" class="btn btn-warning btn-block"
-                        ng-click="loadRules()"> Show rules
-                </button>
-            </div>
-            <div class=" row col-md-4 ">
-                <button type="button" class="btn btn-warning btn-block"
-                        ng-click="showData()"> Show data
-                </button>
-            </div>
+            <div class="container-fluid" style="margin-left: 50px; margin-right: 50px">
+                <div class="panel-group btn-warning  " id="accordionShowRules">
+                    <div class="panel btn-warning">
+                        <h4 class="panel-title btn-warning panel-heading" align="center">
+                            <a data-toggle="collapse" data-target="#collapseShowRules" ng-click="loadRules()"
+                               style="color: white">
+                                <!--<button type="button" class="btn btn-warning btn-block"-->
 
-            <br>
-            <br>
-            <!--<div ng-repeat="q in rules">{{q}}</div>-->
-            <div align="left">
-                <p style="margin-left: 20px" id="demo"></p>
-            </div>
+                                <!--&gt; -->
+                                Show rules
+                                <!--</button>-->
+                            </a>
+                        </h4>
 
+                        <div id="collapseShowRules" class="panel-collapse collapse  ">
+                            <div class="panel-body" style="background-color: white">
+                                <div class="row"><br> <br> <br> <br></div>
+                                <div align="center " class="col-sm-12  ">
+                                    <div align="left">
+                                        <p style="margin-left: 5px; color: #080808" id="demo"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <!--<h5 align="left"> {{rulesweka}}</h5>-->
-            <!--&lt;!&ndash;<h5> {{statictic}}</h5>&ndash;&gt;-->
-
-            <div align="center" ng-repeat="da in dataweka track by $index">
-
-                <!--&lt;!&ndash;<h5> {{da}}</h5>&ndash;&gt;-->
-
-            </div>
-
-            <div class=" row col-md-4 ">
-                <button type="button" class="btn btn-warning btn-block"
-                        ng-click="wsparcieUfnosc()"> Pokarz wsparcie i ufność
-                </button>
-            </div>
-            <br>
-            <br>
-            <br>
-
-
-            <div align="center " class="col-sm-10 col-sm-offset-1">
-                <div id="chartContainer" style="height: 550px; width: 100%;">
+                    </div>
                 </div>
+                <div class="panel-group btn-warning  " id="accordion">
+                    <div class="panel   btn-warning">
+                        <h4 class="panel-title btn-warning panel-heading" align="center">
+                            <a data-toggle="collapse" data-target="#collapse1" ng-click="wsparcieUfnosc()" style="color: white">
+                                Pokarz wsparcie i ufność
+                            </a>
+                        </h4>
+
+                        <div id="collapse1" class="panel-collapse collapse  ">
+                            <div class="panel-body" style="background-color: white">
+                                <div class="row"><br> <br> <br> <br></div>
+                                <div align="center " class="col-sm-10 col-sm-offset-1 ">
+                                    <div id="chartContainer" style="height: 400px; width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
 
         </div>
+        <br>
+        <br>
+
+        <div align="center" ng-repeat="da in dataweka track by $index">
+        </div>
+
+
     </div>
+    </div>
+    </div>
+
+
+    <!--<div class="container-fluid" style="margin-left: 10px; margin-right: 10px">-->
+        <!--<div class="panel-group btn-warning  " id="accordion">-->
+            <!--<div class="panel   btn-warning">-->
+                <!--<h4 class="panel-title btn-warning panel-heading" align="center">-->
+                    <!--<a data-toggle="collapse" data-target="#collapse1" ng-click="wsparcieUfnosc()" style="color: white">-->
+                        <!--Pokarz wsparcie i ufność-->
+                    <!--</a>-->
+                <!--</h4>-->
+
+                <!--<div id="collapse1" class="panel-collapse collapse  ">-->
+                    <!--<div class="panel-body" style="background-color: white">-->
+                        <!--<div class="row"><br> <br> <br> <br></div>-->
+                        <!--<div align="center " class="col-sm-10 col-sm-offset-1 ">-->
+                            <!--<div id="chartContainer" style="height: 400px; width: 100%;">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+    <!--</div>-->
+    <!--</div>-->
 
 </section>
 
