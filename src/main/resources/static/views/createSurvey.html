@@ -62,26 +62,26 @@
                                                placeholder="Title"
                                                ng-model="titleOfSurvey"/>
                                     </div>
-
+                                    <button type="button" class="btn btn-warning" id="addSurvey"
+                                            ng-click="saveSurvey()"> Add
+                                        survey
+                                    </button>
 
                                     <button type="button" alt="{{c.id}}"
                                             ng-click="showCar(c.id)"
                                             class="btn btn-primary btn btn-inf"
                                             data-toggle="modal"
                                             data-target="#exampleModalLong">
-                                        <span class="glyphicon glyphicon-edit"></span>
+                                        <span class="glyphicon glyphicon-edit"></span> Select question
                                     </button>
                                     <div class="col-md-12 col-sm-12">
                                         </br>
 
 
-                                        <label>Wybierz plik z pytaniami (format csv):</label>
-                                        <input type="file" id="fileUpload">
+                                        <!--<label>Wybierz plik z pytaniami (format csv):</label>-->
+                                        <!--<input type="file" id="fileUpload">-->
 
-                                        <button type="button" class="btn btn-warning" id="addSurvey"
-                                                ng-click="saveSurvey()"> Add
-                                            survey
-                                        </button>
+
                                     </div>
 
                                 </div>
@@ -263,14 +263,11 @@
                 <table>
                     <tbody>
                     <tr ng-repeat="q in questions">
-
-
                         <td>
-                            <input type="checkbox" alt=q.id
-                                   ng-click="selectQ(q.id)">
-                            <!--ng-checked="exists(q, selectedQ)"-->
-                            <!--alt="q.id"-->
-
+                            <input type="checkbox"
+                                   ng-checked="exists(q, selectedQ)"
+                                   ng-click="toggle(q, selectedQ)"
+                            alt="q.id">
                             {{q.question}}
                             <div ng-repeat="(index,a) in q.answers">
                                 <li>{{q.answers[index].answer}}</li>
@@ -284,7 +281,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-                <button type="button" class="btn btn-success sendButton" ng-click="editCar()">
+                <button type="button" class="btn btn-success sendButton" ng-click="saveRelationsSurveyWithQuestions()">
                     Zapisz zmiany
                 </button>
             </div>

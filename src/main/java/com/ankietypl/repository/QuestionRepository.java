@@ -60,10 +60,6 @@ public class QuestionRepository {
     public Question update(long id, Question q) {
         Question question = entityManager.find(Question.class, id);
 
-//            if (!q.getQuestion().isEmpty()) {
-//                question.setQuestion(q.getQuestion());
-//            }
-
         if (!q.getAnswers().isEmpty()) {
             question.setAnswers(q.getAnswers());
         }

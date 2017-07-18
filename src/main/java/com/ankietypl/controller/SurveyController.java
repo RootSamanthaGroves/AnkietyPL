@@ -3,6 +3,7 @@
  */
 package com.ankietypl.controller;
 
+import com.ankietypl.model.Question;
 import com.ankietypl.model.Survey;
 import com.ankietypl.repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,12 @@ import java.util.Optional;
         return new ResponseEntity<Survey>(HttpStatus.BAD_REQUEST);
     }
 
-
+//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PostMapping("/put/{id}")
+    public ResponseEntity<Survey> update(@PathVariable long id, @RequestBody Survey survey) {
+        System.out.println(survey.toString());
+        surveyRepository.update(Long.valueOf(id), survey);
+        return new ResponseEntity<Survey>(survey, new HttpHeaders(), HttpStatus.OK);
+    }
 
 }

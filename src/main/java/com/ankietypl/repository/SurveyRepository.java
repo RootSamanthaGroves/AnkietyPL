@@ -3,6 +3,7 @@
  */
 package com.ankietypl.repository;
 
+import com.ankietypl.model.Question;
 import com.ankietypl.model.Survey;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -49,5 +50,17 @@ public class SurveyRepository {
     public Survey findOne(long id) {
         Survey s = entityManager.find(Survey.class, id);
         return s;
+    }
+
+    @Transactional
+    public Survey update(long id, Survey s) {
+        Survey survey = entityManager.find(Survey.class, id);
+
+        if (!s.getQuestion().isEmpty()) {
+            survey.setQuestion(s.getQuestion());
+        }
+        entityManager.merge(survey);
+        return survey;
+
     }
 }

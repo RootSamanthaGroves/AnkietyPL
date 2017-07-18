@@ -9,7 +9,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     $scope.questions;
     $scope.answer;
     $scope.question;
-    $scope.Survey = 3;
+
 
     $scope.testMessage = "banan";
 
@@ -17,7 +17,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     $scope.items = [];
     $scope.selected = [];
     $scope.selectedQ=[];
-    $scope.Survey;
+
 
     $('input[type=file]').change(function () {
         console.dir(this.files[0])
@@ -27,6 +27,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         var idx = list.indexOf(item);
         if (idx > -1) {
             list.splice(idx, 1);
+            console.log(item);
         }
         else {
             list.push(item);
@@ -39,28 +40,28 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
 
 
     $scope.saveRelationsSurveyWithQuestions = function () {
-         alert($scope.selectedQ + " " + $scope.survey);
-        console.log($scope.selectedQ + " " + $scope.survey);
+        $scope.Survey = 15;
+        console.log($scope.selectedQ.length + " ==> " + $scope.Survey);
 
 
 
         var questionObject = {
             survey: $scope.Survey,
-            question: $scope.question
+            question: $scope.selectedQ
 
         };
 
-        // alert(questionObject.question+" question     answer "+ questionObject.answers)
+        alert(questionObject.question+" question     s "+ questionObject.survey)
 
-        // $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
-        //     // alert('Thanks'+$scope.selected);
-        //     loadAllQuestionFromDb();
+        $http.post('/survey/put/'+ $scope.Survey,questionObject).success(function () { //wywloujemy
+            // alert('Thanks'+$scope.selected);
+            loadAllQuestionFromDb();
 
 
 
-        // }).error(function () {
-        //     alert("nie udało się ")
-        // })
+        }).error(function () {
+            alert("nie udało się ")
+        })
     };
 
 
@@ -421,5 +422,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         $scope.question = id;
         $routeParams.id = id;
     };
+
+
 })
 ;
