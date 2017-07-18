@@ -9,12 +9,15 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     $scope.questions;
     $scope.answer;
     $scope.question;
+    $scope.Survey = 3;
 
     $scope.testMessage = "banan";
 
     $scope.testowy = 56;
     $scope.items = [];
     $scope.selected = [];
+    $scope.selectedQ=[];
+    $scope.Survey;
 
     $('input[type=file]').change(function () {
         console.dir(this.files[0])
@@ -35,8 +38,36 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     };
 
 
+    $scope.saveRelationsSurveyWithQuestions = function () {
+         alert($scope.selectedQ + " " + $scope.survey);
+        console.log($scope.selectedQ + " " + $scope.survey);
+
+
+
+        var questionObject = {
+            survey: $scope.Survey,
+            question: $scope.question
+
+        };
+
+        // alert(questionObject.question+" question     answer "+ questionObject.answers)
+
+        // $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
+        //     // alert('Thanks'+$scope.selected);
+        //     loadAllQuestionFromDb();
+
+
+
+        // }).error(function () {
+        //     alert("nie udało się ")
+        // })
+    };
+
+
+
+
     $scope.saveRelations = function () {
-        alert($scope.selected + " " + $scope.question);
+            // alert($scope.selected + " " + $scope.question);
         console.log($scope.selected + " " + $scope.question);
 
 
@@ -46,10 +77,10 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             answers: $scope.selected
         };
 
-        alert(questionObject.question+" question     answer "+ questionObject.answers)
+        // alert(questionObject.question+" question     answer "+ questionObject.answers)
 
         $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
-            alert('Thanks'+$scope.selected);
+            // alert('Thanks'+$scope.selected);
             loadAllQuestionFromDb();
 
 
@@ -123,17 +154,20 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
                     SurveyService.loadAllSurvey().then(function (response2) {
                         if(response2 === 200){
                             $rootScope.ankietka = response2.data;
-                            console.log("udało sie")
-                            $route.reload();
+                            console.log("udało sie");
+                            window.location.reload(false);
+                            // $route.reload();
                         }
                     })
                 } else {
                     SurveyService.loadAllSurvey().then(function (response2) {
                         if(response2 === 200){
                             $rootScope.ankietka = response2.data;
-                            console.log("udało sie")
+                            console.log("udało sie");
+                            window.location.reload(false);
                         }
                     })
+                    window.location.reload(false);
                     console.log($rootScope.ankietka + " zaladowano ankiety");
                 }
             })
@@ -324,13 +358,13 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
 
     $scope.saveSurvey = function () {
         var title = $scope.titleOfSurvey; //pobieramy imie z pola w html
-        alert(title);
         var titleObj = {
             title: title
         };
         $http.post('/survey/add', titleObj).success(function () { //wywloujemy
-            alert('Survey add' + titleObj);
-            $rootScope.loadAllSurveyFromDb();
+            // $rootScope.loadAllSurveyFromDb();
+            window.location.reload(false);
+
         }).error(function () {
             alert('We have problem!');
         })

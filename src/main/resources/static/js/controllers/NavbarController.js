@@ -38,6 +38,7 @@ angular.module('myApp').controller('NavbarController', function ($http, $scope, 
                     // alert('Zostałeś wylogowany.');
                     $location.path('/');
                     $location.path('/');
+                    window.location.reload(false);
                 }
             })
     };

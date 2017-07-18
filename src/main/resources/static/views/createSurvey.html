@@ -1,5 +1,35 @@
+<section id="portfolio"  ng-controller="SurveysController">
+        <div class="row">
+        <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">
+
+            <a id="{{s.id}}" alt="{{s.id}}" class="portfolio-link" data-toggle="modal"
+
+               ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}" data-toggle="modal"
+               data-target="#showSurvey">
+
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content">
+                        <i class="fa fa-plus fa-3x"></i>
+                    </div>
+                </div>
+                <img src="views/images/portfolio/roundicons.png" class="img-responsive" alt="{{s.id}}">
+            </a>
+            <div class="portfolio-caption">
+                <h4>{{s.title}}</h4>
+                <button class=" btn btn-primary btn-block btn btn-danger"
+                        ng-click="delete(s.id)">&#x2718; Delete
+                </button>
+                <p class="text-muted">Graphic Design</p>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+
+
 <div class="bg-light-gray">
-    <div class="createSurvey" ng-controller="SurveysController">
+    <div class="bg-light-gray" ng-controller="SurveysController">
         <div class="container ">
             <div class="row ">
                 <div class="col-md-1">
@@ -8,248 +38,194 @@
                     <div class="col-md-10">
                         <div>
                             <br/>
-                            <br/>
-                            <br/>
+
                             <div class="bgform">
                                 <div class="form-group">
                                     <!--<h2>Create survey</h2>-->
 
                                     <div class="col-lg-12 text-center">
                                         <h2>Create survey</h2>
-
-                                    </div>
-                                    <!--<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">-->
-                                        <!--&lt;!&ndash; Indicators &ndash;&gt;-->
-                                        <!--<ol class="carousel-indicators">-->
-                                            <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
-                                            <!--<li data-target="#myCarousel" data-slide-to="1"></li>-->
-                                            <!--<li data-target="#myCarousel" data-slide-to="2"></li>-->
-                                        <!--</ol>-->
-
-                                        <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
-                                        <!--<div class="carousel-inner" role="listbox">-->
-                                            <!--<div class="item active">-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<label>Title:</label>-->
-                                                <!--<input type="text" class="form-control"-->
-                                                       <!--id="titleOfSurvey"-->
-                                                       <!--placeholder="Title">-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-
-                                            <!--</div>-->
-                                            <!--<div class="item" align="center" style="margin-top: 50px">-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<label>Wybierz plik z pytaniami (format csv):</label>-->
-                                                <!--<input type="file" id="fileUpload">-->
-                                                <!--<label>Wybierz plik z odpowiedziami (format csv):</label>-->
-                                                <!--<input type="file" id="fileUploadAnswer">-->
-                                                <!--<label>Wybierz plik z odpowiedziami (format csv):</label>-->
-                                                <!--<input type="file" id="fileUploadQuestionAnswer">-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                            <!--</div>-->
-                                            <!--<div class="item" align="center">-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<label>Wybierz plik z odpowiedziami (format csv):</label>-->
-                                                <!--<input type="file" id="fileUploadAnswer">-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
-                                                <!--<br>-->
- <!--</div>-->
-                                        <!--</div>-->
-
-                                        <!-- Left and right controls -->
-                                        <!--<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">-->
-                                        <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-                                        <!--<span class="sr-only">Previous</span>-->
-                                        <!--</a>-->
-                                        <!--<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">-->
-                                        <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-                                        <!--<span class="sr-only">Next</span>-->
-                                        <!--</a>-->
                                     </div>
 
-
-                                    <hr class="colorgraph" align="center">
-                                    <br/>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12">
-                                            <label>Title:</label>
-                                            <input type="text" class="form-control"
-                                            id="titleOfSurvey"
-                                            placeholder="Title"
-                                            ng-model="titleOfSurvey"/>
-                                        </div>
-
-                                        <div class="col-md-12 col-sm-12">
-                                            </br>
-
-
-                                            <label>Wybierz plik z pytaniami (format csv):</label>
-                                            <input type="file" id="fileUpload">
-
-                                            <button type="button" class="btn btn-warning" id="addSurvey"
-                                                    ng-click="saveSurvey()"> Add
-                                                survey
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                    <br/>
                                 </div>
 
 
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-                                            <hr class="colorgraph">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label>Question:</label>
-                                                        <input type="text" class="form-control"
-                                                               id="questionOfSurvey"
-                                                               placeholder="Question"
-                                                               ng-model="questionOfSurvey"/>
-
-                                                    </div>
-                                                </div>
-                                                <br/>
-                                            </div>
-                                            <button type="button" class="btn btn-warning"
-                                                    id="saveQuestion"
-                                                    ng-click="saveQuestion()">
-                                                Add
-                                                question
-                                            </button>
-
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <hr class="colorgraph">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label>Answer:</label>
-                                                        <input type="text" class="form-control"
-                                                               id="answerOfSurvey"
-                                                               placeholder="Answer"
-                                                               ng-model="answerOfSurvey"/>
-
-                                                    </div>
-                                                </div>
-                                                <br/>
-                                            </div>
-                                            <button type="button" class="btn btn-warning"
-                                                    id="saveAnswer"
-                                                    ng-click="saveAnswer()">
-                                                Add
-                                                answer
-                                            </button>
-                                        </div>
+                                <hr class="colorgraph" align="center">
+                                <br/>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <label>Title:</label>
+                                        <input type="text" class="form-control"
+                                               id="titleOfSurvey"
+                                               placeholder="Title"
+                                               ng-model="titleOfSurvey"/>
                                     </div>
-                                </div>
-
-                                <div class="col-md-12 col-sm-12">
 
 
-                                    <div class="col-md-6 col-sm-6">
-
+                                    <button type="button" alt="{{c.id}}"
+                                            ng-click="showCar(c.id)"
+                                            class="btn btn-primary btn btn-inf"
+                                            data-toggle="modal"
+                                            data-target="#exampleModalLong">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                    <div class="col-md-12 col-sm-12">
                                         </br>
-                                        <div class="panel panel-warning">
-                                            <div class="panel-heading">Added questions</div>
-                                            <div class="panel-body">
-                                                <table>
-                                                    <tbody>
-                                                    <tr ng-repeat="q in questions">
-                                                        <td>
-                                                            <input type="radio" alt=q.id
-                                                                   ng-click="selectQ(q.id)">
-                                                            {{q.question}}
-                                                            <div ng-repeat="(index,a) in q.answers">
-                                                                <li>{{q.answers[index].answer}}</li>
-                                                            </div>
 
-                                                        </td>
-                                                        <td><a href="" class="btn btn-danger"
-                                                               ng-click="deleteQuestion(q.id)">
-                                                            <span class="glyphicon glyphicon-trash"></span>
-                                                        </a></td>
-                                                        <td><a href="" class="btn btn-info "
-                                                               ng-click="editQuestion(q.id)">
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                        </a></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
 
-                                            </div>
-                                        </div>
+                                        <label>Wybierz plik z pytaniami (format csv):</label>
+                                        <input type="file" id="fileUpload">
+
+                                        <button type="button" class="btn btn-warning" id="addSurvey"
+                                                ng-click="saveSurvey()"> Add
+                                            survey
+                                        </button>
                                     </div>
 
+                                </div>
+                                <br/>
+                            </div>
+
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="row">
                                     <div class="col-md-6 col-sm-6">
-                                        </br>
-                                        <div class="panel panel-warning">
-                                            <div class="panel-heading">Added answers</div>
-                                            <div class="panel-body">
+                                        <hr class="colorgraph">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Question:</label>
+                                                    <input type="text" class="form-control"
+                                                           id="questionOfSurvey"
+                                                           placeholder="Question"
+                                                           ng-model="questionOfSurvey"/>
 
-                                                <table class="table table-hover">
-                                                    <tbody>
-                                                    <tr ng-repeat="a in answer">
-
-                                                        <td><input type="checkbox"
-                                                                   ng-checked="exists(a, selected)"
-                                                                   ng-click="toggle(a, selected)"
-                                                                   alt="a.id">
-                                                            {{a.answer}}
-                                                        </td>
-                                                        <td><a href="" class="btn btn-danger"
-                                                               ng-click="deleteAnswer(a.id)">
-                                                            <span class="glyphicon glyphicon-trash"></span>
-                                                        </a></td>
-                                                        <td><a href="" class="btn btn-info "
-                                                               ng-click="editAnswer(a.id,a.answer)">
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                        </a></td>
-
-
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                                </div>
                                             </div>
+                                            <br/>
+                                        </div>
+                                        <button type="button" class="btn btn-warning"
+                                                id="saveQuestion"
+                                                ng-click="saveQuestion()">
+                                            Add
+                                            question
+                                        </button>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <hr class="colorgraph">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Answer:</label>
+                                                    <input type="text" class="form-control"
+                                                           id="answerOfSurvey"
+                                                           placeholder="Answer"
+                                                           ng-model="answerOfSurvey"/>
+
+                                                </div>
+                                            </div>
+                                            <br/>
+                                        </div>
+                                        <button type="button" class="btn btn-warning"
+                                                id="saveAnswer"
+                                                ng-click="saveAnswer()">
+                                            Add
+                                            answer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+
+
+                                <div class="col-md-6 col-sm-6">
+
+                                    </br>
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">Added questions</div>
+                                        <div class="panel-body">
+                                            <table>
+                                                <tbody>
+                                                <tr ng-repeat="q in questions">
+
+                                                    <!--<td><input type="checkbox"-->
+                                                    <!--ng-checked="exists(a, selected)"-->
+                                                    <!--ng-click="toggle(a, selected)"-->
+                                                    <!--alt="a.id">-->
+                                                    <!--{{a.answer}}-->
+                                                    <!--</td>-->
+                                                    <td>
+                                                        <input type="checkbox" alt=q.id
+                                                               ng-click="selectQ(q.id)">
+                                                        <!--ng-checked="exists(q, selectedQ)"-->
+                                                        <!--alt="q.id"-->
+
+                                                        {{q.question}}
+                                                        <div ng-repeat="(index,a) in q.answers">
+                                                            <li>{{q.answers[index].answer}}</li>
+                                                        </div>
+
+                                                    </td>
+                                                    <td><a href="" class="btn btn-danger"
+                                                           ng-click="deleteQuestion(q.id)">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </a></td>
+                                                    <td><a href="" class="btn btn-info "
+                                                           ng-click="editQuestion(q.id)">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </a></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    </br>
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">Added answers</div>
+                                        <div class="panel-body">
+
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                <tr ng-repeat="a in answer">
+
+                                                    <td><input type="checkbox"
+                                                               ng-checked="exists(a, selected)"
+                                                               ng-click="toggle(a, selected)"
+                                                               alt="a.id">
+                                                        {{a.answer}}
+                                                    </td>
+                                                    <td><a href="" class="btn btn-danger"
+                                                           ng-click="deleteAnswer(a.id)">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </a></td>
+                                                    <td><a href="" class="btn btn-info "
+                                                           ng-click="editAnswer(a.id,a.answer)">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </a></td>
+
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <br/>
                         </div>
+                        <br/>
                     </div>
                 </div>
-
-
-                <h3>
+            </div>
+            <div style="margin-top: 20px">
+                <h3 align="center">
                     Connect the question with answers
 
                 </h3>
@@ -260,10 +236,113 @@
                     </button>
                 </div>
 
+            </div>
 
+
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+<!-- select question -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Select question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <table>
+                    <tbody>
+                    <tr ng-repeat="q in questions">
+
+
+                        <td>
+                            <input type="checkbox" alt=q.id
+                                   ng-click="selectQ(q.id)">
+                            <!--ng-checked="exists(q, selectedQ)"-->
+                            <!--alt="q.id"-->
+
+                            {{q.question}}
+                            <div ng-repeat="(index,a) in q.answers">
+                                <li>{{q.answers[index].answer}}</li>
+                            </div>
+
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-success sendButton" ng-click="editCar()">
+                    Zapisz zmiany
+                </button>
             </div>
         </div>
+    </div>
+</div>
 
+<!-- Show Survey -->
+<div class="portfolio-modal modal fade" id="showSurvey" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2 align="center">{{ankietka.title}}</h2>
+
+                            <img class="img-responsive img-centered" src="views/images/portfolio/roundicons.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div align="left" >
+
+                <div class="col-sm-offset-2">
+                    <div ng-repeat="(indexQ, q) in ankietka.question">
+                        <h4>{{q.question}}</h4>
+                        <form>
+                            <div ng-repeat="(indexQ, a) in q.answers">
+                                <label class="radio-inline">
+                                    <input type="radio" name="optradio">{{a.answer}}
+                                </label>
+                            </div>
+                            <br>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                    class="fa fa-times"></i> Zamknij</button>
+            <button type="button" class="btn btn-success sendButton" ng-click="editCar()">
+                Zapisz zmiany
+            </button>
+
+        </div>
 
     </div>
 </div>
