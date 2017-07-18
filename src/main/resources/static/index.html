@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="views/styles/style.css">
     <script src="JQuery/3.1.1/jquery.min.js"></script>
 
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
 
 
     <meta charset="utf-8">
@@ -108,7 +108,7 @@
                 <li><a class="page-scroll" href="#aboutDiv" ng-hide="currentPath === '/'">About</a></li>
                 <li><a class="page-scroll" href="#contact">Contact</a></li>
                 <li ng-if="email" class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Konto
+                    <a class="dropdown-toggle" data-toggle="dropdown">Account
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" style="background-color: #222222">
@@ -117,27 +117,25 @@
                         <li><a href="index.html#/createSurvey">Create survey</a></li>
                         <li><a href="index.html#/user/account">Me account</a></li>
                         <li><a href="index.html#/message">Message</a></li>
-                        <li><a href="index.html#/analisys">Analysis& Visualisation</a></li>
-                        <li><a href="index.html#/data">Data</a></li>
+                        <!--<li><a href="index.html#/analisys">Analysis& Visualisation</a></li>-->
+                        <li><a href="index.html#/data">Analysis & Visualisation</a></li>
                     </ul>
                 </li>
             </ul>
 
             <ul  class="nav navbar-nav navbar-right">
                 <li class="hidden"><a href="#page-top"></a></li>
-                <li ng-if="email"><a href=""><span
-                        class="glyphicon glyphicon-user fa fa-shield"></span>
+                <li ng-if="email"><a href=""><i class="glyphicon glyphicon-user"></i>
                     {{email}}</a></li>
 
 
-                <li ng-if="email"><a href="/" ng-click="removeUserFromStorage()">Wyloguj</a></li>
+                <li ng-if="email"><a href="/" ng-click="removeUserFromStorage()">  <span class="glyphicon glyphicon-off"></span> Logout</a></li>
 
-                <li ng-if="!email"><a href="#signUp" class="portfolio-link" data-toggle="modal"><span
-                        class="glyphicon glyphicon-user fa fa-shield"></span> Sign Up</a></li>
+                <li ng-if="!email"><a href="index.html#/register"><span class="glyphicon glyphicon-pencil"></span> Sign Up</a></li>
                 <!--<li ng-if="!email"><a href="#/login"><span class="glyphicon glyphicon-log-in fa fa-shield"></span> Login</a>-->
                 <!--</li>-->
 
-                <li ng-if="!email"><a href="index.html#/login"><i class="glyphicon glyphicon-lock"></i> Logowanie</a></li>
+                <li ng-if="!email"><a href="index.html#/login"><i class="glyphicon glyphicon-lock"></i> Log in</a></li>
 
             </ul>
         </div>
@@ -180,99 +178,99 @@
 <div class="portfolio-modal modal fade" id="signUp" tabindex="-1" role="dialog" aria-hidden="true">
 
 
-    <div ng-controller="RegisterController">
+    <!--<div ng-controller="RegisterController" class="row">-->
 
 
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl">
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div>
-                            <div class="modal-body">
-                                <!--&lt;!&ndash; Project Details Go Here &ndash;&gt;-->
+        <!--<div class="modal-dialog col-md-offset-2 col-md-8">-->
+            <!--<div class="modal-content">-->
+                <!--<div class="close-modal" data-dismiss="modal">-->
+                    <!--<div class="lr">-->
+                        <!--<div class="rl">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="container-fluid">-->
+                    <!--<div class="row">-->
+                        <!--<div>-->
+                            <!--<div class="modal-body">-->
+                                <!--&lt;!&ndash;&lt;!&ndash; Project Details Go Here &ndash;&gt;&ndash;&gt;-->
 
 
-                                <div class="bgform">
-                                    <form>
-                                        <div class="form-group">
-                                            <h2>Sign Up</h2>
-                                            <p> It’s free and always will be.</p>
-                                            <hr class="colorgraph">
-                                            <br/>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-6">
+                                <!--<div class="bgform">-->
+                                    <!--<form>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<h2>Sign Up</h2>-->
+                                            <!--<p> It’s free and always will be.</p>-->
+                                            <!--<hr class="colorgraph">-->
+                                            <!--<br/>-->
+                                        <!--</div>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="col-md-6">-->
 
-                                                    <input type="text" class="form-control" id="firstNameOfUser"
-                                                           placeholder="First name" ng-model="firstNameOfUser"/>
+                                                    <!--<input type="text" class="form-control" id="firstNameOfUser"-->
+                                                           <!--placeholder="First name" ng-model="firstNameOfUser"/>-->
 
-                                                </div>
-                                                <div class="col-md-6">
+                                                <!--</div>-->
+                                                <!--<div class="col-md-6">-->
 
-                                                    <input type="text" name="lastname" class="form-control"
-                                                           id="lastNameOfUser"
-                                                           placeholder="Last name"
-                                                           ng-model="lastNameOfUser" required/>
-
-
-                                                </div>
-                                            </div>
-                                            <br/>
-                                            <div class="input-group">
+                                                    <!--<input type="text" name="lastname" class="form-control"-->
+                                                           <!--id="lastNameOfUser"-->
+                                                           <!--placeholder="Last name"-->
+                                                           <!--ng-model="lastNameOfUser" required/>-->
 
 
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                <input type="text" class="form-control" id="emailOfUser"
-                                                       placeholder="Email"
-                                                       ng-model="emailOfUser"/>
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<br/>-->
+                                            <!--<div class="input-group">-->
 
 
-                                            </div>
-
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                                <input type="password" class="form-control" id="passwordOfUser"
-                                                       placeholder="Password"
-                                                       ng-model="passwordOfUser"/>
-                                            </div>
-                                            <br/>
+                                                <!--<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+                                                <!--<input type="text" class="form-control" id="emailOfUser"-->
+                                                       <!--placeholder="Email"-->
+                                                       <!--ng-model="emailOfUser"/>-->
 
 
+                                            <!--</div>-->
 
-                                            <br/>
-                                        </div>
-                                        <div class="form-group">
-
-                                            <div>
-                                                <button type="submit" value="Submit"
-                                                        class="btn btn-success glyphicon glyphicon-user col-sm-6"
-                                                        ng-click="saveUser()">
-                                                    Create
-                                                </button>
-                                                <button type="button" class="btn btn-primary col-sm-6" data-dismiss="modal"><i
-                                                        class="fa fa-times"></i> Close Project
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                </div>
+                                            <!--<div class="input-group">-->
+                                                <!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
+                                                <!--<input type="password" class="form-control" id="passwordOfUser"-->
+                                                       <!--placeholder="Password"-->
+                                                       <!--ng-model="passwordOfUser"/>-->
+                                            <!--</div>-->
+                                            <!--<br/>-->
 
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+                                            <!--<br/>-->
+                                        <!--</div>-->
+                                        <!--<div class="form-group">-->
+
+                                            <!--<div>-->
+                                                <!--<button type="submit" value="Submit"-->
+                                                        <!--class="btn btn-success glyphicon glyphicon-user col-sm-6"-->
+                                                        <!--ng-click="saveUser()">-->
+                                                    <!--Create-->
+                                                <!--</button>-->
+                                                <!--<button type="button" class="btn btn-primary col-sm-6" data-dismiss="modal"><i-->
+                                                        <!--class="fa fa-times"></i> Close Project-->
+                                                <!--</button>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+
+
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 
 

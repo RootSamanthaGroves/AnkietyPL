@@ -4,7 +4,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'n
 myApp.config(function ($routeProvider) {
     $routeProvider
 
-        .when('/sign', {
+        .when('/register', {
             templateUrl: 'views/register.html',
             controller: 'RegisterController'
         })

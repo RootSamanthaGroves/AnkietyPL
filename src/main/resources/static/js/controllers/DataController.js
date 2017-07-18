@@ -190,7 +190,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                             {
                                 title: {
                                     text: "Wykres statystyk",
-                                    fontSize: 20
+                                    fontSize: 30
                                 },
                                 animationEnabled: true,
                                 axisX: {
@@ -295,10 +295,10 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                     text: "Wykres liniowy statystyk"
                                 },
                                 axisY2: {
-                                valueFormatString: "0.0 bn",
+                                valueFormatString: "0.0 ",
 
-                                maximum: 1.2,
-                                interval: .5,
+                                maximum: 1.0,
+                                interval: .05,
                                 interlacedColor: "#F5F5F5",
                                 gridColor: "#D7D7D7",
 

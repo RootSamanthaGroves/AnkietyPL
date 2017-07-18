@@ -1,0 +1,63 @@
+<header ng-controller="RegisterController">
+    <div class="container" ng-hide="currentPath === '/'">
+        <div class="intro-text">
+            <div class="intro-heading">Please Sign in</div>
+
+            <div class=" col-sm-offset-2 col-sm-8 tab-pane active ex2 intro-heading" id="logowanie">
+                <form>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+
+
+
+                        <div style="text-align: center" class="input-group col-ms-4">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="imie" type="text" class="form-control" name="imie" value="imie"
+                                   required="required" placeholder="First name" ng-model="firstNameOfUser"
+                                   class="help-block" data-toggle="tooltip" data-placement="right"
+                                   title=" Imie musi być dłuższa nic 3 znaki!"
+                            >
+                        </div>
+                        <div style="text-align: center" class="input-group col-ms-4">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
+                            <input id="lastNameOfUser" type="text" class="form-control" name="imie" value="imie"
+                                   required="required" placeholder="Last name" ng-model="lastNameOfUser"
+                                   class="help-block" data-toggle="tooltip" data-placement="right"
+                                   title=" Nazwisko  musi być dłuższa nic 3 znaki!"
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input type="text" class="form-control" id="emailOfUser"
+                                   placeholder="Email"
+                                   ng-model="emailOfUser" data-toggle="tooltip"
+                                   data-placement="right" title=" Email powinien zawiecać @"/>
+                        </div>
+
+
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" id="passwordOfUser"
+                                   placeholder="Password"
+                                   ng-model="passwordOfUser" data-toggle="tooltip"
+                                   data-placement="right" title=" Hasło powinno być  dłuższe niż 5 znaków!"/>
+                        </div>
+
+                    </div>
+
+                    <button type="button" class="btn page-scroll btn-xl btn-block col-sm-6"
+                            ng-click="saveUser()">
+                        Create
+                    </button>
+
+
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</header>

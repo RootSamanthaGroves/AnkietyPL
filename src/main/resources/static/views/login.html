@@ -5,7 +5,7 @@
             <!--<div class="intro-lead-in">Welcome To Our Studio!</div>-->
             <div class="intro-heading">Welcome Login To The Site</div>
             <form>
-                <div class=" col-sm-offset-4 col-sm-10 tab-pane active ex2 intro-heading" id="logowanie">
+                <div class=" col-sm-offset-4 col-sm-8 tab-pane active ex2 intro-heading" id="logowanie">
                     <div ng-class="{'has-error is-focused' : authenticationError}">
                         <!--<div class="input-group col-sm-4">-->
                             <!--<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i> </span>-->
@@ -15,20 +15,21 @@
                         <!--</div>-->
                     </div>
 
-                    <div class="input-group col-sm-4">
+                    <div class="input-group col-sm-6">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input id="login" ng-model="username" type="text" class="form-control"
                                required="required" placeholder="login" />
                     </div>
 
 
-                    <div class="input-group col-sm-4">
+                    <div class="input-group col-sm-6">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input id="password" ng-model="password" type="password" class="form-control"
                                required="required" placeholder="password" />
                     </div>
-                    <div class="input-group col-sm-4">
-                        <button class="page-scroll btn btn-xl" ng-click="login()">Zaloguj się</button>
+
+                    <div class="input-group col-sm-6" style="margin-top:5px ">
+                        <button class="page-scroll btn btn-xl btn-block" ng-click="login()">Log in</button>
                     </div>
 
                 </div>
