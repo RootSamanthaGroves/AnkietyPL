@@ -22,6 +22,13 @@ angular.module('myApp').controller('NavbarController', function ($http, $scope, 
                         $rootScope.admin = false;
                         $localStorage.isAdmin = false;
                     }
+
+                    if (angular.equals(response.data.role, 'ROLE_ADMIN')) {
+                        $rootScope.Admin = true;
+
+                    } else {
+
+                    }
                 }
             })
     };

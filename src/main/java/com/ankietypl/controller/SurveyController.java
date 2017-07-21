@@ -79,7 +79,7 @@ import java.util.Optional;
 //    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @PostMapping("/put/{id}")
     public ResponseEntity<Survey> update(@PathVariable long id, @RequestBody Survey survey) {
-        System.out.println(survey.toString());
+//        System.out.println(survey.toString());
         surveyRepository.update(Long.valueOf(id), survey);
         return new ResponseEntity<Survey>(survey, new HttpHeaders(), HttpStatus.OK);
     }

@@ -113,11 +113,11 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" style="background-color: #222222">
-                        <li><a href="index.html#/user"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
-                        <li><a href="index.html#/survey"><i class="glyphicon glyphicon-copy"></i> Surveys</a></li>
+                        <li ng-if="Admin"><a href="index.html#/user"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+                        <!--<li><a href="index.html#/survey"><i class="glyphicon glyphicon-copy"></i> Surveys</a></li>-->
                         <li><a href="index.html#/createSurvey"> <i class="glyphicon glyphicon-edit"></i> Create survey</a></li>
                         <li><a href="index.html#/user/account"> <i class="glyphicon glyphicon-user"></i> Me account</a></li>
-                        <li><a href="index.html#/message">  <i class="glyphicon glyphicon-envelope"></i> Message</a></li>
+                        <li ng-if="Admin" ><a href="index.html#/message">  <i class="glyphicon glyphicon-envelope"></i> Message</a></li>
                         <!--<li><a href="index.html#/analisys">Analysis& Visualisation</a></li>-->
                         <li><a href="index.html#/data"><i class="glyphicon glyphicon-stats"></i> Analysis & Visualisation</a></li>
 
