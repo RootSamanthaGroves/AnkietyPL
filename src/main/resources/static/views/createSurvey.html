@@ -1,4 +1,4 @@
-<section id="portfolio"  ng-controller="SurveysController">
+<section id="portfolio"  ng-controller="SurveysController ">
         <div class="row">
         <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">
 
@@ -6,7 +6,6 @@
 
                ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}" data-toggle="modal"
                data-target="#showSurvey">
-
                 <div class="portfolio-hover">
                     <div class="portfolio-hover-content">
                         <i class="fa fa-plus fa-3x"></i>
@@ -21,15 +20,18 @@
                 </button>
                 <p class="text-muted">Graphic Design</p>
             </div>
-
         </div>
     </div>
     </div>
-</section>
 
+
+
+    <br> <br> <br> <br>
+
+    </section>
 
 <div class="bg-light-gray">
-    <div class="bg-light-gray" ng-controller="SurveysController">
+    <div class="bg-light-gray" >
         <div class="container ">
             <div class="row ">
                 <div class="col-md-1">
@@ -55,35 +57,58 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-sm-10 col-xs-10">
                                         <label>Title:</label>
                                         <input type="text" class="form-control"
                                                id="titleOfSurvey"
                                                placeholder="Title"
                                                ng-model="titleOfSurvey"/>
                                     </div>
-                                    <button type="button" class="btn btn-warning" id="addSurvey"
-                                            ng-click="saveSurvey()"> Add
-                                        survey
-                                    </button>
+                                    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-sm-10 col-xs-10">
+                                        <br>
+                                        <button type="button" class="btn btn-warning btn-block" id="addSurvey"
+                                                ng-click="saveSurvey()"> Add survey
+                                        </button>
+                                    </div>
 
-                                    <button type="button" alt="{{c.id}}"
-                                            ng-click="showCar(c.id)"
-                                            class="btn btn-primary btn btn-inf"
+                                </div>
+                                <div class="row">
+
+                                    <div  class=" col-md-offset-2 col-md-8 col-xs-offset-1 col-sm-10 col-xs-10" style="margin-bottom: 0px; ">
+                                        <br>
+                                        <label>Select a poll</label>
+                                        <select ng-model="select" class="form-control btn-default" id="Atribute"
+                                                ng-init="select = sList[0]"   ng-change="change(select)"  ng-click="saveIdSurvey(s.id)">
+                                            <option ng-repeat=" s in survey" value="{{s.id}}" selected>
+                                                <h4>{{s.title}}</h4>
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div  class=" col-md-offset-2 col-md-8 col-xs-offset-1 col-sm-10 col-xs-10" style="margin-bottom: 0px; ">
+
+
+                                    <!--<h1>You selected: {{selectSurvey}}</h1>-->
+                                    <button type="button" alt="select"
+                                            class="btn btn-primary btn btn-inf btn-block"
                                             data-toggle="modal"
                                             data-target="#exampleModalLong">
                                         <span class="glyphicon glyphicon-edit"></span> Select question
                                     </button>
-                                    <div class="col-md-12 col-sm-12">
-                                        </br>
+                                    <!--<div class="col-md-12 col-sm-12">-->
+                                        <!--</br>-->
 
 
-                                        <!--<label>Wybierz plik z pytaniami (format csv):</label>-->
-                                        <!--<input type="file" id="fileUpload">-->
+                                        <!--&lt;!&ndash;<label>Wybierz plik z pytaniami (format csv):</label>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<input type="file" id="fileUpload">&ndash;&gt;-->
 
+
+                                    <!--</div>-->
 
                                     </div>
-
                                 </div>
                                 <br/>
                             </div>
@@ -253,6 +278,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Select question</h5>
+                <h1>You selected: {{selectTitle}}</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -281,7 +307,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-                <button type="button" class="btn btn-success sendButton" ng-click="saveRelationsSurveyWithQuestions()">
+                <button type="button" class="btn btn-success sendButton" ng-click="saveRelationsSurveyWithQuestions(select)">
                     Zapisz zmiany
                 </button>
             </div>

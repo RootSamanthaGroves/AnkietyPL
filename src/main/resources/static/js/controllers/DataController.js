@@ -53,9 +53,10 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
             SurveyService
                 .findOneSurvey(id)
                 .then(function (response) {
-                    if (response.status == 200) {
+                     if (response.status == 200) {
                         $rootScope.ankietka = response.data;
                         $scope.selectAtribute = $scope.ankietka.question.length;
+                        console.log($scope.selectAtribute );
                         $scope.showStatistic();
                     } else {
                         console.log($scope.ankietka + " sdasdsa");

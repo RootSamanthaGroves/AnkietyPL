@@ -16,7 +16,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     $scope.testowy = 56;
     $scope.items = [];
     $scope.selected = [];
-    $scope.selectedQ=[];
+    $scope.selectedQ = [];
 
 
     $('input[type=file]').change(function () {
@@ -38,25 +38,41 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         return list.indexOf(item) > -1;
     };
 
+    $scope.change = function (id) {
+        $scope.selectSurvey = id;
+
+
+        $http({
+            method: 'GET',
+            url: '/survey/id/' + id
+        }).success(function (data) {
+            $scope.selectTitle = data.title;
+            $scope.status = "The Survey Deleted Successfully!!!";
+        })
+            .error(function (error) {
+                //Showing error message
+                $scope.status = 'Unable to delete a person: ' + error.message;
+            });
+
+    };
+
 
     $scope.saveRelationsSurveyWithQuestions = function () {
-        $scope.Survey = 15;
-        console.log($scope.selectedQ.length + " ==> " + $scope.Survey);
 
+        // console.log($scope.selectedQ.length + " ==> " + $scope.selectSurvey);
 
 
         var questionObject = {
-            survey: $scope.Survey,
+            survey: $scope.selectSurvey,
             question: $scope.selectedQ
 
         };
 
-        alert(questionObject.question+" question     s "+ questionObject.survey)
+        // alert(questionObject.question+" question     helo moto "+ questionObject.survey)
 
-        $http.post('/survey/put/'+ $scope.Survey,questionObject).success(function () { //wywloujemy
+        $http.post('/survey/put/' + questionObject.survey, questionObject).success(function () { //wywloujemy
             // alert('Thanks'+$scope.selected);
             loadAllQuestionFromDb();
-
 
 
         }).error(function () {
@@ -64,13 +80,15 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         })
     };
 
+    $scope.saveIdSurvey = function (id) {
+        $scope.idSurvey = id;
 
+    };
 
 
     $scope.saveRelations = function () {
-            // alert($scope.selected + " " + $scope.question);
+        // alert($scope.selected + " " + $scope.question);
         console.log($scope.selected + " " + $scope.question);
-
 
 
         var questionObject = {
@@ -80,10 +98,9 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
 
         // alert(questionObject.question+" question     answer "+ questionObject.answers)
 
-        $http.post('/question/put/'+ $routeParams.id ,  questionObject).success(function () { //wywloujemy
+        $http.post('/question/put/' + $routeParams.id, questionObject).success(function () { //wywloujemy
             // alert('Thanks'+$scope.selected);
             loadAllQuestionFromDb();
-
 
 
         }).error(function () {
@@ -122,6 +139,8 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
 
         Survey.query(function (response) {
             $scope.survey = response;
+            $scope.selectSurvey = $scope.survey[$scope.survey.length - 1].id;
+            $scope.selectTitle = $scope.survey[$scope.survey.length - 1].title;
         });
     };
     $scope.loadAllSurveyFromDb();
@@ -153,7 +172,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
                     $rootScope.ankietka = response.data;
                     console.log($scope.ankietka);
                     SurveyService.loadAllSurvey().then(function (response2) {
-                        if(response2 === 200){
+                        if (response2 === 200) {
                             $rootScope.ankietka = response2.data;
                             console.log("udało sie");
                             window.location.reload(false);
@@ -162,7 +181,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
                     })
                 } else {
                     SurveyService.loadAllSurvey().then(function (response2) {
-                        if(response2 === 200){
+                        if (response2 === 200) {
                             $rootScope.ankietka = response2.data;
                             console.log("udało sie");
                             window.location.reload(false);
@@ -194,7 +213,6 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     // };
 
 
-
     $scope.deleteAnswer = function (Id) {
         $http({
             method: 'DELETE',
@@ -211,9 +229,9 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             });
     }
 
-    $scope.editAnswer = function (Id,text) {
+    $scope.editAnswer = function (Id, text) {
 
-        var answer = prompt("Please enter the answer"+Id, text);
+        var answer = prompt("Please enter the answer" + Id, text);
 
         var answerObj = {
             a: answer
@@ -228,7 +246,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         })
 
 
-        $http.post('/answer/put/'+ Id ,  answerObj).success(function () { //wywloujemy
+        $http.post('/answer/put/' + Id, answerObj).success(function () { //wywloujemy
             alert('Thanks');
 
             loadAllAnswersFromDb();
@@ -258,7 +276,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
 
 
     $scope.deleteQuestion = function (Id) {
-    console.log("poczatek");
+        console.log("poczatek");
         $http({
             method: 'DELETE',
             url: '/question/delete/id/' + Id
@@ -266,18 +284,18 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             //Showing Success message
             console.log("banan");
             $scope.status = "The Survey Deleted Successfully!!!";
-             loadAllQuestionFromDb();
+            loadAllQuestionFromDb();
         })
             .error(function (error) {
-                    console.log("banana error");
+                console.log("banana error");
                 //Showing error message
                 $scope.status = 'Unable to delete a question: ' + error.message;
             });
     }
 
-    $scope.editQuestion = function (Id,text) {
+    $scope.editQuestion = function (Id, text) {
 
-        var question = prompt("Please enter the question "+Id, text);
+        var question = prompt("Please enter the question " + Id, text);
 
         var questionObj = {
             q: question
@@ -292,7 +310,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         })
 
 
-        $http.post('/answer/put/'+ Id ,  answerObj).success(function () { //wywloujemy
+        $http.post('/answer/put/' + Id, answerObj).success(function () { //wywloujemy
             alert('Thanks');
 
             loadAllAnswersFromDb();
@@ -319,7 +337,6 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
                 $scope.status = 'Unable to delete a person: ' + error.message;
             });
     }
-
 
 
     $scope.showQuestion = function (id) {
@@ -380,7 +397,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
                 if (response.status == 200) {
                     $rootScope.ankietka = response.data;
 
-                        console.log($scope.ankietka);
+                    console.log($scope.ankietka);
 
                 } else {
                     console.log($scope.ankietka + " sdasdsa");
