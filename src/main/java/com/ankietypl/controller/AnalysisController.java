@@ -3,17 +3,27 @@ package com.ankietypl.controller;
 import com.ankietypl.model.Rule;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sun.security.jca.GetInstance;
 import weka.associations.Apriori;
 import weka.associations.AssociationRule;
 import weka.associations.AssociationRules;
 import weka.associations.Item;
 import weka.core.*;
+import weka.core.converters.ArffLoader;
+import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.util.Arrays;
 
 /**
  * Created by Dominika on 2017-03-24.
@@ -25,8 +35,8 @@ import java.util.List;
 public class AnalysisController {
 
 
-  public static double [][] tabOfSupportAndTrust;
-//  public static double
+    public static double[][] tabOfSupportAndTrust;
+
 
     /**
      * Metoda przedkazuje wygenerowane reguły asocjacyjne.
@@ -126,13 +136,13 @@ public class AnalysisController {
             rulesList.add(rulesAsString.toString());
         }
 
-       tabOfSupportAndTrust = new double[n][4];
+        tabOfSupportAndTrust = new double[n][4];
         System.out.println(rulesAsString.toString() + "oiuytre");
         int i = 0;
         for (AssociationRule rule : r) {
             totalS = Integer.valueOf(rule.getTotalSupport());
             premiseS = Integer.valueOf(rule.getPremiseSupport());
-            premiseC= Integer.valueOf(rule.getConsequenceSupport());
+            premiseC = Integer.valueOf(rule.getConsequenceSupport());
 
             w = Double.valueOf(totalS / count);
             System.out.println("wsparcie =" + w + " " + count + " " + totalS + " " + premiseS);
@@ -140,24 +150,12 @@ public class AnalysisController {
             uO = Double.valueOf(premiseC / count);
             lift = u / uO;
 
-//            System.out.println("ufnosc =" + u);
-//            tabOfSupportAndTrust[i][0] = w;
             tabOfSupportAndTrust[i][1] = u;
-            tabOfSupportAndTrust[i][0]= w;
+            tabOfSupportAndTrust[i][0] = w;
             tabOfSupportAndTrust[i][2] = uO;
-            tabOfSupportAndTrust[i][3]= lift;
+            tabOfSupportAndTrust[i][3] = lift;
 
             sb.append(rule.toString());
-//            System.out.print(rule.getPremise() + " ");
-//            System.out.println(rule.getConsequence());
-//
-//            System.out.println("  " + rule.getPremiseSupport());
-//            System.out.println(rule.getTotalSupport() + " ");
-//
-//            System.out.println(" primary metric to" + rule.getPrimaryMetricValue() + " ");
-//            System.out.println(" consequence suport to" + rule.getConsequenceSupport() + " ");
-//            System.out.println(" total supprot to" + rule.getTotalSupport() + " ");
-//            System.out.println(" premise supprot to" + rule.getPremiseSupport() + " ");
             i++;
         }
 
@@ -169,10 +167,10 @@ public class AnalysisController {
 
     @ResponseBody
     @GetMapping("/supportAndTrust")
-    public  ResponseEntity<?> getsupportAndTrust() {
-        double [][] result = new double[tabOfSupportAndTrust.length][tabOfSupportAndTrust[0].length];
+    public ResponseEntity<?> getsupportAndTrust() {
+        double[][] result = new double[tabOfSupportAndTrust.length][tabOfSupportAndTrust[0].length];
         for (int i = 0; i < result.length; i++) {
-            System.out.println(tabOfSupportAndTrust[i][0]+ " "+ tabOfSupportAndTrust[i][1]+ " "+ tabOfSupportAndTrust[i][2]+ " "+ tabOfSupportAndTrust[i][3]);
+            System.out.println(tabOfSupportAndTrust[i][0] + " " + tabOfSupportAndTrust[i][1] + " " + tabOfSupportAndTrust[i][2] + " " + tabOfSupportAndTrust[i][3]);
             result[i][0] = tabOfSupportAndTrust[i][0];
             result[i][1] = tabOfSupportAndTrust[i][1];
             result[i][2] = tabOfSupportAndTrust[i][2];
@@ -212,6 +210,8 @@ public class AnalysisController {
         String[] result = null;
 
         try {
+
+
             data = loadData("static/data/dataAnkietyweka.csv");
 
             //result = new String[];
@@ -222,7 +222,7 @@ public class AnalysisController {
             for (int i = 0; i < data.numInstances(); i++) //Przegladanie obiektow
             {
                 sb = new StringBuilder();
-//                System.out.println(i + " Wiersz numer " + i + ":");
+               // System.out.println(i + " Wiersz numer " + i + ":");
 
                 Instance instance = data.instance(i); //Pobranie obiektu (wiersza danych) o podanym numerze
 
@@ -230,18 +230,10 @@ public class AnalysisController {
                 sb.append(" ");
                 for (int j = 0; j < instance.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
                 {
-
-
-//                    textValue += instance.stringValue(j) + ", "; //Pobranie wartosci atrybutu o podanym numerze (tzn. pobranie tekstowej reprezentacji wartosci)
-                    //textValueW= textValue+ instance.stringValue(j);
-//                    System.out.println(instance.stringValue(j));
                     sb.append(instance.stringValue(j));
                     sb.append(" ");
                 }
                 result[i] = sb.toString();
-//                result.add(textValue);
-//                System.out.println();
-
 
             }
         } catch (IOException e) {
@@ -273,12 +265,12 @@ public class AnalysisController {
 
             if (data.attribute(numerAtribute).isNumeric()) {
                 //Wypisanie statystyk dla atrybutu numerycznego
-                System.out.println(" Max=" + attributeStats.numericStats.max); //Maksymalna wartosc
-                System.out.println(" Min=" + attributeStats.numericStats.min); //Minimalna wartosc
-                System.out.println(" Mean=" + attributeStats.numericStats.mean); //Srednia
-                System.out.println(" StdDev=" + attributeStats.numericStats.stdDev); //Odchylenie standardowe
-                System.out.println(" Count=" + attributeStats.numericStats.count); //Liczba wartosci atrybutu
-            } else {
+//                System.out.println(" Max=" + attributeStats.numericStats.max); //Maksymalna wartosc
+//                System.out.println(" Min=" + attributeStats.numericStats.min); //Minimalna wartosc
+//                System.out.println(" Mean=" + attributeStats.numericStats.mean); //Srednia
+//                System.out.println(" StdDev=" + attributeStats.numericStats.stdDev); //Odchylenie standardowe
+//                System.out.println(" Count=" + attributeStats.numericStats.count); //Liczba wartosci atrybutu
+//            } else {
                 //Wypisanie statystyk dla atrybutu symbolicznego
 
                 result = new String[attributeStats.distinctCount][2];
@@ -299,10 +291,178 @@ public class AnalysisController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Koniec");
+//        System.out.println("Koniec");
         return ResponseEntity.ok(result);
 
     }
 
+
+    @GetMapping("/AllAtributes")
+    @ResponseBody
+    //Obliczanie statystyk dla atrybutow
+
+    public static ResponseEntity<?> GetNameAtributes()
+            throws Exception, IOException {
+        Instances data;
+
+        String[][] result = null;
+        data = loadData("static/data/dataAnkietyweka.csv");
+
+
+        try {
+
+            result = new String[data.numAttributes()][2];
+            Instance instance = data.instance(data.numAttributes()); //Pobranie obiektu (wiersza danych) o podanym numerze
+            for (int j = 0; j < instance.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
+            {
+                result[j][0] = String.valueOf(j);
+                result[j][1] = String.valueOf(instance.attribute(j).name());
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Koniec");
+        return ResponseEntity.ok(result);
+
+
+    }
+
+
+    @GetMapping("/selectedAtribute/{setOfAtribute}/{all}")
+    @ResponseBody
+    //Obliczanie statystyk dla atrybutow
+
+    public static ResponseEntity<?> GenerateStatisticsFromSelectedAttributes(@PathVariable Set<Integer> setOfAtribute, @PathVariable Set<Integer> all)
+            throws Exception {
+        Instances data;
+//        Instances newData;
+        String[][] result = null;
+        data = loadData("static/data/dataAnkietyweka.csv");
+        Instance instance = data.instance(data.numAttributes());
+
+        //difference
+        Set<Integer> e = new TreeSet<Integer>(all);
+        e.removeAll(setOfAtribute);
+
+        int[] attributes = new int[e.size()];
+
+        Iterator<Integer> iterator = e.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            attributes[i] = iterator.next();
+            i++;
+        }
+
+        Remove remove = new Remove();
+        remove.setAttributeIndicesArray(attributes); //Ustawienie listy do usuniecia
+        remove.setInputFormat(data);
+        Instances newData = Filter.useFilter(data, remove);  // Zastosowanie filtra
+        saveData(newData, "./src/podstawy/data/dateWygenerowanietest.arff"); //Zapis tablicy po filtracji
+        saveDataToCSV(newData); //Zapis do csv
+
+
+        return ResponseEntity.ok(attributes);
+
+
+    }
+
+    /**
+     * Zapisywanie danych do formatu ARFF
+     */
+    public static void saveData(Instances data, String fileName)
+            throws IOException {
+        ArffSaver saver = new ArffSaver(); //Utworzenie obiektu zapisujacego dane
+        saver.setFile(new File(fileName)); //Ustawienie nazwy pliku do zapisu
+        saver.setInstances(data);
+        saver.writeBatch(); //Zapis do pliku
+    }
+
+
+    /**
+     * Zapis do CSV
+     */
+
+    public static ResponseEntity<String[][]> saveDataToCSV(Instances data)
+            throws IOException {
+
+
+
+            String fileName = "./src/podstawy/data/daneWygenerowe.arff";
+        ArffLoader loader = new ArffLoader(); //Utworzenie obiektu czytajacego dane z formatu ARFF
+        loader.setFile(new File(fileName)); //Ustawienie pliku do odczytania
+        Instances newData;
+        //  newData = loader.getDataSet();
+        String[][] result = null;
+
+
+        PrintWriter pw = new PrintWriter(new File("./src/podstawy/data/daneWygenerowane.csv"));
+        StringBuilder sb = new StringBuilder();
+
+        try {
+
+            result = new String[data.numAttributes()][2];
+            Instance instance = data.instance(data.numAttributes()); //Pobranie obiektu (wiersza danych) o podanym numerze
+            for (int j = 0; j < instance.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
+            {
+
+                sb.append(instance.attribute(j).name());
+                if(j < instance.numAttributes()-1){
+                    sb.append(",");
+                }
+            }
+            sb.append('\n');
+            pw.write(sb.toString());
+
+
+
+            for (int i = 0; i < data.numInstances(); i++) //Przegladanie obiektow
+            {
+
+                sb = new StringBuilder();
+                // System.out.println(i + " Wiersz numer " + i + ":");
+
+                Instance instance2 = data.instance(i); //Pobranie obiektu (wiersza danych) o podanym numerze
+
+
+                for (int j = 0; j < instance2.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
+                {
+
+                    System.out.print(instance2.stringValue(j));
+
+                    sb.append(instance2.stringValue(j));
+
+                    if(j < instance2.numAttributes()-1){
+
+                        sb.append(",");
+                        System.out.print(",");
+                    }else{
+                        sb.append("\n");
+                        System.out.print("\n");
+                        pw.write(sb.toString());
+                    }
+
+
+
+                }
+
+
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        pw.close();
+
+
+
+        return ResponseEntity.ok(result);
+
+
+    }
 }
 

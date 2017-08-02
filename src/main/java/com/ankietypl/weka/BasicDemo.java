@@ -2,6 +2,7 @@ package com.ankietypl.weka;
 
 import weka.core.Instances;
 import weka.core.converters.ArffLoader;
+import weka.core.converters.ArffSaver;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,4 +24,8 @@ public class BasicDemo {
             return loader.getDataSet(); //Odczytanie danych z pliku
         }
 
-    }
+
+
+
+
+}

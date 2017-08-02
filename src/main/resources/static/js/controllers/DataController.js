@@ -9,6 +9,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         $scope.liczbaRegul=10;
         var rules = [];
         $scope.minUfnosc = [];
+    $scope.all = [];
 
 
         var minUfnosc = function () {
@@ -381,6 +382,237 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
         };
 
-    }
-);
+
+        // Change the selector if needed
+        var $table = $('table.scroll'),
+            $bodyCells = $table.find('tbody tr:first').children(),
+            colWidth;
+
+// Adjust the width of thead cells when window resizes
+        $(window).resize(function() {
+            // Get the tbody columns width array
+            colWidth = $bodyCells.map(function() {
+                return $(this).width();
+            }).get();
+
+            // Set the width of thead columns
+            $table.find('thead tr').children().each(function(i, v) {
+                $(v).width(colWidth[i]);
+            });
+        }).resize(); // Trigger resize handler
+
+
+
+    $scope.items = [1,2,3,4,5];
+    $scope.selected = [];
+
+    $scope.toggle = function (item, list) {
+        var idx = list.indexOf(item);
+        if (idx > -1) {
+            list.splice(idx, 1);
+        }
+        else {
+            list.push(item);
+        }
+    };
+
+    $scope.exists = function (item, list) {
+        return list.indexOf(item) > -1;
+    };
+
+
+
+    $scope.SelectAtributesAndGenerateRules = function () {
+
+        data = $resource('analysis /selectedAtribute/'+listOfAtributes, {}, {
+            query: {method: 'get', isArray: true, cancellable: true}
+        });
+
+
+        data.query(function (response) {
+
+
+                var lift = [];
+                var ufnosc = [];
+                var wsparcie = [];
+                var oczekiwanaUfnosc = [];
+
+                for (i = 0; i < response.length; i++) {
+                    // console.log($scope.rules[i])
+                    ufnosc.push({
+                        x: i+1,
+                        y:response[i][0]
+
+                    });
+                    wsparcie.push({
+                        x: i+1,
+                        y:response[i][1]
+
+                    });
+                    oczekiwanaUfnosc.push({
+                        x: i+1,
+                        y:response[i][2]
+
+                    });
+                    lift.push({
+                        x:i+1,
+                        y: response[i][3],
+
+                    });
+
+                }
+
+
+                var wykres4 = function () {
+                    var chart = new CanvasJS.Chart("chartContainer",
+                        {
+                            zoomEnabled: false,
+                            animationEnabled: true,
+                            title: {
+                                text: "Wykres liniowy statystyk"
+                            },
+                            axisY2: {
+                                valueFormatString: "0.0 ",
+
+                                maximum: 1.0,
+                                interval: .05,
+                                interlacedColor: "#F5F5F5",
+                                gridColor: "#D7D7D7",
+
+                                tickColor: "#D7D7D7"
+                            },
+                            axisX: {
+                                title: "Indeks reguły",
+                                titleFontSize: 18
+
+                            },
+                            theme: "theme2",
+                            toolTip: {
+                                shared: true
+                            },
+                            legend: {
+                                verticalAlign: "bottom",
+                                horizontalAlign: "center",
+                                fontSize: 15,
+                                fontFamily: "Lucida Sans Unicode"
+
+                            },
+                            data: [
+                                {
+                                    type: "line",
+                                    lineThickness: 3,
+                                    axisYType: "secondary",
+                                    showInLegend: true,
+                                    name: "Lift",
+                                    dataPoints: lift
+                                },
+                                {
+                                    type: "line",
+                                    lineThickness: 3,
+                                    showInLegend: true,
+                                    name: "Wsparcie",
+                                    axisYType: "secondary",
+                                    dataPoints: wsparcie
+                                },
+                                {
+                                    type: "line",
+                                    lineThickness: 3,
+                                    showInLegend: true,
+                                    name: "Oczekiwana ufność",
+                                    axisYType: "secondary",
+                                    dataPoints: oczekiwanaUfnosc
+                                },
+                                {
+                                    type: "line",
+                                    lineThickness: 3,
+                                    showInLegend: true,
+                                    name: "Ufność",
+                                    axisYType: "secondary",
+                                    dataPoints: ufnosc
+                                }
+
+
+                            ],
+                            legend: {
+                                cursor: "pointer",
+                                itemclick: function (e) {
+                                    if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                        e.dataSeries.visible = false;
+                                    }
+                                    else {
+                                        e.dataSeries.visible = true;
+                                    }
+                                    chart.render();
+                                }
+                            }
+                        });
+
+                    chart.render();
+
+                }
+                wykres4();
+                // console.log(response);
+            }
+        );
+
+    };
+
+
+
+
+
+    $scope.showNewData = function () {
+
+      //  var x = document.getElementById("ufnosc").value;
+
+
+      //  console.log($scope.selected);
+        newData = $resource('analysis/selectedAtribute/' + $scope.selected + "/"+$scope.all, {}, {
+            query: {method: 'get', isArray: true, cancellable: true}
+        });
+
+
+        ///selectedAtribute/{listOfAtributes}
+        newData.query(function (response) {
+            // alert("1 " + response[2]);
+            $scope.newData = response;
+             console.log(" to to" );
+                $scope.showData();
+        }
+        );
+
+    };
+
+
+
+    $scope.show = function () {
+
+
+
+        newData = $resource('analysis/AllAtributes/', {}, {
+            query: {method: 'get', isArray: true, cancellable: true}
+        });
+
+
+        ///selectedAtribute/{listOfAtributes}
+        newData.query(function (response) {
+               $scope.atributes= response;
+
+            var i=0;
+            while (response[i]) {
+                // $scope.rules[i]=response[i];
+
+
+                $scope.all.push(i);
+                console.log(i+" "+$scope.all[i]);
+                i++;
+            }
+
+            }
+        );
+
+    };
+
+
+});
 
