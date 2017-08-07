@@ -13,13 +13,15 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
         var lastName = $scope.lastNameOfUser;
         var password = $scope.passwordOfUser;
+        // var role = $scope.roleOfUser;
+        // console.log(role);
 
         var userObject = {
             email: email,
             firstName: firstName,
             lastName: lastName,
             password: password
-            // acountRole: acountRole
+            // Role: role
 
         };
         alert(userObject.firstName+userObject.email);

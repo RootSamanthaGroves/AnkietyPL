@@ -241,7 +241,7 @@ public class AnalysisController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Koniec");
+
         return ResponseEntity.ok(result);
     }
 
@@ -270,7 +270,7 @@ public class AnalysisController {
 //                System.out.println(" Mean=" + attributeStats.numericStats.mean); //Srednia
 //                System.out.println(" StdDev=" + attributeStats.numericStats.stdDev); //Odchylenie standardowe
 //                System.out.println(" Count=" + attributeStats.numericStats.count); //Liczba wartosci atrybutu
-//            } else {
+           } else {
                 //Wypisanie statystyk dla atrybutu symbolicznego
 
                 result = new String[attributeStats.distinctCount][2];
@@ -283,6 +283,7 @@ public class AnalysisController {
 
                     result[j][0] = attrValue;
                     result[j][1] = String.valueOf(attrValueCount);
+//                    System.out.println(attrValue  +" "+String.valueOf(attrValueCount));
                 }
 
             }
@@ -291,7 +292,7 @@ public class AnalysisController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        System.out.println("Koniec");
+
         return ResponseEntity.ok(result);
 
     }
@@ -324,7 +325,6 @@ public class AnalysisController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Koniec");
         return ResponseEntity.ok(result);
 
 
@@ -338,7 +338,6 @@ public class AnalysisController {
     public static ResponseEntity<?> GenerateStatisticsFromSelectedAttributes(@PathVariable Set<Integer> setOfAtribute, @PathVariable Set<Integer> all)
             throws Exception {
         Instances data;
-//        Instances newData;
         String[][] result = null;
         data = loadData("static/data/dataAnkietyweka.csv");
         Instance instance = data.instance(data.numAttributes());
@@ -360,7 +359,7 @@ public class AnalysisController {
         remove.setAttributeIndicesArray(attributes); //Ustawienie listy do usuniecia
         remove.setInputFormat(data);
         Instances newData = Filter.useFilter(data, remove);  // Zastosowanie filtra
-        saveData(newData, "./src/podstawy/data/dateWygenerowanietest.arff"); //Zapis tablicy po filtracji
+        saveData(newData, "./src/file/dateWygenerowanietest.arff"); //Zapis tablicy po filtracji
         saveDataToCSV(newData); //Zapis do csv
 
 
@@ -385,26 +384,31 @@ public class AnalysisController {
      * Zapis do CSV
      */
 
-    public static ResponseEntity<String[][]> saveDataToCSV(Instances data)
+    public static ResponseEntity<?> saveDataToCSV(Instances data)
             throws IOException {
 
 
 
-            String fileName = "./src/podstawy/data/daneWygenerowe.arff";
+            String fileName = "./src/file/daneWygenerowe.arff";
         ArffLoader loader = new ArffLoader(); //Utworzenie obiektu czytajacego dane z formatu ARFF
         loader.setFile(new File(fileName)); //Ustawienie pliku do odczytania
         Instances newData;
         //  newData = loader.getDataSet();
-        String[][] result = null;
+        String[] result = null;
 
 
-        PrintWriter pw = new PrintWriter(new File("./src/podstawy/data/daneWygenerowane.csv"));
+
+        PrintWriter pw = new PrintWriter(new File("./src/file/daneWygenerowane.csv"));
         StringBuilder sb = new StringBuilder();
 
+        String nagłowek="";
         try {
 
-            result = new String[data.numAttributes()][2];
+
+
             Instance instance = data.instance(data.numAttributes()); //Pobranie obiektu (wiersza danych) o podanym numerze
+            result = new String[instance.numAttributes()];
+            System.out.println(instance.numAttributes());
             for (int j = 0; j < instance.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
             {
 
@@ -414,41 +418,31 @@ public class AnalysisController {
                 }
             }
             sb.append('\n');
+            nagłowek=sb.toString();
             pw.write(sb.toString());
 
 
 
             for (int i = 0; i < data.numInstances(); i++) //Przegladanie obiektow
             {
-
                 sb = new StringBuilder();
-                // System.out.println(i + " Wiersz numer " + i + ":");
-
                 Instance instance2 = data.instance(i); //Pobranie obiektu (wiersza danych) o podanym numerze
-
-
+                System.out.println(data.instance(i));
+                result = new String[data.numInstances()+5];
+                result [0]=nagłowek;
                 for (int j = 0; j < instance2.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
                 {
-
-                    System.out.print(instance2.stringValue(j));
-
                     sb.append(instance2.stringValue(j));
 
                     if(j < instance2.numAttributes()-1){
 
                         sb.append(",");
-                        System.out.print(",");
                     }else{
                         sb.append("\n");
-                        System.out.print("\n");
+                        result [i+1]=sb.toString();
                         pw.write(sb.toString());
                     }
-
-
-
                 }
-
-
 
             }
 
@@ -460,7 +454,7 @@ public class AnalysisController {
 
 
 
-        return ResponseEntity.ok(result);
+        return (ResponseEntity<?>) ResponseEntity.ok(result);
 
 
     }

@@ -131,9 +131,11 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                         atributes.push({
                             lable: response[i][0],
                             value: Number(response[i][1])
-                        });
-                    }
 
+                        });
+
+                    }
+                console.log(atributes.length);
 
                     var chart = AmCharts.makeChart("chartdiv", {
                         "type": "pie",
@@ -191,17 +193,17 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                         var chart = new CanvasJS.Chart("chartContainer2",
                             {
                                 title: {
-                                    text: "Wykres statystyk",
+                                    text: "Statistics chart",
                                     fontSize: 30
                                 },
                                 animationEnabled: true,
                                 axisX: {
-                                    title: "Ufność",
+                                    title: "Trust",
                                     titleFontSize: 18
 
                                 },
                                 axisY: {
-                                    title: "Wsparcie",
+                                    title: "Support",
                                     titleFontSize: 16
                                 },
                                 legend: {
@@ -214,9 +216,9 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                         type: "scatter",
                                         markerType: "square",
                                         toolTipContent: "<span style='\"'color: {color};'\"'><strong>{name}</strong></span><br/><strong> " +
-                                        "Ufność</strong> {x} <br/><strong> Wsparcie</strong></span> {y} <br/><strong> REGUŁA</strong></span>{r}",
+                                        "Trust</strong> {x} <br/><strong> Support</strong></span> {y} <br/><strong> RULE </strong></span>{r}",
 
-                                        name: "Reguła",
+                                        name: "Rule",
                                         showInLegend: true,
                                         dataPoints: atributes,
 
@@ -294,7 +296,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                 zoomEnabled: false,
                                 animationEnabled: true,
                                 title: {
-                                    text: "Wykres liniowy statystyk"
+                                    text: "Line chart statistics"
                                 },
                                 axisY2: {
                                 valueFormatString: "0.0 ",
@@ -307,7 +309,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                 tickColor: "#D7D7D7"
                             },
                                 axisX: {
-                                    title: "Indeks reguły",
+                                    title: "Index of rule",
                                     titleFontSize: 18
 
                                 },
@@ -335,7 +337,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                         type: "line",
                                         lineThickness: 3,
                                         showInLegend: true,
-                                        name: "Wsparcie",
+                                        name: "Support",
                                         axisYType: "secondary",
                                         dataPoints: wsparcie
                                     },
@@ -343,7 +345,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                         type: "line",
                                         lineThickness: 3,
                                         showInLegend: true,
-                                        name: "Oczekiwana ufność",
+                                        name: "Expected confidence",
                                         axisYType: "secondary",
                                         dataPoints: oczekiwanaUfnosc
                                     },
@@ -351,7 +353,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                         type: "line",
                                         lineThickness: 3,
                                         showInLegend: true,
-                                        name: "Ufność",
+                                        name: "Trust",
                                         axisYType: "secondary",
                                         dataPoints: ufnosc
                                     }
@@ -566,7 +568,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
       //  var x = document.getElementById("ufnosc").value;
 
 
-      //  console.log($scope.selected);
+        console.log($scope.selected);
         newData = $resource('analysis/selectedAtribute/' + $scope.selected + "/"+$scope.all, {}, {
             query: {method: 'get', isArray: true, cancellable: true}
         });
@@ -576,8 +578,8 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         newData.query(function (response) {
             // alert("1 " + response[2]);
             $scope.newData = response;
-             console.log(" to to" );
-                $scope.showData();
+                console.log(response[1]);
+
         }
         );
 
@@ -587,12 +589,9 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
     $scope.show = function () {
 
-
-
         newData = $resource('analysis/AllAtributes/', {}, {
             query: {method: 'get', isArray: true, cancellable: true}
         });
-
 
         ///selectedAtribute/{listOfAtributes}
         newData.query(function (response) {
@@ -604,15 +603,39 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
 
                 $scope.all.push(i);
-                console.log(i+" "+$scope.all[i]);
+
                 i++;
             }
 
             }
         );
 
-    };
+    };$scope.show();
 
 
+
+
+    var chart = AmCharts.makeChart("chartdiv", {
+        "type": "pie",
+        "theme": "none",
+        "innerRadius": "40%",
+        "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
+        "dataProvider": [ {
+            "country": "",
+            "litres": 100
+        }],
+        "balloonText": "[[value]]",
+        "valueField": "litres",
+        "titleField": "country",
+        "balloon": {
+            "drop": true,
+            "adjustBorderColor": false,
+            "color": "#FFFFFF",
+            "fontSize": 16
+        },
+        "export": {
+            "enabled": true
+        }
+    });
 });
 
