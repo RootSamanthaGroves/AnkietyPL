@@ -1,6 +1,6 @@
-<section id="portfolio"  >
+<section id="portfolio">
 
-    <div >
+    <div>
         <br> <br> <br> <br>
 
 
@@ -168,7 +168,7 @@
     </div>
 </section>
 <section class="jumbotron">
-    <div  style="height: 300px">
+    <div style="height: 300px">
         <div align="center " style="margin-bottom: 0px; ">
 
 
@@ -200,139 +200,175 @@
         <div class="row">
             <div class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " align="center">
                 <button type="button" id="shownewData" class="btn btn-warning btn-block " ng-click="showNewData()"
+                        data-target="#showSurvey"
+                        data-toggle="modal"
+                        ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}"
+                        data-toggle="modal"
                         style="margin-bottom: 20px">
                     Show new data
                 </button>
-                <!--<button type="button" id="show" class="btn btn-warning btn-block " ng-click="show()"-->
-                        <!--style="margin-bottom: 20px">-->
-                    <!--Show-->
-                <!--</button>-->
+
+
             </div>
-        </div>
-
-
-
-
-    </div>
-</section>
-
-<section class="jumbotron">
-
-    <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-warning ">
-            <div class="panel-heading">Select atributes</div>
-            <!--<div class="panel-body " id="table-scroll">-->
-                <!--<table>-->
-                    <!--<tbody>-->
-                    <!--<tr ng-repeat=" q in atributes" value="{{q[0]}}">-->
-                        <!--<td align="left">-->
-                            <!--&lt;!&ndash;<input type="checkbox" alt=q[0]&ndash;&gt;-->
-                                   <!--&lt;!&ndash;ng-checked="exists(q[0], selected)" ng-click="toggle(q[0]  , selected)">&ndash;&gt;-->
-                            <!--&lt;!&ndash;{{q[1]}}&ndash;&gt;-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
-
-            <!--</div>-->
-        </div>
-    </div>
-
-
-    <div class="container-fluid" style="margin-left: 20px; margin-right: 20px">
-        <div class="col-sm-12 text-center">
-            <h2 class="section-heading">Wygeneruj reguły </h2>
-            <h4 class="section-heading">Zaznacz prenerencje</h4>
-            <br> <br>
-        </div>
-
-        <div class=" col-sm-10 col-sm-offset-1 " align="center" style="margin-bottom: 30px">
-            <br> <br>
-            <p id="liczbaRegul2" ng-model="liczbaRegul"> Liczba reguł: {{liczbaRegul}}</p>
-            <input type="range" class="btn-danger" min="1" max="100" ng-model="liczbaRegul"/>
-
-        </div>
-        <div class="row ">
-            <div class="col-sm-2 col-sm-offset-4 " align="center" style="margin-bottom: 20px">
-                <p>Minimalna ufność reguły:</p>
-            </div>
-            <div class=" col-sm-2">
-                <select ng-model="ufnosc" class="form-control btn-default" id="ufnosc2"
-                        ng-init="ufnosc = minUfnoscList[0]">
-                    <option ng-repeat="b in minUfnosc " value="{{b}}" selected>{{b}}</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " align="center">
-                <button type="button" class="btn btn-warning btn-block " ng-click="loadRules()"
-                        style="margin-bottom: 20px">
-                    Show rules
-                </button>
-            </div>
-        </div>
-
-
-        <div class=jumbotron" style="margin-left: 20px; margin-right: 20px">
-            <div class="panel-group btn-warning  " id="accordionShowRules2">
-                <div class="panel btn-warning">
-                    <h4 class="panel-title btn-warning panel-heading" align="center">
-                        <a data-toggle="collapse" data-target="#collapseShowRules"
-                           style="color: white">
-                            <!--<button type="button" class="btn btn-warning btn-block"-->
-
-                            <!--&gt; -->
-                            Wygenerowane reguły
-                            <!--</button>-->
-                        </a>
-                    </h4>
-
-                    <div id="collapseShowRules2" class="panel-collapse collapse  ">
-                        <div class="panel-body" style="background-color: white">
-                            <div class="row"><br> <br> <br> <br></div>
-
-                            <div align="center " class="col-sm-12  ">
-                                <div align="left">
-                                    <p style="margin-left: 5px; color: #080808" id="demo2"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="panel-group btn-warning  " id="accordion1">
-                <div class="panel   btn-warning">
-                    <h4 class="panel-title btn-warning panel-heading" align="center">
-                        <a data-toggle="collapse" data-target="#collapse1" ng-click="wsparcieUfnosc()"
-                           style="color: white">
-                            Pokarz wsparcie i ufność
-                        </a>
-                    </h4>
-
-                    <div id="collapse12" class="panel-collapse collapse  ">
-                        <div class="panel-body" style="background-color: white">
-                            <div class="row"><br> <br> <br> <br></div>
-                            <div align="center " class="col-sm-10 col-sm-offset-1 ">
-                                <div id="chartContainer12" style="height: 400px; width: 100%;">
-                                </div>
-                                <br>
-                                <br>
-                                <br>
-                                <div id="chartContainer22" style="height: 300px; width: 100%;">
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
 
 
     </div>
 </section>
 
+
+<!-- Wyswietlanie ogna z nowymi danymi  -->
+<div class="portfolio-modal modal fade" id="showSurvey" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="container">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+
+
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="panel panel-warning ">
+                                        <div class="panel-heading">New data</div>
+                                        <div class="panel-body " id="table-scroll">
+                                            <div ng-repeat="data in dataweka" align="left">
+
+                                                <form>
+                                                    {{data}}
+                                                    <br>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="container-fluid" style="margin-left: 20px; margin-right: 20px">
+                            <div class="col-sm-12 text-center">
+                                <h2 class="section-heading">Wygeneruj reguły </h2>
+                                <h4 class="section-heading">Zaznacz prenerencje</h4>
+                                <br> <br>
+                            </div>
+
+                            <div class=" col-sm-10 col-sm-offset-1 " align="center" style="margin-bottom: 30px">
+                                <br> <br>
+                                <p id="liczbaRegul2" ng-model="liczbaRegul2"> Liczba reguł: {{liczbaRegul2}}</p>
+                                <input type="range" class="btn-danger" min="1" max="100" ng-model="liczbaRegul2"/>
+
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-2 col-sm-offset-4 " align="center" style="margin-bottom: 20px">
+                                    <p>Minimalna ufność reguły:</p>
+                                </div>
+                                <div class=" col-sm-2">
+                                    <select ng-model="ufnosc" class="form-control btn-default" id="ufnosc2"
+                                            ng-init="ufnosc = minUfnoscList[0]">
+                                        <option ng-repeat="b in minUfnosc " value="{{b}}" selected>{{b}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " align="center">
+                                    <button type="button" class="btn btn-warning btn-block " ng-click="loadRules()"
+                                            style="margin-bottom: 20px">
+                                        Show rules
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div class=jumbotron" style="margin-left: 20px; margin-right: 20px">
+                                <div class="panel-group btn-warning  " id="accordionShowRules2">
+                                    <div class="panel btn-warning">
+                                        <h4 class="panel-title btn-warning panel-heading" align="center">
+                                            <a data-toggle="collapse" data-target="#collapseShowRules"
+                                               style="color: white">
+                                                <!--<button type="button" class="btn btn-warning btn-block"-->
+
+                                                <!--&gt; -->
+                                                Wygenerowane reguły
+                                                <!--</button>-->
+                                            </a>
+                                        </h4>
+
+                                        <div id="collapseShowRules2" class="panel-collapse collapse  ">
+                                            <div class="panel-body" style="background-color: white">
+                                                <div class="row"><br> <br> <br> <br></div>
+
+                                                <div align="center " class="col-sm-12  ">
+                                                    <div align="left">
+                                                        <p style="margin-left: 5px; color: #080808" id="demo2"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="panel-group btn-warning  " id="accordion1">
+                                    <div class="panel   btn-warning">
+                                        <h4 class="panel-title btn-warning panel-heading" align="center">
+                                            <a data-toggle="collapse" data-target="#collapse1"
+                                               ng-click="wsparcieUfnosc()"
+                                               style="color: white">
+                                                Pokarz wsparcie i ufność
+                                            </a>
+                                        </h4>
+
+                                        <div id="collapse12" class="panel-collapse collapse  ">
+                                            <div class="panel-body" style="background-color: white">
+                                                <div class="row"><br> <br> <br> <br></div>
+                                                <div align="center " class="col-sm-10 col-sm-offset-1 ">
+                                                    <div id="chartContainer12" style="height: 400px; width: 100%;">
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <div id="chartContainer22" style="height: 300px; width: 100%;">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div align="left">
+
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                    class="fa fa-times"></i> Zamknij
+            </button>
+            <button type="button" class="btn btn-success sendButton" ng-click="editCar()">
+                Zapisz zmiany
+            </button>
+
+        </div>
+
+    </div>
+</div>
 

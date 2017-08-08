@@ -98,7 +98,6 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
         $scope.showData = function () {
 
-            alert("data");
             data = $resource('analysis/showdata', {}, {
                 query: {method: 'get', isArray: true, cancellable: true}
             });
@@ -578,6 +577,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         newData.query(function (response) {
             // alert("1 " + response[2]);
             $scope.newData = response;
+                $scope.showData();
                 console.log(response[1]);
 
         }

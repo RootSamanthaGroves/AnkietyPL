@@ -212,7 +212,7 @@ public class AnalysisController {
         try {
 
 
-            data = loadData("static/data/dataAnkietyweka.csv");
+            data = loadData("./src/file/daneWygenerowane.csv" );
 
             //result = new String[];
             result = new String[data.numInstances()];
