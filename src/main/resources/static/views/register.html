@@ -11,7 +11,7 @@
 
                         <div style="text-align: center" class="input-group col-ms-4">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="imie" type="text" class="form-control" name="imie" value="imie"
+                            <input id="imie" type="text" class="form-control" name="imie" value="name"
                                    required="required" placeholder="First name" ng-model="firstNameOfUser"
                                    class="help-block" data-toggle="tooltip" data-placement="right"
                                    title=" Imie musi być dłuższa nic 3 znaki!"
@@ -19,7 +19,7 @@
                         </div>
                         <div style="text-align: center" class="input-group col-ms-4">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>
-                            <input id="lastNameOfUser" type="text" class="form-control" name="imie" value="imie"
+                            <input id="nazwisko" type="text" class="form-control" name="nazwisko" value="lastname"
                                    required="required" placeholder="Last name" ng-model="lastNameOfUser"
                                    class="help-block" data-toggle="tooltip" data-placement="right"
                                    title=" Nazwisko  musi być dłuższa nic 3 znaki!"
@@ -28,7 +28,8 @@
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input type="text" class="form-control" id="emailOfUser"
+                            <input type="text" class="form-control" name="email" value="email"
+                                   required="required"  id="email"
                                    placeholder="Email"
                                    ng-model="emailOfUser" data-toggle="tooltip"
                                    data-placement="right" title=" Email powinien zawiecać @"/>
@@ -37,7 +38,8 @@
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" class="form-control" id="passwordOfUser"
+                            <input type="password" class="form-control" name="password" value="password"
+                                   required="required" id="password"
                                    placeholder="Password"
                                    ng-model="passwordOfUser" data-toggle="tooltip"
                                    data-placement="right" title=" Hasło powinno być  dłuższe niż 5 znaków!"/>
@@ -53,11 +55,14 @@
 
                     </div>
 
-                    <button type="button" class="btn page-scroll btn-xl btn-block col-sm-6"
+                    <button type="button" class="btn page-scroll btn-xl btn-block col-sm-6 sendButton"
                             ng-click="saveUser()">
                         Create
                     </button>
-
+                    <div ng-if="error" class="alert alert-warning">
+                        <strong>Warning!</strong>
+                        <p id="demo"></p>
+                    </div>
 
                 </form>
 
