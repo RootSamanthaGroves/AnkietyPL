@@ -39,7 +39,7 @@ public class AnalysisController {
 
 
     /**
-     * Metoda przedkazuje wygenerowane reguły asocjacyjne.
+     * Metoda przekazuje wygenerowane reguły asocjacyjne.
      *
      * @return
      */
@@ -62,6 +62,37 @@ public class AnalysisController {
 
         return ResponseEntity.ok(result);
     }
+
+
+
+    /**
+     * Metoda przekazuje wygenerowane reguły asocjacyjne.
+     *
+     * @return
+     */
+//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @ResponseBody
+    @GetMapping("newdata/rules/{c}/{n}")
+    public ResponseEntity<?> getRulesFromNewData(@PathVariable double c, @PathVariable int n) {
+        Instances data;
+
+        List<String> result = null;
+        try {
+            data = loadData("./src/file/daneWygenerowane.csv");
+            System.out.println(c+" "+n);
+            result = rulesAssociativ(data, c, n);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(result.size() + "  reg ");
+
+        return ResponseEntity.ok(result);
+    }
+
+
+
 
     /**
      * Generowanie reguł Asocjacyjnych algorytmem Apriori
@@ -145,11 +176,11 @@ public class AnalysisController {
             premiseC = Integer.valueOf(rule.getConsequenceSupport());
 
             w = Double.valueOf(totalS / count);
-            System.out.println("wsparcie =" + w + " " + count + " " + totalS + " " + premiseS);
+           // System.out.println("wsparcie =" + w + " " + count + " " + totalS + " " + premiseS);
             u = totalS / premiseS;
             uO = Double.valueOf(premiseC / count);
-            lift = u / uO;
-
+            lift = ((u*100) / (uO*100))/100;
+            System.out.println(  u / uO);
             tabOfSupportAndTrust[i][1] = u;
             tabOfSupportAndTrust[i][0] = w;
             tabOfSupportAndTrust[i][2] = uO;
@@ -261,7 +292,7 @@ public class AnalysisController {
 
             AttributeStats attributeStats = data.attributeStats(numerAtribute); //Wyliczenie statystyk atrybutu o podanym numerze
 
-            System.out.println("Atrybut:" + data.attribute(numerAtribute).name()); //Wypisanie nazwy atrybutu
+            //System.out.println("Atrybut:" + data.attribute(numerAtribute).name()); //Wypisanie nazwy atrybutu
 
             if (data.attribute(numerAtribute).isNumeric()) {
                 //Wypisanie statystyk dla atrybutu numerycznego
@@ -408,7 +439,7 @@ public class AnalysisController {
 
             Instance instance = data.instance(data.numAttributes()); //Pobranie obiektu (wiersza danych) o podanym numerze
             result = new String[instance.numAttributes()];
-            System.out.println(instance.numAttributes());
+          //  System.out.println(instance.numAttributes());
             for (int j = 0; j < instance.numAttributes(); j++) //Przegladanie atrybutow w obiekcie
             {
 
@@ -427,7 +458,7 @@ public class AnalysisController {
             {
                 sb = new StringBuilder();
                 Instance instance2 = data.instance(i); //Pobranie obiektu (wiersza danych) o podanym numerze
-                System.out.println(data.instance(i));
+              //  System.out.println(data.instance(i));
                 result = new String[data.numInstances()+5];
                 result [0]=nagłowek;
                 for (int j = 0; j < instance2.numAttributes(); j++) //Przegladanie atrybutow w obiekcie

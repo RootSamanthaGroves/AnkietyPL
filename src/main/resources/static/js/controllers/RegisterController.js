@@ -83,7 +83,7 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
             }
             else {
                 e=false;
-              
+
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', true);
             }
