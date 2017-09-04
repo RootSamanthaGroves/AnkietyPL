@@ -278,7 +278,8 @@
                             </div>
                             <div class="row">
                                 <div class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " align="center">
-                                    <button type="button" class="btn btn-warning btn-block " ng-click="loadRulesFromNewData()"
+                                    <button type="button" class="btn btn-warning btn-block "
+                                            ng-click="loadRulesFromNewData()"
                                             style="margin-bottom: 20px">
                                         Show rules
                                     </button>
@@ -331,15 +332,15 @@
                                             <div class="panel-body" style="background-color: white">
                                                 <div class="row"><br> <br> <br> <br></div>
 
-                                                <div align="center " class="col-sm-12  ">
+                                                <div align="center " class="col-sm-12 ">
 
                                                     <div id="2chartContainer2" style="height: 400px; width: 100%;">
                                                     </div>
                                                     <br>
                                                     <br>
                                                     <br>
-                                                    <!--<div id="chartContainer2" style="height: 300px; width: 100%;">-->
-                                                    <!--</div>-->
+                                                    <div id="2chartContainer4" style="height: 400px; width: 100%;">
+                                                    </div>
 
                                                 </div>
                                             </div>
@@ -349,29 +350,30 @@
                                 </div>
 
 
+                            </div>
                         </div>
                     </div>
+
+                </div>
+
+
+                <div align="left">
+
+
                 </div>
 
             </div>
-
-
-            <div align="left">
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                        class="fa fa-times"></i> Zamknij
+                </button>
+                <button type="button" class="btn btn-success sendButton" ng-click="editCar()">
+                    Zapisz zmiany
+                </button>
 
             </div>
 
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><i
-                    class="fa fa-times"></i> Zamknij
-            </button>
-            <button type="button" class="btn btn-success sendButton" ng-click="editCar()">
-                Zapisz zmiany
-            </button>
-
-        </div>
-
     </div>
-</div>
 
+</div>

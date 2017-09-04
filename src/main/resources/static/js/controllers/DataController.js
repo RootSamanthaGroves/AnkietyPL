@@ -544,7 +544,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
 
                 var wykres4newData = function () {
-                    var chart = new CanvasJS.Chart("2chartContainer2",
+                    var chart = new CanvasJS.Chart("2chartContainer4",
                         {
                             zoomEnabled: false,
                             animationEnabled: true,
