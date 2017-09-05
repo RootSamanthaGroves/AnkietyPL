@@ -32,13 +32,15 @@
             </div>
             <br> <br> <br> <br>
         </div>
+
+
         <div class="jumbotron">
             <h2 align="center">{{ankietka.title}}</h2>
             <div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 0px; ">
                 <select ng-model="selectAtribute" class="form-control btn-default" id="Atribute"
                         ng-init="selectAtribute = atributeList[0]" ng-change="change(selectAtribute)">
-                    <option ng-repeat="(indexQ, q) in ankietka.question" value="{{q.id}}" selected>
-                        <h4>{{q.question}}</h4>
+                    <option ng-repeat="q in atributes" value="{{q[0]}}" >
+                        <h4>{{q[1]}}</h4>
                     </option>
                 </select>
             </div>
@@ -58,7 +60,7 @@
             <!--wykres kołowy-->
             <br> <br>
             <div id="demoq" class="collapse">
-                <div style="max-width: 70% ;height: 800px; margin-top: 10px" id="chartdiv"></div>
+                <div style="margin-top: auto; margin-bottom: 100px;  height: 110% ;  width:90%" id="chartdiv"></div>
 
             </div>
 
@@ -162,8 +164,8 @@
         <br>
         <br>
 
-        <div align="center" ng-repeat="da in dataweka track by $index">
-        </div>
+        <!--<div align="center" ng-repeat="da in dataweka track by $index">-->
+        <!--</div>-->
 
     </div>
 </section>

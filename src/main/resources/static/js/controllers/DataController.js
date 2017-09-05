@@ -57,9 +57,9 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 .then(function (response) {
                      if (response.status == 200) {
                         $rootScope.ankietka = response.data;
-                        $scope.selectAtribute = $scope.ankietka.question.length;
-                        console.log($scope.selectAtribute );
-                        $scope.showStatistic();
+                        // $scope.selectAtribute = $scope.atributes.length;
+                        // console.log($scope.selectAtribute );
+                        // $scope.showStatistic();
                     } else {
                         console.log($scope.ankietka + " sdasdsa");
                     }
@@ -166,29 +166,75 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                         });
 
                     }
-                console.log(atributes.length);
+                // console.log(atributes.length);
 
                     var chart = AmCharts.makeChart("chartdiv", {
                         "type": "pie",
+                        "startDuration": 0,
                         "theme": "none",
-                        "innerRadius": "40%",
-                        "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
+                        "addClassNames": true,
+                        "legend":{
+                            "position":"right",
+                            "marginRight":100,
+                            "marginTop":100,
+                            "autoMargins":true
+                        },
+                        "innerRadius": "30%",
+                        "defs": {
+                            "filter": [{
+                                "id": "shadow",
+                                "width": "200%",
+                                "height": "200%",
+                                "feOffset": {
+                                    "result": "offOut",
+                                    "in": "SourceAlpha",
+                                    "dx": 0,
+                                    "dy": 0
+                                },
+                                "feGaussianBlur": {
+                                    "result": "blurOut",
+                                    "in": "offOut",
+                                    "stdDeviation": 5
+                                },
+                                "feBlend": {
+                                    "in": "SourceGraphic",
+                                    "in2": "blurOut",
+                                    "mode": "normal"
+                                }
+                            }]
+                        },
                         "dataProvider": atributes,
-                        "balloonText": "[[value]]",
+
+                        // "balloonText": "[[value]]",
                         "valueField": "value",
                         "titleField": "lable",
-                        "balloon": {
-                            "drop": true,
-                            "adjustBorderColor": false,
-                            "color": "#FFFFFF",
-                            "fontSize": 16
-                        },
+                        // "balloon": {
+                        //     "drop": true,
+                        //     "adjustBorderColor": false,
+                        //     "color": "#FFFFFF",
+                        //     "fontSize": 16
+                        // },
                         "export": {
                             "enabled": true
                         }
                     });
 
-                    console.log(chart);
+
+                chart.addListener("init", handleInit);
+
+                chart.addListener("rollOverSlice", function(e) {
+                    handleRollOver(e);
+                });
+
+                function handleInit(){
+                    chart.legend.addListener("rollOverItem", handleRollOver);
+                }
+
+                function handleRollOver(e){
+                    var wedge = e.dataItem.wedge.node;
+                    wedge.parentNode.appendChild(wedge);
+                }
+                    // console.log(chart);
                 }
             );
 
@@ -848,14 +894,11 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
             query: {method: 'get', isArray: true, cancellable: true}
         });
 
-        ///selectedAtribute/{listOfAtributes}
-        newData.query(function (response) {
+               newData.query(function (response) {
                $scope.atributes= response;
 
             var i=0;
             while (response[i]) {
-                // $scope.rules[i]=response[i];
-
 
                 $scope.all.push(i);
 
@@ -870,27 +913,6 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
 
 
-    var chart = AmCharts.makeChart("chartdiv", {
-        "type": "pie",
-        "theme": "none",
-        "innerRadius": "40%",
-        "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
-        "dataProvider": [ {
-            "country": "",
-            "litres": 100
-        }],
-        "balloonText": "[[value]]",
-        "valueField": "litres",
-        "titleField": "country",
-        "balloon": {
-            "drop": true,
-            "adjustBorderColor": false,
-            "color": "#FFFFFF",
-            "fontSize": 16
-        },
-        "export": {
-            "enabled": true
-        }
-    });
+
 });
 

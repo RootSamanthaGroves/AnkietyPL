@@ -46,11 +46,11 @@
 			<artifactId>weka-stable</artifactId>
 			<version>3.8.0</version>
 		</dependency>
-<!--&lt;!&ndash;		<dependency>-->
+		<!--<dependency>-->
 			<!--<groupId>mysql</groupId>-->
 			<!--<artifactId>mysql-connector-java</artifactId>-->
 			<!--<scope>runtime</scope>-->
-		<!--</dependency>&ndash;&gt;-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>org.postgresql</groupId>

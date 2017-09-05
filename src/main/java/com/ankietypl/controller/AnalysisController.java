@@ -284,8 +284,7 @@ public class AnalysisController {
     public static ResponseEntity<?> liczStatystyki(@PathVariable int numerAtribute)
             throws Exception {
         Instances data;
-        numerAtribute++;
-        String[][] result = null;
+                String[][] result = null;
         try {
             data = loadData("static/data/dataAnkietyweka.csv");
 
