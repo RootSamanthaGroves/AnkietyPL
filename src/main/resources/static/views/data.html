@@ -29,6 +29,22 @@
                 </div>
 
 
+                <!--<div class="row">-->
+                    <!--<div class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " align="center">-->
+                        <!--<button type="button" id="showWindowCrossTable" class="btn btn-warning btn-block "-->
+                                <!--ng-click="showNewData()"-->
+                                <!--data-target="#showCrossTable"-->
+                                <!--data-toggle="modal"-->
+                                <!--ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}"-->
+                                <!--data-toggle="modal"-->
+                                <!--style="margin-bottom: 20px">-->
+                            <!--Show Cross Table-->
+                        <!--</button>-->
+
+
+                    <!--</div>-->
+                <!--</div>-->
+
             </div>
             <br> <br> <br> <br>
         </div>
@@ -39,7 +55,7 @@
             <div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 0px; ">
                 <select ng-model="selectAtribute" class="form-control btn-default" id="Atribute"
                         ng-init="selectAtribute = atributeList[0]" ng-change="change(selectAtribute)">
-                    <option ng-repeat="q in atributes" value="{{q[0]}}" >
+                    <option ng-repeat="q in atributes" value="{{q[0]}}">
                         <h4>{{q[1]}}</h4>
                     </option>
                 </select>
@@ -60,7 +76,7 @@
             <!--wykres kołowy-->
             <br> <br>
             <div id="demoq" class="collapse">
-                <div style="margin-top: auto; margin-bottom: 100px;  height: 110% ;  width:90%" id="chartdiv"></div>
+                <div style="margin-top: auto; margin-bottom: 100px;  height: 100% ;  width:90%" id="chartdiv"></div>
 
             </div>
 
@@ -379,3 +395,42 @@
     </div>
 
 </div>
+
+
+<!--&lt;!&ndash; Wyswietlanie tebeli krzyżowej  &ndash;&gt;-->
+<!--<div class="portfolio-modal modal fade" id="showCrossTable" tabindex="-1" role="dialog"-->
+     <!--aria-labelledby="exampleModalLongTitle" aria-hidden="true">-->
+    <!--<div class="modal-dialog  modal-lg" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<div align="right">-->
+                    <!--<button type="button" class="btn btn-danger" data-dismiss="modal"><i-->
+                            <!--class="fa fa-times"></i> Zamknij-->
+                    <!--</button>-->
+                <!--</div>-->
+
+                <!--<div style="margin-bottom: 15px" align="center"><h3>Cross Table</h3></div>-->
+                <!--<div class="row">-->
+                    <!--<div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 10px; ">-->
+                        <!--<select ng-model="selectFirstAttribute" class="form-control btn-default" id="first"-->
+                                <!--ng-init="selectFirstAttribute = atributeList[0]" ng-change="change(selectFirstAttribute)">-->
+                            <!--<option ng-repeat="x in atributes" value="{{x[0]}}">-->
+                                <!--<h4>{{x[1]}}</h4>-->
+                            <!--</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <!--<div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 0px; ">-->
+                        <!--<select ng-model="selectSecondAttribute" class="form-control btn-default" id="secend"-->
+                                <!--ng-init="selectSecondAttribute = atributeList[0]" ng-change="change(selectSecondAtribute)">-->
+                            <!--<option   ng-repeat="z in atributes" value="{{z[0]}}">-->
+                                <!--<h4>{{z[1]}}</h4>-->
+                            <!--</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->

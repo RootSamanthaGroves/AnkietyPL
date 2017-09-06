@@ -205,6 +205,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                         },
                         "dataProvider": atributes,
 
+
                         // "balloonText": "[[value]]",
                         "valueField": "value",
                         "titleField": "lable",
