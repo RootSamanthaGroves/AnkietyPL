@@ -105,7 +105,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                     console.log(pos, "==> ", posk, "  . pop ", pop[i],"  nast",nast[i], tabR[i].length);
                     f = l;
                     text = response[i] + "<br>";
-                   
+
                     i++;
                 }
 
