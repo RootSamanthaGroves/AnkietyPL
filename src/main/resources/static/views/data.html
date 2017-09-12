@@ -29,7 +29,7 @@
                 </div>
 
 
-               
+
 
                 <!--<div class="row">-->
                     <!--<div class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " align="center">-->
@@ -74,11 +74,16 @@
         </div>
 
 
+
+
+
         <div class="  col-sm-10 col-sm-offset-1 " align="center">
             <!--wykres kołowy-->
             <br> <br>
             <div id="demoq" class="collapse">
                 <div style="margin-top: auto; margin-bottom: 100px;  height: 100% ;  width:90%" id="chartdiv"></div>
+
+
 
             </div>
 
@@ -147,6 +152,10 @@
 
                     </div>
                 </div>
+
+                <div id="mynetwork"></div>
+
+
                 <div class="panel-group btn-warning  " id="accordion">
                     <div class="panel   btn-warning">
                         <h4 class="panel-title btn-warning panel-heading" align="center">
@@ -159,6 +168,10 @@
                         <div id="collapse1" class="panel-collapse collapse  ">
                             <div class="panel-body" style="background-color: white">
                                 <div class="row"><br> <br> <br> <br></div>
+                                <div class="col-sm-12">
+
+
+                                </div>
                                 <div align="center " class="col-sm-10 col-sm-offset-1 ">
                                     <div id="chartContainer" style="height: 400px; width: 100%;">
                                     </div>
@@ -168,7 +181,10 @@
                                     <div id="chartContainer2" style="height: 300px; width: 100%;">
                                     </div>
 
+
+
                                 </div>
+
                             </div>
 
                         </div>
@@ -436,3 +452,48 @@
     <!--</div>-->
 
 <!--</div>-->
+
+<!--<script id="code">-->
+    <!--function init() {-->
+        <!--if (window.goSamples) goSamples();  // init for these samples &#45;&#45; you don't need to call this-->
+
+        <!--var $ = go.GraphObject.make;  // for conciseness in defining templates-->
+
+        <!--myDiagram = $(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element-->
+            <!--{-->
+                <!--initialContentAlignment: go.Spot.Center,  // center the content-->
+                <!--"undoManager.isEnabled": true  // enable undo & redo-->
+            <!--});-->
+
+        <!--// define a simple Node template-->
+        <!--myDiagram.nodeTemplate =-->
+            <!--$(go.Node, "Auto",  // the Shape will go around the TextBlock-->
+                <!--$(go.Shape, "RoundedRectangle", { strokeWidth: 0},-->
+                    <!--// Shape.fill is bound to Node.data.color-->
+                    <!--new go.Binding("fill", "color")),-->
+                <!--$(go.TextBlock,-->
+                    <!--{ margin: 8 },  // some room around the text-->
+                    <!--// TextBlock.text is bound to Node.data.key-->
+                    <!--new go.Binding("text", "key"))-->
+            <!--);-->
+
+        <!--// but use the default Link template, by not setting Diagram.linkTemplate-->
+
+        <!--// create the model data that will be represented by Nodes and Links-->
+        <!--myDiagram.model = new go.GraphLinksModel(-->
+            <!--[-->
+                <!--{ key: "Alpha", color: "lightblue" },-->
+                <!--{ key: "Beta", color: "orange" },-->
+                <!--{ key: "Gamma", color: "lightgreen" },-->
+                <!--{ key: "Delta", color: "pink" }-->
+            <!--],-->
+            <!--[-->
+                <!--{ from: "Alpha", to: "Beta" },-->
+                <!--{ from: "Alpha", to: "Gamma" },-->
+                <!--{ from: "Beta", to: "Beta" },-->
+                <!--{ from: "Gamma", to: "Delta" },-->
+                <!--{ from: "Delta", to: "Alpha" }-->
+            <!--]);-->
+    <!--}-->
+<!--</script>-->
+

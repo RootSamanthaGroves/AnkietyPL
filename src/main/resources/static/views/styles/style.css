@@ -1,3 +1,10 @@
+#mynetwork {
+    margin-left: 50px;
+    width: 100%;
+    height: 500px;
+    border: 1px solid lightgray;
+}
+
 
 #table-wrapper {
     position:relative;

@@ -58,7 +58,7 @@ public class AnalysisController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result.size() + "  reg ");
+//        System.out.println(result.size() + "  reg ");
 
         return ResponseEntity.ok(result);
     }
@@ -79,14 +79,14 @@ public class AnalysisController {
         List<String> result = null;
         try {
             data = loadData("./src/file/daneWygenerowane.csv");
-            System.out.println(c+" "+n);
+//            System.out.println(c+" "+n);
             result = rulesAssociativ(data, c, n);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(result.size() + "  reg ");
+//        System.out.println(result.size() + "  reg ");
 
         return ResponseEntity.ok(result);
     }
@@ -123,7 +123,7 @@ public class AnalysisController {
         apriori.buildAssociations(data); //Generowanie regul asocjacyjnych
         AssociationRules associationRules = apriori.getAssociationRules();
         List<AssociationRule> rules = associationRules.getRules();
-        System.out.println(" reguly" + rules);
+//        System.out.println(" reguly" + rules);
         StringBuilder sb = new StringBuilder();
 
 
@@ -146,7 +146,7 @@ public class AnalysisController {
                 rulesAsString.append(item.getItemValueAsString());
                 return item;
             }).forEach((_item) -> {
-                rulesAsString.append(" ");
+                rulesAsString.append(" & ");
             });
             rulesAsString.append(" ==> ");
             consequence.stream().map((item) -> {
@@ -161,14 +161,14 @@ public class AnalysisController {
 
             });
 
-            rulesAsString.append("<br>");
+           rulesAsString.append("<br>");
             numRule++;
             Rule rr = new Rule(rulesAsString.toString());
             rulesList.add(rulesAsString.toString());
         }
 
         tabOfSupportAndTrust = new double[n][4];
-        System.out.println(rulesAsString.toString() + "oiuytre");
+       // System.out.println(rulesAsString.toString() + "oiuytre");
         int i = 0;
         for (AssociationRule rule : r) {
             totalS = Integer.valueOf(rule.getTotalSupport());
@@ -180,7 +180,7 @@ public class AnalysisController {
             u = totalS / premiseS;
             uO = Double.valueOf(premiseC / count);
             lift = ((u*100) / (uO*100))/100;
-            System.out.println(  u / uO);
+          //  System.out.println(  u / uO);
             tabOfSupportAndTrust[i][1] = u;
             tabOfSupportAndTrust[i][0] = w;
             tabOfSupportAndTrust[i][2] = uO;

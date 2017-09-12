@@ -1,87 +1,89 @@
 ﻿<!DOCTYPE html>
 <html ng-app="myApp" lang="pl-PL">
 
-<head>
-    <script src="AngularJS/angular.min.js"></script>
-    <script src="AngularJS/angular-resource.js"></script>
-    <script src="AngularJS/angular-route.js"></script>
+
+<script src="AngularJS/angular.min.js"></script>
+<script src="AngularJS/angular-resource.js"></script>
+<script src="AngularJS/angular-route.js"></script>
 
 
-    <script src="js/app.js"></script>
-    <script type="text/javascript" src='js/controllers/RegisterController.js'></script>
-    <script type="text/javascript" src='js/controllers/AboutController.js'></script>
-    <script type="text/javascript" src='js/controllers/PeopleController.js'></script>
-    <script type="text/javascript" src='js/controllers/SendMessageController.js'></script>
-    <script type="text/javascript" src='js/controllers/SurveysController.js'></script>
-    <script type="text/javascript" src='js/controllers/AccountController.js'></script>
-    <script type="text/javascript" src='js/controllers/UserController.js'></script>
-    <script type="text/javascript" src='js/controllers/AnalysysController.js'></script>
-    <script type="text/javascript" src='js/controllers/CreateSurveyController.js'></script>
-    <script type="text/javascript" src='js/services/SurveyService.js'></script>
-    <script type="text/javascript" src='js/services/LoginService.js'></script>
-    <script type="text/javascript" src='js/controllers/NavbarController.js'></script>
-    <script type="text/javascript" src='js/controllers/LoginController.js'></script>
-    <script type="text/javascript" src='AngularJS/ngStorage/ngStorage.js'></script>
-    <script type="text/javascript" src="js/controllers/DataController.js"></script>
+<script src="js/app.js"></script>
+<script type="text/javascript" src='js/controllers/RegisterController.js'></script>
+<script type="text/javascript" src='js/controllers/AboutController.js'></script>
+<script type="text/javascript" src='js/controllers/PeopleController.js'></script>
+<script type="text/javascript" src='js/controllers/SendMessageController.js'></script>
+<script type="text/javascript" src='js/controllers/SurveysController.js'></script>
+<script type="text/javascript" src='js/controllers/AccountController.js'></script>
+<script type="text/javascript" src='js/controllers/UserController.js'></script>
+<script type="text/javascript" src='js/controllers/AnalysysController.js'></script>
+<script type="text/javascript" src='js/controllers/CreateSurveyController.js'></script>
+<script type="text/javascript" src='js/services/SurveyService.js'></script>
+<script type="text/javascript" src='js/services/LoginService.js'></script>
+<script type="text/javascript" src='js/controllers/NavbarController.js'></script>
+<script type="text/javascript" src='js/controllers/LoginController.js'></script>
+<script type="text/javascript" src='AngularJS/ngStorage/ngStorage.js'></script>
+<script type="text/javascript" src="js/controllers/DataController.js"></script>
 
-    <script src="Bootstrap/ui-bootstrap-tpls-2.1.3.min.js"></script>
-    <script src="JQuery/1.12.4/jquery.min.js"></script>
+<script src="Bootstrap/ui-bootstrap-tpls-2.1.3.min.js"></script>
+<script src="JQuery/1.12.4/jquery.min.js"></script>
 
-    <!--<link rel="stylesheet" href="https://bootswatch.com//bootstrap.min.css"/>-->
+<!--<link rel="stylesheet" href="https://bootswatch.com//bootstrap.min.css"/>-->
 
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-    <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
 
-    <link rel="stylesheet" href="views/styles/style.css">
-    <script src="JQuery/3.1.1/jquery.min.js"></script>
-
-
+<link rel="stylesheet" href="views/styles/style.css">
+<script src="JQuery/3.1.1/jquery.min.js"></script>
 
 
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Language" content="język" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content=" Dominika Sporzyńska ">
+<meta charset="utf-8">
+<meta http-equiv="Content-Language" content="język"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content=" Dominika Sporzyńska ">
 
-    <title>Start Survey </title>
+<title>Start Survey </title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="zold/Survey/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="zold/Survey/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="zold/Survey/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-
-    <!--biblioteka wykresy-->
-
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
-
-    <!--<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>-->
-     <!--<script type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js"></script>-->
-    <!-- Theme CSS -->
-    <link href="zold/Survey/css/agency.min.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <script type="text/javascript" src="canvasjs/canvasjs.min.js"></script>
+<!-- Custom Fonts -->
+<link href="zold/Survey/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+      type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
 
+<!--biblioteka wykresy-->
+
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+<script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+
+<!--<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>-->
+<!--<script type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js"></script>-->
+<!-- Theme CSS -->
+<link href="zold/Survey/css/agency.min.css" rel="stylesheet">
+<link href="vis/vis.min.css" rel="stylesheet">
+<script src="vis/vis.min.js"></script>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="canvasjs/canvasjs.min.js"></script>
+
+
+<!--<script type="text/javascript" src="../../dist/vis.js"></script>-->
+<!--<link href="../../dist/vis.css" rel="stylesheet" type="text/css" />-->
 
 
 </head>
@@ -112,28 +114,35 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" style="background-color: #222222">
-                        <li ng-if="Admin"><a href="index.html#/user"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+                        <li ng-if="Admin"><a href="index.html#/user"><i class="fa fa-users" aria-hidden="true"></i>
+                            Users</a></li>
                         <!--<li><a href="index.html#/survey"><i class="glyphicon glyphicon-copy"></i> Surveys</a></li>-->
-                        <li><a href="index.html#/createSurvey"> <i class="glyphicon glyphicon-edit"></i> Create survey</a></li>
-                        <li><a href="index.html#/user/account"> <i class="glyphicon glyphicon-user"></i> Me account</a></li>
-                        <li ng-if="Admin" ><a href="index.html#/message">  <i class="glyphicon glyphicon-envelope"></i> Message</a></li>
+                        <li><a href="index.html#/createSurvey"> <i class="glyphicon glyphicon-edit"></i> Create
+                            survey</a></li>
+                        <li><a href="index.html#/user/account"> <i class="glyphicon glyphicon-user"></i> Me account</a>
+                        </li>
+                        <li ng-if="Admin"><a href="index.html#/message"> <i class="glyphicon glyphicon-envelope"></i>
+                            Message</a></li>
                         <!--<li><a href="index.html#/analisys">Analysis& Visualisation</a></li>-->
-                        <li><a href="index.html#/data"><i class="glyphicon glyphicon-stats"></i> Analysis & Visualisation</a></li>
+                        <li><a href="index.html#/data"><i class="glyphicon glyphicon-stats"></i> Analysis &
+                            Visualisation</a></li>
 
 
                     </ul>
                 </li>
             </ul>
 
-            <ul  class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
                 <li class="hidden"><a href="#page-top"></a></li>
                 <li ng-if="email"><a href=""><i class="glyphicon glyphicon-user"></i>
                     {{email}}</a></li>
 
 
-                <li ng-if="email"><a href="/" ng-click="removeUserFromStorage()">  <span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                <li ng-if="email"><a href="/" ng-click="removeUserFromStorage()"> <span
+                        class="glyphicon glyphicon-off"></span> Logout</a></li>
 
-                <li ng-if="!email"><a href="index.html#/register"><span class="glyphicon glyphicon-pencil"></span> Sign Up</a></li>
+                <li ng-if="!email"><a href="index.html#/register"><span class="glyphicon glyphicon-pencil"></span> Sign
+                    Up</a></li>
                 <!--<li ng-if="!email"><a href="#/login"><span class="glyphicon glyphicon-log-in fa fa-shield"></span> Login</a>-->
                 <!--</li>-->
 
@@ -178,7 +187,6 @@
 
 <!--Rejestracja-->
 <div class="portfolio-modal modal fade" id="signUp" tabindex="-1" role="dialog" aria-hidden="true">
-
 
 
 </div>
@@ -244,7 +252,6 @@
 
 <!-- Theme JavaScript -->
 <script src="zold/Survey/js/agency.min.js"></script>
-
 
 
 </body>
