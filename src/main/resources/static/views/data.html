@@ -57,13 +57,13 @@
             <div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 0px; ">
                 <select ng-model="selectAtribute" class="form-control btn-default" id="Atribute"
                         ng-init="selectAtribute = atributeList[0]" ng-change="change(selectAtribute)">
-                    <option ng-repeat="q in atributes" value="{{q[0]}}">
+                    <option class="col-sm-10 col-sm-offset-1"  ng-repeat="q in atributes" value="{{q[0]}}">
                         <h4>{{q[1]}}</h4>
                     </option>
                 </select>
             </div>
             <br> <br> <br> <br>
-            <div class="col-sm-10 col-md-offset-1 " align="center">
+            <div class="col-sm-10 col-sm-offset-1 " align="center">
                 <button type="button" class="btn btn-warning btn-block" data-toggle="collapse" data-target="#demoq">
                     Chart of responses provided
                 </button>
@@ -123,8 +123,13 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class=" col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 " align="center">
+                    <div  id="mynetwork"></div>
+                </div>
+            </div>
 
-            <div class=jumbotron" style="margin-left: 20px; margin-right: 20px">
+            <div class=jumbotron" class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " >
                 <div class="panel-group btn-warning  " id="accordionShowRules">
                     <div class="panel btn-warning">
                         <h4 class="panel-title btn-warning panel-heading" align="center">
@@ -153,7 +158,7 @@
                     </div>
                 </div>
 
-                <div id="mynetwork"></div>
+
 
 
                 <div class="panel-group btn-warning  " id="accordion">
@@ -231,8 +236,6 @@
         </div>
 
 
-        <!--<h2 class="md-title">Selected Items</h2>-->
-        <!--<code style="display: block; padding: 8px;">{{selected | json}}</code>-->
         <div class="row">
             <div class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " align="center">
                 <button type="button" id="shownewData" class="btn btn-warning btn-block " ng-click="showNewData()"
@@ -323,7 +326,7 @@
                             </div>
 
 
-                            <div class=jumbotron" style="margin-left: 20px; margin-right: 20px">
+                            <div class=jumbotron"  class=" col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 " >
                                 <div class="panel-group btn-warning  " id="accordionShowRules2">
                                     <div class="panel btn-warning">
                                         <h4 class="panel-title btn-warning panel-heading" align="center">
@@ -399,7 +402,7 @@
                 </div>
 
             </div>
-            <div class="modal-footer">
+            <div  style="margin-right: 50px" class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i
                         class="fa fa-times"></i> Zamknij
                 </button>
@@ -415,85 +418,4 @@
 </div>
 
 
-<!--&lt;!&ndash; Wyswietlanie tebeli krzyżowej  &ndash;&gt;-->
-<!--<div class="portfolio-modal modal fade" id="showCrossTable" tabindex="-1" role="dialog"-->
-     <!--aria-labelledby="exampleModalLongTitle" aria-hidden="true">-->
-    <!--<div class="modal-dialog  modal-lg" role="document">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<div align="right">-->
-                    <!--<button type="button" class="btn btn-danger" data-dismiss="modal"><i-->
-                            <!--class="fa fa-times"></i> Zamknij-->
-                    <!--</button>-->
-                <!--</div>-->
-
-                <!--<div style="margin-bottom: 15px" align="center"><h3>Cross Table</h3></div>-->
-                <!--<div class="row">-->
-                    <!--<div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 10px; ">-->
-                        <!--<select ng-model="selectFirstAttribute" class="form-control btn-default" id="first"-->
-                                <!--ng-init="selectFirstAttribute = atributeList[0]" ng-change="change(selectFirstAttribute)">-->
-                            <!--<option ng-repeat="x in atributes" value="{{x[0]}}">-->
-                                <!--<h4>{{x[1]}}</h4>-->
-                            <!--</option>-->
-                        <!--</select>-->
-                    <!--</div>-->
-                    <!--<div align="center " class="col-sm-10 col-sm-offset-1" style="margin-bottom: 0px; ">-->
-                        <!--<select ng-model="selectSecondAttribute" class="form-control btn-default" id="secend"-->
-                                <!--ng-init="selectSecondAttribute = atributeList[0]" ng-change="change(selectSecondAtribute)">-->
-                            <!--<option   ng-repeat="z in atributes" value="{{z[0]}}">-->
-                                <!--<h4>{{z[1]}}</h4>-->
-                            <!--</option>-->
-                        <!--</select>-->
-                    <!--</div>-->
-
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
-
-<!--<script id="code">-->
-    <!--function init() {-->
-        <!--if (window.goSamples) goSamples();  // init for these samples &#45;&#45; you don't need to call this-->
-
-        <!--var $ = go.GraphObject.make;  // for conciseness in defining templates-->
-
-        <!--myDiagram = $(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element-->
-            <!--{-->
-                <!--initialContentAlignment: go.Spot.Center,  // center the content-->
-                <!--"undoManager.isEnabled": true  // enable undo & redo-->
-            <!--});-->
-
-        <!--// define a simple Node template-->
-        <!--myDiagram.nodeTemplate =-->
-            <!--$(go.Node, "Auto",  // the Shape will go around the TextBlock-->
-                <!--$(go.Shape, "RoundedRectangle", { strokeWidth: 0},-->
-                    <!--// Shape.fill is bound to Node.data.color-->
-                    <!--new go.Binding("fill", "color")),-->
-                <!--$(go.TextBlock,-->
-                    <!--{ margin: 8 },  // some room around the text-->
-                    <!--// TextBlock.text is bound to Node.data.key-->
-                    <!--new go.Binding("text", "key"))-->
-            <!--);-->
-
-        <!--// but use the default Link template, by not setting Diagram.linkTemplate-->
-
-        <!--// create the model data that will be represented by Nodes and Links-->
-        <!--myDiagram.model = new go.GraphLinksModel(-->
-            <!--[-->
-                <!--{ key: "Alpha", color: "lightblue" },-->
-                <!--{ key: "Beta", color: "orange" },-->
-                <!--{ key: "Gamma", color: "lightgreen" },-->
-                <!--{ key: "Delta", color: "pink" }-->
-            <!--],-->
-            <!--[-->
-                <!--{ from: "Alpha", to: "Beta" },-->
-                <!--{ from: "Alpha", to: "Gamma" },-->
-                <!--{ from: "Beta", to: "Beta" },-->
-                <!--{ from: "Gamma", to: "Delta" },-->
-                <!--{ from: "Delta", to: "Alpha" }-->
-            <!--]);-->
-    <!--}-->
-<!--</script>-->
 

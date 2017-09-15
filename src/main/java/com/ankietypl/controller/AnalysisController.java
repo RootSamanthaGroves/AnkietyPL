@@ -139,6 +139,7 @@ public class AnalysisController {
             rulesAsString.append(numRule);
             rulesAsString.append(". ");
             premise.stream().map((item) -> {
+                rulesAsString.append("  &  ");
                 rulesAsString.append(item.getAttribute().name());
                 return item;
             }).map((item) -> {
@@ -146,7 +147,7 @@ public class AnalysisController {
                 rulesAsString.append(item.getItemValueAsString());
                 return item;
             }).forEach((_item) -> {
-                rulesAsString.append(" & ");
+                rulesAsString.append("  ");
             });
             rulesAsString.append(" ==> ");
             consequence.stream().map((item) -> {
