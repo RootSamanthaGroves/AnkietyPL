@@ -111,7 +111,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 }
                 i = 0;
                 var p = [];
-                var pops = [[]];
+                // var pops = [[]];
 
                 f = 0;
                 var cale = "";
@@ -125,26 +125,41 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
                     var posI = tabPop[i].indexOf("&");
                     var lastposI = tabPop[i].lastIndexOf("&");
-                    console.log(posI, " ", lastposI, "  ", posI === lastposI, " ", i, cale);
+                    // console.log(posI, " ", lastposI, "  ", posI === lastposI, " ", i, cale);
 
 
                     if (posI === lastposI) {
-                        pops[0][i] = tabPop[i].substring(posI + 1, l);
+                        // pops[0][i] = tabPop[i].substring(posI + 1, l);
                         // console.log(f, " ", l, "  &   ", pops[i][0], " a ", lastposI, " popi ", posI);
-                         console.log(i," i ",pops[0][i]);
-                        n[i] = {id: i,text:i, font: {size: 30}, size: 40, title: pops[0][i]};
+                        // console.log(i, " i ", pops[0][i]);
+                        n[i] = {id: i, label: i, font: {size: 30}, size: 40, title: tabPop[i].substring(posI + 1, l)};
                     }
                     else {
                         temp[i] = cale;
-
                         l = temp[i].length;
                         p[0] = temp[i].substring(posI + 1, lastposI);
                         p[1] = temp[i].substring(lastposI + 1, l);
-                         console.log(lastposI," ",l," i  p 0 ",p[0], "  p1", p[1]);
-                        pops[i] = p;
-                        n[i] = {id: i, label: i, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1]
-                            // , shape: 'dot'
-                        };
+                        var between = p[0].lastIndexOf("&");
+                        // console.log(between);
+
+                        if (between != -1) {
+                            p[0] = temp[i].substring(posI + 1, between);
+                            p[1] = temp[i].substring(between + 6, lastposI);
+                            p[2] = temp[i].substring(lastposI + 1, l);
+                            n[i] = {
+                                id: i, label: i, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1] + "<br>" + p[2]
+                                , shape: 'dot'
+                                , color: "orange"
+                            };
+                        } else {
+                            // pops[i] = p;
+                            n[i] = {
+                                id: i, label: i, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1]
+                                , shape: 'dot'
+                            }
+
+                        }
+
                     }
                     i++;
                 }
@@ -161,7 +176,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
                 i = 0;
                 var il = n.length;
-                console.log(il);
+                // console.log(il);
                 while (uniq[i]) {
 
 
@@ -169,7 +184,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                     j = 0;
                     while (nast[j]) {
                         // console.log(nast[j] === uniq[i]," ",nast[j]," ",uniq[i]);
-                         if (nast[j] === uniq[i]) {
+                        if (nast[j] === uniq[i]) {
                             e[j] = {
                                 from: j,
                                 to: il,
@@ -180,7 +195,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                 // shape: 'dot'
                             };
 
-                         }
+                        }
                         j++;
                     }
                     i++;
