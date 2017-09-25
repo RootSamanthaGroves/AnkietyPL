@@ -147,15 +147,15 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                             p[1] = temp[i].substring(between + 6, lastposI);
                             p[2] = temp[i].substring(lastposI + 1, l);
                             n[i] = {
-                                id: i, label: i, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1] + "<br>" + p[2]
-                                , shape: 'dot'
-                                , color: "orange"
+                                id: i, label: i+1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1] + "<br>" + p[2]
+                                // , shape: 'dot'
+
                             };
                         } else {
                             // pops[i] = p;
                             n[i] = {
-                                id: i, label: i, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1]
-                                , shape: 'dot'
+                                id: i, label: i+1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1]
+                                // , shape: 'dot'
                             }
 
                         }
@@ -167,8 +167,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
                 var uniq = nast.reduce(function (a, b) {
                         if (a.indexOf(b) < 0) a.push(b);
-                        return a;
-                    },
+                        return a;},
                     []);
 
                 // console.log(uniq) // unikalne żeelementy
@@ -191,7 +190,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                 font: {align: 'middle'},
                                 arrows: {to: {scaleFactor: 1}},
                                 color: 'blue  ',
-                                title: tabR[i],
+                                title: tabR[j],
                                 // shape: 'dot'
                             };
 
