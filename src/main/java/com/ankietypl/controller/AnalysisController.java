@@ -202,7 +202,7 @@ public class AnalysisController {
     public ResponseEntity<?> getsupportAndTrust() {
         double[][] result = new double[tabOfSupportAndTrust.length][tabOfSupportAndTrust[0].length];
         for (int i = 0; i < result.length; i++) {
-            System.out.println(tabOfSupportAndTrust[i][0] + " " + tabOfSupportAndTrust[i][1] + " " + tabOfSupportAndTrust[i][2] + " " + tabOfSupportAndTrust[i][3]);
+          //  System.out.println(tabOfSupportAndTrust[i][0] + " " + tabOfSupportAndTrust[i][1] + " " + tabOfSupportAndTrust[i][2] + " " + tabOfSupportAndTrust[i][3]);
             result[i][0] = tabOfSupportAndTrust[i][0];
             result[i][1] = tabOfSupportAndTrust[i][1];
             result[i][2] = tabOfSupportAndTrust[i][2];

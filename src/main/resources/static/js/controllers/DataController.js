@@ -83,7 +83,6 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 var rule = "";
                 var tabR = [];
                 var n = [];
-                var n2 = [];
                 var e = [];
                 var f = 0;
                 var l = 0;
@@ -92,47 +91,36 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
                 while (response[i]) {
                     l = response[i].length;
-                    rule = response[i];
-                    // console.log(response[i].length, rule = response[i].substring(f, l));
+                    // rule = response[i];
                     rule = response[i].substring(f, l);
                     tabR[i] = rule;
 
                     var pos = tabR[i].indexOf("==>");
                     var posk = tabR[i].indexOf(".");
-                    // var posI = tabR[i].indexOf("&");
 
                     pop[i] = tabR[i].substring(posk + 2, pos);
                     nast[i] = tabR[i].substring(pos + 3, tabR[i].length - 4);
-                    // console.log(pos, "==> ", posk, "  . pop ", pop[i], "  nast", nast[i], tabR[i].length);
                     f = l;
                     text = response[i] + "<br>";
 
                     i++;
                 }
+
                 i = 0;
                 var p = [];
-                // var pops = [[]];
-
                 f = 0;
                 var cale = "";
                 var tabPop = [];
                 var temp = [];
+
                 while (pop[i]) {
                     l = pop[i].length;
-
                     cale = pop[i].substring(f, l);
                     tabPop[i] = cale;
-
                     var posI = tabPop[i].indexOf("&");
                     var lastposI = tabPop[i].lastIndexOf("&");
-                    // console.log(posI, " ", lastposI, "  ", posI === lastposI, " ", i, cale);
-
-
                     if (posI === lastposI) {
-                        // pops[0][i] = tabPop[i].substring(posI + 1, l);
-                        // console.log(f, " ", l, "  &   ", pops[i][0], " a ", lastposI, " popi ", posI);
-                        // console.log(i, " i ", pops[0][i]);
-                        n[i] = {id: i, label: i, font: {size: 30}, size: 40, title: tabPop[i].substring(posI + 1, l)};
+                        n[i] = {id: i, label: i+1, font: {size: 30}, size: 40, title: tabPop[i].substring(posI + 1, l)};
                     }
                     else {
                         temp[i] = cale;
@@ -140,21 +128,20 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                         p[0] = temp[i].substring(posI + 1, lastposI);
                         p[1] = temp[i].substring(lastposI + 1, l);
                         var between = p[0].lastIndexOf("&");
-                        // console.log(between);
 
                         if (between != -1) {
                             p[0] = temp[i].substring(posI + 1, between);
                             p[1] = temp[i].substring(between + 6, lastposI);
                             p[2] = temp[i].substring(lastposI + 1, l);
                             n[i] = {
-                                id: i, label: i+1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1] + "<br>" + p[2]
+                                id: i, label: i + 1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1] + "<br>" + p[2]
                                 // , shape: 'dot'
 
                             };
                         } else {
                             // pops[i] = p;
                             n[i] = {
-                                id: i, label: i+1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1]
+                                id: i, label: i + 1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1]
                                 // , shape: 'dot'
                             }
 
@@ -167,22 +154,19 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
                 var uniq = nast.reduce(function (a, b) {
                         if (a.indexOf(b) < 0) a.push(b);
-                        return a;},
+                        return a;
+                    },
                     []);
 
                 // console.log(uniq) // unikalne żeelementy
 
-
+//========================================
                 i = 0;
                 var il = n.length;
-                // console.log(il);
                 while (uniq[i]) {
-
-
                     n[il] = {id: il, font: {size: 30}, size: 40, title: uniq[i], color: "orange"};
                     j = 0;
                     while (nast[j]) {
-                        // console.log(nast[j] === uniq[i]," ",nast[j]," ",uniq[i]);
                         if (nast[j] === uniq[i]) {
                             e[j] = {
                                 from: j,
@@ -193,14 +177,13 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                                 title: tabR[j],
                                 // shape: 'dot'
                             };
-
                         }
                         j++;
                     }
                     i++;
                     il++;
                 }
-
+//================================================
 
                 var nodes = new vis.DataSet();
 
@@ -230,7 +213,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 var network = new vis.Network(container, data, options);
                 document.getElementById("demo").innerHTML = text;
                 $scope.wsparcieUfnosc();
-                MatchRulesToNetworkFormat(tabR);
+                // MatchRulesToNetworkFormat(tabR);
 
             }
         )
@@ -240,15 +223,13 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         var r;
         var i = 0;
         var j = 0;
-        // r = tabOfRule[1];
-        // console.log(r.length);
+
         while (tabOfRule[i]) {
             j = 1;
             r = tabOfRule[i];
-            // console.log(r.length);
+
             while (j <= r.length) {
 
-                // console.log(r.charAt(j));
                 j++;
             }
             i++;
@@ -267,25 +248,161 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         });
 
         rules.query(function (response) {
-                $scope.rulesweka = response;
-                var i = 0;
-                var text = "";
-                var tes = "";
-                $scope.rules = [];
-                while (response[i]) {
-                    $scope.rules[i] = response[i];
-                    console.log(i + " " + $scope.rules[i][i]);
-                    tes = response[i];
-                    text = response[i] + "<br>";
+                // $scope.rulesweka = response;
+                // var i = 0;
+                // var text = "";
+                // var tes = "";
+                // $scope.rules = [];
+                // while (response[i]) {
+                //     $scope.rules[i] = response[i];
+                //     console.log(i + " " + $scope.rules[i][i]);
+                //     tes = response[i];
+                //     text = response[i] + "<br>";
+                //     i++;
+                // }
 
 
-                    i++;
-                }
+                    $scope.rulesweka = response;
+                    var i = 0;
+                    var j = 0;
+                    var text = "";
+                    var rule = "";
+                    var tabR = [];
+                    var n = [];
+                    var e = [];
+                    var f = 0;
+                    var l = 0;
+                    var nast = [];
+                    var pop = [];
+
+                    while (response[i]) {
+                        l = response[i].length;
+                        // rule = response[i];
+                        rule = response[i].substring(f, l);
+                        tabR[i] = rule;
+
+                        var pos = tabR[i].indexOf("==>");
+                        var posk = tabR[i].indexOf(".");
+
+                        pop[i] = tabR[i].substring(posk + 2, pos);
+                        nast[i] = tabR[i].substring(pos + 3, tabR[i].length - 4);
+                        f = l;
+                        text = response[i] + "<br>";
+
+                        i++;
+                    }
+
+                    i = 0;
+                    var p = [];
+                    f = 0;
+                    var cale = "";
+                    var tabPop = [];
+                    var temp = [];
+
+                    while (pop[i]) {
+                        l = pop[i].length;
+                        cale = pop[i].substring(f, l);
+                        tabPop[i] = cale;
+                        var posI = tabPop[i].indexOf("&");
+                        var lastposI = tabPop[i].lastIndexOf("&");
+                        if (posI === lastposI) {
+                            n[i] = {id: i, label: i+1, font: {size: 30}, size: 40, title: tabPop[i].substring(posI + 1, l)};
+                        }
+                        else {
+                            temp[i] = cale;
+                            l = temp[i].length;
+                            p[0] = temp[i].substring(posI + 1, lastposI);
+                            p[1] = temp[i].substring(lastposI + 1, l);
+                            var between = p[0].lastIndexOf("&");
+
+                            if (between != -1) {
+                                p[0] = temp[i].substring(posI + 1, between);
+                                p[1] = temp[i].substring(between + 6, lastposI);
+                                p[2] = temp[i].substring(lastposI + 1, l);
+                                n[i] = {
+                                    id: i, label: i + 1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1] + "<br>" + p[2]
+                                    // , shape: 'dot'
+
+                                };
+                            } else {
+                                // pops[i] = p;
+                                n[i] = {
+                                    id: i, label: i + 1, font: {size: 30}, size: 40, title: p[0] + "<br>" + p[1]
+                                    // , shape: 'dot'
+                                }
+
+                            }
+
+                        }
+                        i++;
+                    }
+
+
+                    var uniq = nast.reduce(function (a, b) {
+                            if (a.indexOf(b) < 0) a.push(b);
+                            return a;
+                        },
+                        []);
+
+                     console.log(uniq) // unikalne żeelementy
+
+//========================================
+                    i = 0;
+                    var il = n.length;
+                    while (uniq[i]) {
+                        n[il] = {id: il, font: {size: 30}, size: 40, title: uniq[i], color: "orange"};
+                        j = 0;
+                        while (nast[j]) {
+                            if (nast[j] === uniq[i]) {
+                                e[j] = {
+                                    from: j,
+                                    to: il,
+                                    font: {align: 'middle'},
+                                    arrows: {to: {scaleFactor: 1}},
+                                    color: 'blue  ',
+                                    title: tabR[j],
+                                    // shape: 'dot'
+                                };
+                            }
+                            j++;
+                        }
+                        i++;
+                        il++;
+                    }
+//================================================
+
+                    var nodes = new vis.DataSet();
+
+                    nodes.add(n);
+                    // create an array with edges
+                    var edges = new vis.DataSet();
+                    edges.add(e);
+                    // create a network
+                    var container = document.getElementById('mynetworkNewDate');
+
+
+                    // provide the data in the vis format
+                    var data = {
+                        nodes: nodes,
+                        edges: edges
+                    };
+                    var options = {
+                        // "edges": {
+                        //     "smooth": {
+                        //         "type": "straightCross",
+                        //         "roundness": 0.2
+                        //     }
+                        // }
+                    };
+
+                    // initialize your network!
+                    var network = new vis.Network(container, data, options);
+
 
 
                 document.getElementById("demo2").innerHTML = text;
                 $scope.wsparcieUfnosc2();
-                console.log(" to to" + $scope.rules[0]);
+                // console.log(" to to" + $scope.rules[0]);
 
 
             }
