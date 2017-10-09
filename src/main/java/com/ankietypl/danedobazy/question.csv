@@ -1,5 +1,4 @@
-﻿id,q
-1,Ile godzin dziennie spędza Pan(i) korzystając z komputera w celach służbowych (praca lub nauka)?
+﻿1,Ile godzin dziennie spędza Pan(i) korzystając z komputera w celach służbowych (praca lub nauka)?
 2,Ile godzin dziennie spędza Pan(i) korzystając z komputera w celach prywatnych (np. rozrywka)?
 3, Ile godzin dziennie korzysta Pan(i) z Internetu w celach służbowych (praca lub nauka)?
 4,Ile godzin dziennie korzysta Pan(i) z Internetu w celach prywatnych (np. rozrywka)?
@@ -62,24 +61,25 @@
 61,Czy uważa Pan(i) operacje bankowe wykonywane drogą internetową za bezpieczne?
 62,Czy zdarzyło się Panu(i) lub Pana(i) znajomym być ofiarą internetowej przestępczości bankowej?
 63,Czy zdaniem Pana(i) pojawienie się komputerów miało wpływ na wzrost bezrobocia?
-64,Ataki komputerowych hakerów.
-65,Zagrożenia związane z internetową przestępczością bankową.
-66,Możliwość umieszczenia niechcianych treści w Internecie na swój temat lub temat osób najbliższych
-67,Działalność w Internecie osób z różnymi dewiacjami.
-68,Łatwy dostęp dzieci i młodzieży do materiałów o treści pornograficznej.
-69,Uzależnienie od komputera i Internetu.
-70,Uzależnienie od korzystania z poczty e-mail i SMS-ów.
-71,Uzależnienie od gier komputerowych.
-72,Przenikanie przez Internet niechcianych treści (spam niechciane informacje i reklamy).
-73,Oszustwa internetowe (nieuczciwe sklepy internetowe sprzedaż falsyfikatów jako towarów oryginaln
-74,Choroby cywilizacyjne (np. wady postawy  wady wzroku)
-75,Smog elektromagnetyczny (tj. pole elektromagnetyczne wywołane przez urządzenia elektroniczne)
-76,Płeć
-77,Wiek
-78,Miejsce zamieszkania
-79,Pochodzenie społeczne
-80,Stan cywilny
-81,Miesięczny dochód (netto) na 1 osobę w gospodarstwie domowym
-82,Wykonywane zajęcie
-83,Zajmowane stanowisko
-84,Staż pracy (na stanowisku związanym z pracą przy komputerze)
+64,W  pytaniu proszę zaznaczyć znakiem „Odpowiedź” najważniejsze według Pana(i) zagrożenie związane z komputeryzacją. Proszę zaznaczyć 3 odpowiedzi.
+65,Ataki komputerowych hakerów.
+66,Zagrożenia związane z internetową przestępczością bankową.
+67,Możliwość umieszczenia niechcianych treści w Internecie na swój temat lub temat osób najbliższych
+68,Działalność w Internecie osób z różnymi dewiacjami.
+69,Łatwy dostęp dzieci i młodzieży do materiałów o treści pornograficznej.
+70,Uzależnienie od komputera i Internetu.
+71,Uzależnienie od korzystania z poczty e-mail i SMS-ów.
+72,Uzależnienie od gier komputerowych.
+73,Przenikanie przez Internet niechcianych treści (spam niechciane informacje i reklamy).
+74,Oszustwa internetowe (nieuczciwe sklepy internetowe sprzedaż falsyfikatów jako towarów oryginaln
+75,Choroby cywilizacyjne (np. wady postawy  wady wzroku)
+76,Smog elektromagnetyczny (tj. pole elektromagnetyczne wywołane przez urządzenia elektroniczne)
+77,Płeć
+78,Wiek
+79,Miejsce zamieszkania
+80,Pochodzenie społeczne
+81,Stan cywilny
+82,Miesięczny dochód (netto) na 1 osobę w gospodarstwie domowym
+83,Wykonywane zajęcie
+84,Zajmowane stanowisko
+85,Staż pracy (na stanowisku związanym z pracą przy komputerze)

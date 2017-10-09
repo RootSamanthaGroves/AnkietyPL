@@ -24,6 +24,8 @@ import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Component
@@ -71,136 +73,120 @@ public class Init {
             //survey.setQuestion();
             surveyRepository.save(survey);
 
-            System.out.println("DZIAłA");
+
             File file = new File("./src/main/resources/static/data/danedobazy/answers.csv");
-            System.out.println("nadal działa");
             Scanner in = new Scanner(file);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             Answer answer;
             String q = "";
-//            try {
-//                String textLine = bufferedReader.readLine();
-//                while (textLine != null && textLine.length() > 0) {
-//                    int index1 = textLine.indexOf(",");
-//                    q = textLine.substring(index1 + 1);
-//                    System.out.println(q);
-//                    answer = new Answer(q);
-//                    answerRepository.save(answer);
-//                    textLine = bufferedReader.readLine();
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } finally {
-//                try {
-//                    bufferedReader.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//ffffffffffffffffffffffffffffffffffffffff
-
-//            file = new File("./src/main/resources/static/data/danedobazy/question.csv");
-//
-//            in = new Scanner(file);
-//            fileReader = new FileReader(file);
-//            bufferedReader = new BufferedReader(fileReader);
-//            Question question;
-//            ArrayList<Question> listOfQuestion = new ArrayList<Question>();
-//
-//            q = "";
-//         //   String k="";
-//            try {
-//                String textLine = bufferedReader.readLine();
-//                while (textLine != null && textLine.length() > 0) {
-//                    int index1 = textLine.indexOf(",");
-//                    int index2 = textLine.lastIndexOf(",");
-//                    q = textLine.substring(index1 + 1);
-//                 //   k= textLine.substring(index2,textLine.length());
-//                   System.out.println(q);
-//                    question = new Question(q);
-//                    questionRepository.save(question);
-//                    listOfQuestion.add(question);
-//
-//                    textLine = bufferedReader.readLine();
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } finally {
-//                try {
-//                    bufferedReader.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-
-            String csvFile = "./src/main/resources/static/data/danedobazy/questionanswer.csv";
-            BufferedReader br = null;
-            String line;
-            String cvsSplitBy = ",";
-
             try {
-
-                br = new BufferedReader(new FileReader(csvFile));
-                while ((line = br.readLine()) != null) {
-
-                    // use comma as separator
-                    String[] country = line.split(cvsSplitBy);
-
-                    System.out.println("Country [code= " + country[0] + " , name=" + country[1] + "]");
-
+                String textLine = bufferedReader.readLine();
+                while (textLine != null && textLine.length() > 0) {
+                    int index1 = textLine.indexOf(",");
+                    q = textLine.substring(index1 + 1);
+                    //   System.out.println(q);
+                    answer = new Answer(q);
+                    answerRepository.save(answer);
+                    textLine = bufferedReader.readLine();
                 }
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                if (br != null) {
-                    try {
-                        br.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+//ffffffffffffffffffffffffffffffffffffffff
+
+            file = new File("./src/main/resources/static/data/danedobazy/question.csv");
+
+            in = new Scanner(file);
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            Question question;
+            ArrayList<Question> listOfQuestion = new ArrayList<Question>();
+
+            q = "";
+            //   String k="";
+            try {
+                String textLine = bufferedReader.readLine();
+                while (textLine != null && textLine.length() > 0) {
+                    int index1 = textLine.indexOf(",");
+                    int index2 = textLine.lastIndexOf(",");
+                    q = textLine.substring(index1 + 1);
+                    //   k= textLine.substring(index2,textLine.length());
+                    System.out.println(q);
+                    question = new Question(q);
+                    questionRepository.save(question);
+                    listOfQuestion.add(question);
+                    textLine = bufferedReader.readLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
 
 
 //            System.out.println(new File());
-            file = new File("./src/main/resources/static/data/danedobazy/questionanswer.csv");
+            file = new File("./src/main/java/com/ankietypl/danedobazy/questionsANDanswers.csv");
 
 //             in = new Scanner(file);
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
 
-
+            Question question1 = new Question();
             Answer answer1;
-
             ArrayList<Answer> listOfAnswer = new ArrayList<Answer>();
 
             q = "";
-            String id = "";
-            try {
-                String textLine = bufferedReader.readLine();
-                while (textLine != null && textLine.length() > 0) {
-                    int index1 = textLine.indexOf(",");
-//                    q = textLine.substring(index1 + 1);
-//                    id = textLine.substring(0,index1) ;
-//                   System.out.println(q+" " +id);
-//                    question = new Question(q);
-//                    answerRepository.save();
-//                    listOfAnswer.add(answer);
-                    System.out.println(textLine);
-                    textLine = bufferedReader.readLine();
+
+            long idq = 0;
+            int id = 0;
+            int nextId = 1;
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = null;
+            Pattern pattern = Pattern.compile("\\d+");
+            while (true) {
+                line = br.readLine();
+                if (line == null) break;
+                String array[] = line.split(",");
+
+                Matcher matcher = pattern.matcher(array[0]);
+                if (matcher.find()) {
+                    id = Integer.parseInt(matcher.group(0));
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-                bufferedReader.close();
+                idq = Long.parseLong(array[1].trim());
+                answer1 = new Answer();
+                answer1.setId(idq);
+                question1.setAnswers(listOfAnswer);
+                if (id == nextId) {
+                    answer1 = new Answer();
+                    answer1.setId(idq);
+                    question1.setAnswers(listOfAnswer);
+                    listOfAnswer.add(answer1);
+                    questionRepository.update(id, question1);
+                    nextId = id;
+                } else {
+                    listOfAnswer.clear();
+                    listOfAnswer.add(answer1);
+                      questionRepository.update(id,question1 );
+                    nextId = id;
+                }
+                System.out.println("id " + id + " id2=" + idq);
             }
+            br.close();
 
 
-//            survey.setQuestion(listOfQuestion);
-//            surveyRepository.update(1, survey);
+            survey.setQuestion(listOfQuestion);
+            surveyRepository.update(1, survey);
 
         }
     }
