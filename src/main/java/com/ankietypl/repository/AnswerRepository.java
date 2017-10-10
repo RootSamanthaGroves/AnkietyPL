@@ -58,7 +58,7 @@ public class AnswerRepository {
     @Transactional
     public Answer update(long id, Answer a) {
         Answer answer = entityManager.find(Answer.class, id);
-
+        System.out.println(a.getAnswer()+" "+a.getId());
         if (!a.getAnswer().isEmpty()) {
             answer.setAnswer(a.getAnswer());
         }
@@ -67,6 +67,16 @@ public class AnswerRepository {
         }
         entityManager.merge(answer);
         return answer;
+    }
+
+    @Transactional
+    public Answer updateA(long id, String a) {
+        System.out.println(a );
+        Answer answer = entityManager.find(Answer.class, id);
+        answer.setAnswer(a);
+        entityManager.merge(answer);
+        return answer;
+
     }
 }
 

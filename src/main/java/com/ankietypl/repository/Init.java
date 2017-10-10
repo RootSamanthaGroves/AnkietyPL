@@ -7,7 +7,6 @@ package com.ankietypl.repository;
 
 import com.ankietypl.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,10 +18,6 @@ import javax.annotation.PostConstruct;
  */
 
 import java.io.*;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -74,10 +69,10 @@ public class Init {
             surveyRepository.save(survey);
 
 
-            File file = new File("./src/main/resources/static/data/danedobazy/answers.csv");
-            Scanner in = new Scanner(file);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            //File file = new File(getClass().getResourceAsStream("/answers.csv"));
+            //Scanner in = new Scanner(file);
+            //FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/answers1.txt")));
             Answer answer;
             String q = "";
             try {
@@ -101,11 +96,12 @@ public class Init {
             }
 //ffffffffffffffffffffffffffffffffffffffff
 
-            file = new File("./src/main/resources/static/data/danedobazy/question.csv");
-
+/*            File file = new File("./src/main/resources/static/data/danedobazy/question.csv");
+            Scanner in = new Scanner(file);
             in = new Scanner(file);
-            fileReader = new FileReader(file);
-            bufferedReader = new BufferedReader(fileReader);
+            FileReader fileReader = new FileReader(file);
+            fileReader = new FileReader(file);*/
+            bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/question1.txt")));
             Question question;
             ArrayList<Question> listOfQuestion = new ArrayList<Question>();
 
@@ -118,7 +114,7 @@ public class Init {
                     int index2 = textLine.lastIndexOf(",");
                     q = textLine.substring(index1 + 1);
                     //   k= textLine.substring(index2,textLine.length());
-                    System.out.println(q);
+//                    System.out.println(q);
                     question = new Question(q);
                     questionRepository.save(question);
                     listOfQuestion.add(question);
@@ -136,11 +132,11 @@ public class Init {
 
 
 //            System.out.println(new File());
-            file = new File("./src/main/java/com/ankietypl/danedobazy/questionsANDanswers.csv");
+            //           file = new File("./src/main/java/com/ankietypl/danedobazy/questionsANDanswers.csv");
 
 //             in = new Scanner(file);
-            fileReader = new FileReader(file);
-            bufferedReader = new BufferedReader(fileReader);
+//            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/questionsANDanswers.csv")));
 
             Question question1 = new Question();
             Answer answer1;
@@ -151,7 +147,7 @@ public class Init {
             long idq = 0;
             int id = 0;
             int nextId = 1;
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/questionsANDanswers.csv")));
             String line = null;
             Pattern pattern = Pattern.compile("\\d+");
             while (true) {
@@ -177,10 +173,10 @@ public class Init {
                 } else {
                     listOfAnswer.clear();
                     listOfAnswer.add(answer1);
-                      questionRepository.update(id,question1 );
+                    questionRepository.update(id, question1);
                     nextId = id;
                 }
-                System.out.println("id " + id + " id2=" + idq);
+//                System.out.println("id " + id + " id2=" + idq);
             }
             br.close();
 

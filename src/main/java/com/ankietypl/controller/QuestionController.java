@@ -1,5 +1,6 @@
 package com.ankietypl.controller;
 
+import com.ankietypl.model.Answer;
 import com.ankietypl.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -9,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.ankietypl.repository.QuestionRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,6 +82,14 @@ public class QuestionController {
         return new ResponseEntity<Question>(question, new HttpHeaders(), HttpStatus.OK);
     }
 
+
+    @Transactional
+    @PostMapping("/update/")
+    public ResponseEntity<Question> updateAnswer(@RequestBody Question question) {
+        System.out.println(question);
+       questionRepository.updateQ(question.getId(), question.getQuestion());
+        return new ResponseEntity<Question>(question, new HttpHeaders(), HttpStatus.OK);
+    }
 }
 
 

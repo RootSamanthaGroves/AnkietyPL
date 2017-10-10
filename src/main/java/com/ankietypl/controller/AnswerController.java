@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.ankietypl.repository.AnswerRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,9 +77,19 @@ public class AnswerController {
 
 
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @PostMapping("/put/{id}")
+    @PostMapping("/put/{id}/{answer}")
     public ResponseEntity<Answer> update(@PathVariable long id, @RequestBody Answer answer) {
+        System.out.println(id+ " "+ answer.toString());
         answerRepository.update(Long.valueOf(id), answer);
+        return new ResponseEntity<Answer>(answer, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
+    @Transactional
+    @PostMapping("/update/")
+    public ResponseEntity<Answer> updateAnswer(@RequestBody Answer answer) {
+        System.out.println(answer);
+        answerRepository.updateA(answer.getId(), answer.getAnswer());
         return new ResponseEntity<Answer>(answer, new HttpHeaders(), HttpStatus.OK);
     }
 

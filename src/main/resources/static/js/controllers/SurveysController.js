@@ -9,7 +9,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     $scope.questions;
     $scope.answer;
     $scope.question;
-
+    var updateAnswer;
 
     $scope.testMessage = "banan";
 
@@ -193,26 +193,6 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             })
     };
 
-
-    // $scope.delete = function (Id) {
-    //     alert("The Survey Deleted Successfully!!! Please refresh the page ");
-    //
-    //     $http({
-    //         method: 'DELETE',
-    //         url: '/survey/delete/id/' + Id
-    //     }).success(function (data) {
-    //         //Showing Success message
-    //         $scope.status = "The Survey Deleted Successfully!!!";
-    //         alert('Delete User');
-    //
-    //     })
-    //         .error(function (error) {
-    //             //Showing error message
-    //             $scope.status = 'Unable to delete a person: ' + error.message;
-    //         });
-    // };
-
-
     $scope.deleteAnswer = function (Id) {
         $http({
             method: 'DELETE',
@@ -229,50 +209,68 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             });
     }
 
-    $scope.editAnswer = function (Id, text) {
-
-        var answer = prompt("Please enter the answer" + Id, text);
-
-        var answerObj = {
-            a: answer
-
-        };
-        alert(answerObj);
-        $http.put('/answer/id', answerObj).success(function () { //wywloujemy
-            alert('answer update' + answerObj);
-            loadAllAnswersFromDb();
-        }).error(function () {
-            alert('We have problem!');
-        })
+    $scope.showQuestion = function (id) {
 
 
-        $http.post('/answer/put/' + Id, answerObj).success(function () { //wywloujemy
-            alert('Thanks');
-
-            loadAllAnswersFromDb();
-
-            // for(var i = 0; questionObject.length(); i++){
-            //     console.log(questionObject.answers[i].answer);
-            // }
-
-        }).error(function () {
-            alert("nie udało się ")
-        })
         $http({
-
-            method: 'PUT',
-            url: '/answer/put/id/' + Id
+            method: 'GET',
+            url: '/question/id/' + id
         }).success(function (data) {
             //Showing Success message
             $scope.status = "The Survey Deleted Successfully!!!";
-            alert('Update User');
-            loadAllAnswersFromDb();
+            $rootScope.updateQuestion = data.question;
+            $rootScope.idquestion = data.id;
+            loadAllQuestionFromDb();
         })
             .error(function (error) {
                 //Showing error message
                 $scope.status = 'Unable to delete a person: ' + error.message;
             });
     }
+    $rootScope.showAnswer = function (id) {
+
+
+        $http({
+            method: 'GET',
+            url: '/answer/id/' + id
+        }).success(function (data) {
+            $scope.status = "The Survey Deleted Successfully!!!";
+            $rootScope.updateAnswer = data.answer;
+            $rootScope.idanswer = data.id;
+        })
+            .error(function (error) {
+                //Showing error message
+                $scope.status = 'Unable to delete a person: ' + error.message;
+            });
+    }
+
+    $scope.editAnswer = function () {
+
+
+        var answerObj;
+        var ans = $scope.updateAnswer;
+        console.log(ans);
+        answerObj = {
+            id: $rootScope.idanswer,
+            answer: ans
+        };
+        console.log(ans + ' ' + $scope.idanswer);
+        $http({
+            method: 'POST',
+            url: 'answer/update/',
+            data: answerObj
+        }).success(function (data) {
+            // $scope.me = data; // widoku będziesz używał teraz people
+            console.log(data);
+        }).error(function (error) {
+            //Showing error message
+            $scope.status = 'Unable to delete a person:';
+        });
+        loadAllAnswersFromDb();
+        loadAllQuestionFromDb();
+
+
+    };
 
 
     $scope.deleteQuestion = function (Id) {
@@ -295,83 +293,29 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
 
     $scope.editQuestion = function (Id, text) {
 
-        var question = prompt("Please enter the question " + Id, text);
 
-        var questionObj = {
-            q: question
-
+        var questionObj;
+        var quest = $scope.updateQuestion;
+        //  console.log(ans);
+        questionObj = {
+            id: $rootScope.idquestion,
+            question: quest
         };
-
-        $http.put('/question/id', questionObj).success(function () { //wywloujemy
-            alert('question update' + questionObj);
+              $http({
+            method: 'POST',
+            url: 'question/update/',
+            data: questionObj
+        }).success(function (data) {
             loadAllQuestionFromDb();
-        }).error(function () {
-            alert('We have problem!');
-        })
+            console.log(data);
+        }).error(function (error) {
+            //Showing error message
+            $scope.status = 'Unable to delete a person:';
+        });
 
 
-        $http.post('/answer/put/' + Id, answerObj).success(function () { //wywloujemy
-            alert('Thanks');
 
-            loadAllAnswersFromDb();
-
-            // for(var i = 0; questionObject.length(); i++){
-            //     console.log(questionObject.answers[i].answer);
-            // }
-
-        }).error(function () {
-            alert("nie udało się ")
-        })
-        $http({
-
-            method: 'PUT',
-            url: '/answer/put/id/' + Id
-        }).success(function (data) {
-            //Showing Success message
-            $scope.status = "The Survey Deleted Successfully!!!";
-            alert('Update User');
-            loadAllAnswersFromDb();
-        })
-            .error(function (error) {
-                //Showing error message
-                $scope.status = 'Unable to delete a person: ' + error.message;
-            });
-    }
-
-
-    $scope.showQuestion = function (id) {
-
-
-        $http({
-            method: 'GET',
-            url: '/survey/id/' + id
-        }).success(function (data) {
-            //Showing Success message
-            $scope.status = "The Survey Deleted Successfully!!!";
-            alert('Pobieranie jednej ankiety');
-
-        })
-            .error(function (error) {
-                //Showing error message
-                $scope.status = 'Unable to delete a person: ' + error.message;
-            });
-    }
-    $rootScope.showAnswer = function (id) {
-
-
-        $http({
-            method: 'GET',
-            url: '/answer/id/' + id
-        }).success(function (data) {
-            $scope.status = "The Survey Deleted Successfully!!!";
-            alert('Pobieranie jednej odpoweidzi');
-
-        })
-            .error(function (error) {
-                //Showing error message
-                $scope.status = 'Unable to delete a person: ' + error.message;
-            });
-    }
+    };
 
 
     $scope.saveSurvey = function () {
@@ -412,7 +356,6 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             question: Question
         };
         $http.post('/question/add', questionObject).success(function () { //wywloujemy
-            // alert('Thanks');
             loadAllQuestionFromDb();
         }).error(function () {
             alert('We have problem2!');

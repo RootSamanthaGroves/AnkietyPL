@@ -6,6 +6,7 @@
 package com.ankietypl.repository;
 
 
+import com.ankietypl.model.Answer;
 import com.ankietypl.model.Question;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -63,6 +64,17 @@ public class QuestionRepository {
         if (!q.getAnswers().isEmpty()) {
             question.setAnswers(q.getAnswers());
         }
+        entityManager.merge(question);
+        return question;
+
+    }
+
+
+    @Transactional
+    public Question updateQ(long id, String q) {
+        System.out.println(q);
+        Question question = entityManager.find(Question.class, id);
+        question.setQuestion(q);
         entityManager.merge(question);
         return question;
 
