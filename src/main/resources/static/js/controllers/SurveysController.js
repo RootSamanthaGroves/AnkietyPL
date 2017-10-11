@@ -201,7 +201,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             //Showing Success message
             // $scope.status = "The Survey Deleted Successfully!!!";
             // alert('Delete User');
-            // loadAllAnswersFromDb();
+             loadAllAnswersFromDb();
         })
             .error(function (error) {
                 //Showing error message
@@ -262,31 +262,27 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         }).success(function (data) {
             // $scope.me = data; // widoku będziesz używał teraz people
             console.log(data);
+            loadAllAnswersFromDb();
+            loadAllQuestionFromDb();
         }).error(function (error) {
             //Showing error message
             $scope.status = 'Unable to delete a person:';
         });
-        loadAllAnswersFromDb();
-        loadAllQuestionFromDb();
 
 
     };
 
 
     $scope.deleteQuestion = function (Id) {
-        console.log("poczatek");
         $http({
             method: 'DELETE',
             url: '/question/delete/id/' + Id
         }).success(function (data) {
             //Showing Success message
-            console.log("banan");
             $scope.status = "The Survey Deleted Successfully!!!";
             loadAllQuestionFromDb();
         })
             .error(function (error) {
-                console.log("banana error");
-                //Showing error message
                 $scope.status = 'Unable to delete a question: ' + error.message;
             });
     }
@@ -301,7 +297,7 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             id: $rootScope.idquestion,
             question: quest
         };
-              $http({
+        $http({
             method: 'POST',
             url: 'question/update/',
             data: questionObj
@@ -314,7 +310,6 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
         });
 
 
-
     };
 
 
@@ -324,11 +319,14 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             title: title
         };
         $http.post('/survey/add', titleObj).success(function () { //wywloujemy
-            // $rootScope.loadAllSurveyFromDb();
-            window.location.reload(false);
+
+
+                $scope.answerOfSurvey="";
+                 window.location.reload(false);
 
         }).error(function () {
-            alert('We have problem!');
+            alert("Error");
+
         })
     };
 
@@ -341,24 +339,41 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
                 if (response.status == 200) {
                     $rootScope.ankietka = response.data;
 
-                    console.log($scope.ankietka);
+                    //   console.log($scope.ankietka);
 
                 } else {
-                    console.log($scope.ankietka + " sdasdsa");
+                    console.log($scope.ankietka + " error");
                 }
             })
     };
 
     $scope.saveQuestion = function () {
         var Question = $scope.questionOfSurvey;
-        // alert($scope.questionOfSurvey);
         var questionObject = {
             question: Question
         };
         $http.post('/question/add', questionObject).success(function () { //wywloujemy
             loadAllQuestionFromDb();
+
+
+                $(document).ready(function () {
+
+                    $('#btnAddQuestion').click(function () {
+                        $('#myAlertq').show('fade');
+
+                        setTimeout(function () {
+                            $('#myAlertq').hide('fade');
+                        }, 1500);
+
+                    });
+
+                    $scope.questionOfSurvey="";
+
+            });
+
+
         }).error(function () {
-            alert('We have problem2!');
+            alert('Error!');
         })
     };
 
@@ -369,12 +384,36 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
             answer: Answer
         };
         $http.post('/answer/add', answerObject).success(function () { //wywloujemy
-            // alert('Thanks');
-            loadAllAnswersFromDb();
+
+             loadAllAnswersFromDb();
+
+            $(document).ready(function () {
+
+                $('#btnSubmit').click(function () {
+                    $('#myAlert').show('fade');
+
+                    setTimeout(function () {
+                        $('#myAlert').hide('fade');
+                    }, 1500);
+
+                });
+
+                $scope.answerOfSurvey="";
+
+            });
+
         }).error(function () {
-            alert('We have problem2!');
+           alert("Error");
+
         })
     };
+
+
+
+
+
+
+
 
 
     $scope.selectQ = function (id) {
@@ -384,5 +423,4 @@ angular.module('myApp').controller('SurveysController', function ($scope, $resou
     };
 
 
-})
-;
+});

@@ -2,15 +2,10 @@ angular.module('myApp').controller('AccountController', function ($scope, $resou
 
 
     $scope.zalogowany = "";
-
     $scope.showMe = false;
-    // $scope.isLogin = $localStorage.isLogin;
     $scope.myFunc = function () {
         $scope.showMe = true;
-
     }
-
-
     var getZalogowany = function () {
         var User = $resource('user/current.json', {}, {
             query: {method: 'get', isArray: false, cancellable: true}
@@ -64,7 +59,6 @@ angular.module('myApp').controller('AccountController', function ($scope, $resou
                 $scope.user = response;
             });
         };
-    // loadOneUserFromDb();
 
         //Delete a person
         $scope.delete = function (Id) {
@@ -83,7 +77,6 @@ angular.module('myApp').controller('AccountController', function ($scope, $resou
                     $scope.status = 'Unable to delete a person: ' + error.message;
                 });
         }
-
 
         //Edit a person
         $scope.editUser = function (user) {

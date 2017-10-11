@@ -2,16 +2,12 @@
 
 
     <div class="container-fluid" ng-hide="currentPath === '/'">
-
         <div class="intro-text  container-fluid" class="bg-light-gray">
-
-
             <div class="user container-fluid " ng-controller="SendMessageController">
                 <div class="container">
                     <br/>
                     <br/>
                     <br/>
-
                     <h3>Message </h3>
                     <div class="row">
                         <div class="col-md-11">
@@ -24,19 +20,15 @@
                                     <th>Email</th>
                                     <th>Message</th>
 
-
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr ng-repeat="u in message |orderBy:'id'">
-
                                     <td>{{ u.id }}</td>
                                     <td>{{ u.name }}</td>
                                     <th>{{ u.email }}</th>
                                     <td>{{ u.message }}</td>
-
-
                                 </tr>
                                 </tbody>
                             </table>
@@ -44,16 +36,12 @@
                     </div>
                     <div class="row">
                     </div>
-
                 </div>
             </div>
 
-
         </div>
 
-
         <div>
-
         </div>
     </div>
 </header>

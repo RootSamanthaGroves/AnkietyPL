@@ -56,7 +56,7 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
 
             if ($(this).val().length >= 5) {
                 p=true;
-                console.log(p);
+              //  console.log(p);
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', false);
             }
@@ -93,17 +93,13 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
 $scope.CorrectData = function () {
 
 
-
-
-
-
     if (n==true && ln==true && p==true && e==true ) {
 
         $('.sendButton').attr('disabled', false);
-        console.log(n==true & ln==true & p==true & e==true);
+      //  console.log(n==true & ln==true & p==true & e==true);
     }
     else {
-        console.log(n==true & ln==true & p==true & e==true);
+       // console.log(n==true & ln==true & p==true & e==true);
         $('.sendButton').attr('disabled', true);
     }
 };$scope.CorrectData();
@@ -138,9 +134,9 @@ $scope.CorrectData = function () {
             // Role: role
 
         };
-        alert(userObject.firstName+userObject.email);
+      //  alert(userObject.firstName+userObject.email);
         $http.post('/user/add',userObject).success(function () { //wywloujemy
-            alert('Thanks');
+            alert('Thanks '+ userObject.firstName);
 
         }).error(function () {
             alert('We have problem!');

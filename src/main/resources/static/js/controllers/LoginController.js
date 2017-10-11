@@ -1,40 +1,4 @@
 angular.module('myApp').controller('LoginController', function ($scope, $resource, $http, $location, LoginService, $localStorage, $rootScope) {
-    // $scope.message = '';
-    //
-    // $scope.test = function() {
-    //     alert('Thanks');
-    // }
-    // $(document).ready(function(){
-    //     $('[data-toggle="tooltip"]').tooltip();
-    // });
-    //
-    // $scope.saveUser= function () {
-    //     var email = $scope.emailOfUser;
-    //     var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
-    //     var lastName = $scope.lastNameOfUser;
-    //     var password = $scope.passwordOfUser;
-    //     // alert(firstName);
-    //
-    //     //to tylko dla testu czy dane sie pobieraja, w google chrome ctrl+shif j otwiera conosle do debuga
-    //     //degug //tak sie wlacza debugger w js
-    //
-    //     //Potrzebujemy stworzyc nasz obiekt, ktorego zadamy w Javie patrz RequestBody
-    //     var userObject = {
-    //         email: email,
-    //         firstName: firstName,
-    //         lastName: lastName,
-    //         password: password
-    //
-    //
-    //     };
-    //     alert(userObject.firstName+userObject.email);
-    //     $http.post('/user/add',userObject).success(function () { //wywloujemy
-    //         alert('Thanks');
-    //
-    //     }).error(function () {
-    //         alert('We have problem!');
-    //     })
-    // };
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -70,10 +34,7 @@ angular.module('myApp').controller('LoginController', function ($scope, $resourc
                                 $localStorage.role = response.data.role;
                                 $rootScope.id = response.data.id;
 
-                                // $rootScope.myname= response.data.firstName;
-                                // $rootScope.mylastname= response.data.lastName;
-                                // // $rootScope.myemail= response.data.myemail;
-                                // $rootScope.myrole= response.data.role;
+
                                 $location.path('/');
                             })
                         } else {

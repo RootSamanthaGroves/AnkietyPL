@@ -46,10 +46,10 @@ myApp.config(function ($routeProvider) {
             controller: 'SurveysController'
         })
 
-            .when('/analisys', {
-            templateUrl: 'views/analisys.html',
-            controller: 'AnalisysController'
-        })
+                //     .when('/analisys', {
+                //     templateUrl: 'views/analisys.html',
+                //     controller: 'AnalisysController'
+                // })
         .otherwise({redirectTo: '/'});
 
 

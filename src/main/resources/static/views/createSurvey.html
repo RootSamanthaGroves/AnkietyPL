@@ -3,7 +3,6 @@
         <div class="col-md-4 col-sm-6 portfolio-item" ng-repeat="s in survey">
 
             <a id="{{s.id}}" alt="{{s.id}}" class="portfolio-link" data-toggle="modal"
-
                ng-click="loadOneSurvey(s.id)" data-id="{{s.id}}" data-toggle="modal"
                data-target="#showSurvey">
                 <div class="portfolio-hover">
@@ -54,6 +53,7 @@
                                 <hr class="colorgraph" align="center">
                                 <br/>
                             </div>
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-sm-10 col-xs-10">
@@ -64,10 +64,21 @@
                                                ng-model="titleOfSurvey"/>
                                     </div>
                                     <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-sm-10 col-xs-10">
-                                        <br>
-                                        <button type="button" class="btn btn-warning btn-block" id="addSurvey"
-                                                ng-click="saveSurvey()"> Add survey
+
+
+                                        <button id="btnAddSurvey" class="btn btn-primary btn btn-inf btn-block" id="addSurvey"
+                                                ng-click="saveSurvey()">
+                                            Add
+                                            Survey
                                         </button>
+                                        <br/><br/>
+
+                                        <div id="myAlertqs" class="alert alert-success collapse">
+                                            <a href="#" class="close">&times;</a>
+                                            <strong>Success!</strong> Survey has been added.
+                                        </div>
+
+
                                     </div>
 
                                 </div>
@@ -100,15 +111,7 @@
                                                 data-target="#exampleModalLong">
                                             <span class="glyphicon glyphicon-edit"></span> Select question
                                         </button>
-                                        <!--<div class="col-md-12 col-sm-12">-->
-                                        <!--</br>-->
 
-
-                                        <!--&lt;!&ndash;<label>Wybierz plik z pytaniami (format csv):</label>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<input type="file" id="fileUpload">&ndash;&gt;-->
-
-
-                                        <!--</div>-->
 
                                     </div>
                                 </div>
@@ -128,17 +131,24 @@
                                                            id="questionOfSurvey"
                                                            placeholder="Question"
                                                            ng-model="questionOfSurvey"/>
+                                                    <button id="btnAddQuestion"
+                                                            class="btn btn-primary btn btn-inf btn-block"
+                                                            id="saveQuestion"
+                                                            ng-click="saveQuestion()">
+                                                        Add
+                                                        question
+                                                    </button>
+                                                    <br/><br/>
 
+                                                    <div id="myAlertq" class="alert alert-success collapse">
+                                                        <a href="#" class="close">&times;</a>
+                                                        <strong>Success!</strong> Question has been added.
+                                                    </div>
                                                 </div>
                                             </div>
                                             <br/>
                                         </div>
-                                        <button type="button" class="btn btn-warning"
-                                                id="saveQuestion"
-                                                ng-click="saveQuestion()">
-                                            Add
-                                            question
-                                        </button>
+
 
                                     </div>
                                     <div class="col-md-6 col-sm-6">
@@ -152,16 +162,27 @@
                                                            placeholder="Answer"
                                                            ng-model="answerOfSurvey"/>
 
+
+                                                        <button id="btnSubmit" class="btn btn-primary btn btn-inf btn-block" id="saveAnswer"
+                                                                ng-click="saveAnswer()">
+                                                            Add
+                                                            answer
+                                                        </button>
+
+
+
+                                                    <br/><br/>
+
+                                                    <div id="myAlert" class="alert alert-success collapse">
+                                                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                                        <strong>Success!</strong> Answer has been added.
+                                                    </div>
                                                 </div>
                                             </div>
                                             <br/>
                                         </div>
-                                        <button type="button" class="btn btn-warning"
-                                                id="saveAnswer"
-                                                ng-click="saveAnswer()">
-                                            Add
-                                            answer
-                                        </button>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -172,24 +193,18 @@
                                 <div class="col-md-6 col-sm-6">
 
                                     </br>
-                                    <div class="panel panel-warning">
-                                        <div class="panel-heading">Added questions</div>
-                                        <div class="panel-body">
-                                            <table>
+                                    <div class="panel "style=" border: 2px solid #1a1a1a" >
+                                        <div class="panel-heading " style="background-color: #1a1a1a; color: whitesmoke;font-family: Montserrat;padding: 20px " >Added questions</div>
+                                        <div class="panel-body"  id="table-scrollAllQ">
+                                            <table >
                                                 <tbody>
                                                 <tr ng-repeat="q in questions">
 
-                                                    <!--<td><input type="checkbox"-->
-                                                    <!--ng-checked="exists(a, selected)"-->
-                                                    <!--ng-click="toggle(a, selected)"-->
-                                                    <!--alt="a.id">-->
-                                                    <!--{{a.answer}}-->
-                                                    <!--</td>-->
+
                                                     <td>
                                                         <input type="checkbox" alt=q.id
                                                                ng-click="selectQ(q.id)">
-                                                        <!--ng-checked="exists(q, selectedQ)"-->
-                                                        <!--alt="q.id"-->
+
 
                                                         {{q.question}}
                                                         <div ng-repeat="(index,a) in q.answers">
@@ -202,10 +217,6 @@
                                                         <span class="glyphicon glyphicon-trash"></span>
                                                     </a></td>
                                                     <td>
-                                                        <!--<a href="" class="btn btn-info "-->
-                                                           <!--ng-click="editQuestion(q.id)">-->
-                                                        <!--<span class="glyphicon glyphicon-edit"></span>-->
-                                                    <!--</a>-->
                                                         <a href="" class="btn btn-info "
                                                            data-toggle="modal" data-target="#myModal2"
                                                            ng-click="showQuestion(q.id)">
@@ -222,9 +233,9 @@
 
                                 <div class="col-md-6 col-sm-6">
                                     </br>
-                                    <div class="panel panel-warning">
-                                        <div class="panel-heading">Added answers</div>
-                                        <div class="panel-body">
+                                    <div class="panel " style=" border: 2px solid #1a1a1a"  >
+                                        <div class="panel-heading " style="background-color: #1a1a1a; color: whitesmoke;font-family: Montserrat;padding: 20px " >Added answers</div>
+                                        <div class="panel-body" id="table-scrollAllA">
 
                                             <table class="table table-hover">
                                                 <tbody>
@@ -241,7 +252,6 @@
                                                         <span class="glyphicon glyphicon-trash"></span>
                                                     </a></td>
                                                     <td>
-
 
 
                                                         <a href="" class="btn btn-info "
@@ -270,7 +280,7 @@
                     Connect the question with answers
 
                 </h3>
-                <div align="center">
+                <div align="center" style="height: 100px">
                     <button type="button" class="btn btn-warning" id="saveRelations"
                             ng-click="saveRelations()">
                         Add relations
@@ -573,7 +583,7 @@
                 <label>Answer:</label>
                 <input type="text" class="form-control"
                        ng-model="updateAnswer"/>
-                    </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal"
@@ -584,7 +594,6 @@
 
     </div>
 </div>
-
 
 
 <!-- update question-->

@@ -72,7 +72,7 @@ public class Init {
             //File file = new File(getClass().getResourceAsStream("/answers.csv"));
             //Scanner in = new Scanner(file);
             //FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/answers1.txt")));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/a.txt")));
             Answer answer;
             String q = "";
             try {
@@ -80,7 +80,7 @@ public class Init {
                 while (textLine != null && textLine.length() > 0) {
                     int index1 = textLine.indexOf(",");
                     q = textLine.substring(index1 + 1);
-                    //   System.out.println(q);
+                      System.out.println(q);
                     answer = new Answer(q);
                     answerRepository.save(answer);
                     textLine = bufferedReader.readLine();
@@ -101,7 +101,7 @@ public class Init {
             in = new Scanner(file);
             FileReader fileReader = new FileReader(file);
             fileReader = new FileReader(file);*/
-            bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/question1.txt")));
+            bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/q.txt")));
             Question question;
             ArrayList<Question> listOfQuestion = new ArrayList<Question>();
 
@@ -114,7 +114,7 @@ public class Init {
                     int index2 = textLine.lastIndexOf(",");
                     q = textLine.substring(index1 + 1);
                     //   k= textLine.substring(index2,textLine.length());
-//                    System.out.println(q);
+                  System.out.println(q);
                     question = new Question(q);
                     questionRepository.save(question);
                     listOfQuestion.add(question);
@@ -131,12 +131,8 @@ public class Init {
             }
 
 
-//            System.out.println(new File());
-            //           file = new File("./src/main/java/com/ankietypl/danedobazy/questionsANDanswers.csv");
-
-//             in = new Scanner(file);
-//            fileReader = new FileReader(file);
-            bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/questionsANDanswers.csv")));
+//
+           // bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/questionsANDanswers.csv")));
 
             Question question1 = new Question();
             Answer answer1;
@@ -147,7 +143,7 @@ public class Init {
             long idq = 0;
             int id = 0;
             int nextId = 1;
-            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/questionsANDanswers.csv")));
+            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/questionsANDanswers.txt")));
             String line = null;
             Pattern pattern = Pattern.compile("\\d+");
             while (true) {

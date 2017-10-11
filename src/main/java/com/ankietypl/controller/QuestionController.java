@@ -34,7 +34,7 @@ public class QuestionController {
         return ResponseEntity.ok(questionsList);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+   @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @PostMapping("/add")
     public ResponseEntity<Question> postQuestion(@RequestBody Question question) {
         questionRepository.save(question);
@@ -82,7 +82,7 @@ public class QuestionController {
         return new ResponseEntity<Question>(question, new HttpHeaders(), HttpStatus.OK);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @Transactional
     @PostMapping("/update/")
     public ResponseEntity<Question> updateAnswer(@RequestBody Question question) {

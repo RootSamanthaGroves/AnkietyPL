@@ -1,9 +1,5 @@
 angular.module('myApp').controller('SendMessageController', function ($scope, $resource, $http) {
-    // $scope.message = 'Hello from SendMessageController';
-    // $scope.user;
-    // $scope.id;
-    // $scope.showMe = false;
-    // $scope.message;
+
 
     $scope.sendMessage = function () {
         var Email = $scope.emailOfMessage;
@@ -18,7 +14,7 @@ angular.module('myApp').controller('SendMessageController', function ($scope, $r
         $http.post('/message/add', messageObject).success(function () {
             alert('Wiadomośc została wysłana');
         }).error(function () {
-            alert('Nie udało się wysłać wiadomości!');
+            alert('Nie udało się wysłać wiadomości! Podaj poprawne dane ');
         })
     };
 

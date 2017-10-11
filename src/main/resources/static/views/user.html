@@ -1,18 +1,11 @@
 <header ng-controller="NavbarController" class="container-fluid">
-
-
     <div class="container-fluid" ng-hide="currentPath === '/'">
-
         <div class="intro-text  container-fluid">
-
-
-
-            <div class="user container-fluid " ng-controller="AccountController" >
+            <div class="user container-fluid " ng-controller="AccountController">
                 <div class="container">
                     <br/>
                     <br/>
                     <br/>
-
                     <h3>Users id DataBase</h3>
                     <div class="row">
                         <div class="col-md-11">
@@ -25,14 +18,13 @@
                                     <th>lastName</th>
                                     <th>email</th>
                                     <th>Edit</th>
-
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr ng-repeat="u in user |orderBy:'firstname'">
 
-                                    <td >{{ u.id }}</td>
+                                    <td>{{ u.id }}</td>
                                     <td>{{ u.firstName }}</td>
                                     <td>{{ u.lastName }}</td>
                                     <th>{{ u.email }}</th>
@@ -47,17 +39,11 @@
                     </div>
                     <div class="row">
                     </div>
-
                 </div>
             </div>
 
-
-
         </div>
-
-
         <div>
-
         </div>
     </div>
 </header>

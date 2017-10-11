@@ -41,9 +41,9 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
             .then(function (response) {
                 if (response.status == 200) {
                     $rootScope.ankietka = response.data;
-                    console.log($scope.ankietka);
+                //    console.log($scope.ankietka);
                 } else {
-                    console.log($scope.ankietka + " zaladowano ankiety");
+                 //   console.log($scope.ankietka + " zaladowano ankiety");
                 }
             })
     };
@@ -61,7 +61,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                     // console.log($scope.selectAtribute );
                     // $scope.showStatistic();
                 } else {
-                    console.log($scope.ankietka + " sdasdsa");
+                 //   console.log($scope.ankietka + " sdasdsa");
                 }
             })
     };
@@ -344,7 +344,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                         },
                         []);
 
-                     console.log(uniq) // unikalne żeelementy
+                     // console.log(uniq) // unikalne żeelementy
 
 //========================================
                     i = 0;
@@ -420,7 +420,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         data.query(function (response) {
             $scope.dataweka = response;
 
-            console.log(response);
+           // console.log(response);
 
         });
 
@@ -428,7 +428,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
 
     $scope.change = function (id) {
         $scope.showStatistic();
-        console.log(id);
+     //   console.log(id);
     };
 
 
@@ -605,7 +605,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 }
                 wykres();
                 $scope.wykresLiniowyStatystyk();
-                console.log(response);
+                // console.log(response);
             }
         );
 
@@ -826,7 +826,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 }
                 wykres2();
                 $scope.wykresLiniowyStatystyk2();
-                console.log(response);
+             //   console.log(response);
             }
         );
 
@@ -1127,7 +1127,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
         //  var x = document.getElementById("ufnosc").value;
 
 
-        console.log($scope.selected);
+       // console.log($scope.selected);
         newData = $resource('analysis/selectedAtribute/' + $scope.selected + "/" + $scope.all, {}, {
             query: {method: 'get', isArray: true, cancellable: true}
         });
@@ -1138,7 +1138,7 @@ angular.module('myApp').controller('DataController', function ($scope, $resource
                 // alert("1 " + response[2]);
                 $scope.newData = response;
                 $scope.showData();
-                console.log(response[1]);
+              //  console.log(response[1]);
 
             }
         );

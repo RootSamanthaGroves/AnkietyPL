@@ -10,7 +10,7 @@ angular.module('myApp').controller('NavbarController', function ($http, $scope, 
                 if (response.status == 200) {
                     $rootScope.email = response.data.email; //rootScope umozliwia wyswietlanei w dowolnym miejscu
                     $rootScope.myname = response.data.firstName;
-                    $rootScope.mylastname=response.data.lastName
+                    $rootScope.mylastname = response.data.lastName
                     $rootScope.myrole = response.data.role;
                     $rootScope.id = response.data.id;
                     // console.log("navbar  name " + $localStorage.firstName + " " + $localStorage.role + " " + $rootScope.id);

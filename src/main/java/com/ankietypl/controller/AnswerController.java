@@ -35,7 +35,7 @@ public class AnswerController {
         return ResponseEntity.ok(answersList);
     }
 
-//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @PostMapping("/add")
     public ResponseEntity<Answer> postAnswer(@RequestBody Answer answer) {
         answerRepository.save(answer);
@@ -84,7 +84,7 @@ public class AnswerController {
         return new ResponseEntity<Answer>(answer, new HttpHeaders(), HttpStatus.OK);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @Transactional
     @PostMapping("/update/")
     public ResponseEntity<Answer> updateAnswer(@RequestBody Answer answer) {

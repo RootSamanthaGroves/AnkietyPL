@@ -35,14 +35,14 @@ import java.util.Optional;
         }
 
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @PostMapping("/add")
     public ResponseEntity<Survey> postSurvey(@RequestBody Survey survey) {
         surveyRepository.save(survey);
         return ResponseEntity.ok(survey);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @DeleteMapping("delete/id/{id}")
     public ResponseEntity<Survey> deleteEmployee(@PathVariable Optional<Long> id) {
         if (!id.equals(null)) {
@@ -76,7 +76,7 @@ import java.util.Optional;
         return new ResponseEntity<Survey>(HttpStatus.BAD_REQUEST);
     }
 
-//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @PostMapping("/put/{id}")
     public ResponseEntity<Survey> update(@PathVariable long id, @RequestBody Survey survey) {
 //        System.out.println(survey.toString());
