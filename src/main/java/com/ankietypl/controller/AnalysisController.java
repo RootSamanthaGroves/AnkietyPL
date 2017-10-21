@@ -100,6 +100,46 @@ public class AnalysisController {
      * @param data
      * @param c    Minmalna ufnosc reguly (standardowo: 0.9).
      * @param n    Liczba regul do policzenia (standardowo: 10)
+     *             Valid options are:
+
+    -N <required number of rules output>
+    The required number of rules. (default = 10)
+
+    -T <0=confidence | 1=lift | 2=leverage | 3=Conviction>
+    The metric type by which to rank rules. (default = confidence)
+
+    -C <minimum metric score of a rule>
+    The minimum confidence of a rule. (default = 0.9)
+
+    -D <delta for minimum support>
+    The delta by which the minimum support is decreased in
+    each iteration. (default = 0.05)
+
+    -U <upper bound for minimum support>
+    Upper bound for minimum support. (default = 1.0)
+
+    -M <lower bound for minimum support>
+    The lower bound for the minimum support. (default = 0.1)
+
+    -S <significance level>
+    If used, rules are tested for significance at
+    the given level. Slower. (default = no significance testing)
+
+    -I
+    If set the itemsets found are also output. (default = no)
+
+    -R
+    Remove columns that contain all missing values (default = no)
+
+    -V
+    Report progress iteratively. (default = no)
+
+    -A
+    If set class association rules are mined. (default = no)
+
+    -c <the class index>
+    The class index. (default = last)
+     *
      * @return
      * @throws Exception
      */
