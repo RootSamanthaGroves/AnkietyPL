@@ -1,25 +1,25 @@
 angular.module('myApp').controller('RegisterController', function ($scope, $resource, $http) {
     $scope.message = '';
 
-    var n=false;
-    var ln=false;
-    var p=false;
-    var e=false;
+    var n = false;
+    var ln = false;
+    var p = false;
+    var e = false;
     $('.sendButton').attr('disabled', true);
 
 
     // do  walidania do nazwy usera
     $(document).ready(function () {
-     //   $('.sendButton').attr('disabled', true);
+        //   $('.sendButton').attr('disabled', true);
 
         $('#imie').keyup(function () {
             if ($(this).val().length >= 3) {
                 // $('.sendButton').attr('disabled', false);
-                n=true;
+                n = true;
                 $scope.CorrectData();
             }
             else {
-                n=false;
+                n = false;
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', true);
             }
@@ -27,20 +27,20 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
     });
     // do  walidania do nazwy usera
     $(document).ready(function () {
-      //  $('.sendButton').attr('disabled', true);
+        //  $('.sendButton').attr('disabled', true);
 
         $('#nazwisko').keyup(function () {
 
-                $('.sendButton').attr('disabled', true);
+            $('.sendButton').attr('disabled', true);
 
 
             if ($(this).val().length >= 3) {
-                ln=true;
+                ln = true;
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', false);
             }
             else {
-                ln=false;
+                ln = false;
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', true);
             }
@@ -55,13 +55,13 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
 
 
             if ($(this).val().length >= 5) {
-                p=true;
-              //  console.log(p);
+                p = true;
+                //  console.log(p);
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', false);
             }
             else {
-                p=false;
+                p = false;
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', true);
             }
@@ -77,12 +77,12 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
 
 
             if ($(this).val().length >= 4) {
-                e=true;
+                e = true;
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', false);
             }
             else {
-                e=false;
+                e = false;
 
                 $scope.CorrectData();
                 // $('.sendButton').attr('disabled', true);
@@ -90,34 +90,30 @@ angular.module('myApp').controller('RegisterController', function ($scope, $reso
         })
     });
 
-$scope.CorrectData = function () {
+    $scope.CorrectData = function () {
 
 
-    if (n==true && ln==true && p==true && e==true ) {
+        if (n == true && ln == true && p == true && e == true) {
 
-        $('.sendButton').attr('disabled', false);
-      //  console.log(n==true & ln==true & p==true & e==true);
-    }
-    else {
-       // console.log(n==true & ln==true & p==true & e==true);
-        $('.sendButton').attr('disabled', true);
-    }
-};$scope.CorrectData();
-
-
-
+            $('.sendButton').attr('disabled', false);
+            //  console.log(n==true & ln==true & p==true & e==true);
+        }
+        else {
+            // console.log(n==true & ln==true & p==true & e==true);
+            $('.sendButton').attr('disabled', true);
+        }
+    };
+    $scope.CorrectData();
 
 
-
-
-    $scope.test = function() {
+    $scope.test = function () {
         alert('Thanks');
     }
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 
-    $scope.saveUser= function () {
+    $scope.saveUser = function () {
 
         var email = $scope.emailOfUser;
         var firstName = $scope.firstNameOfUser; //pobieramy imie z pola w html
@@ -134,9 +130,14 @@ $scope.CorrectData = function () {
             // Role: role
 
         };
-      //  alert(userObject.firstName+userObject.email);
-        $http.post('/user/add',userObject).success(function () { //wywloujemy
-            alert('Thanks '+ userObject.firstName);
+        //  alert(userObject.firstName+userObject.email);
+        $http.post('/user/add', userObject).success(function () { //wywloujemy
+             $scope.emailOfUser="";
+            $scope.firstNameOfUser = ""; //pobieramy imie z pola w html
+            $scope.lastNameOfUser = "";
+            $scope.passwordOfUser = "";
+            alert('Thanks ' + userObject.firstName);
+
 
         }).error(function () {
             alert('We have problem!');

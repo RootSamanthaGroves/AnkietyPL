@@ -1,0 +1,85 @@
+1,Ile godzin dziennie spêdza Pan(i) korzystaj¹c z komputera w celach s³u¿bowych (praca lub nauka)?
+2,Ile godzin dziennie spêdza Pan(i) korzystaj¹c z komputera w celach prywatnych (np. rozrywka)?
+3,Ile godzin dziennie korzysta Pan(i) z Internetu w celach s³u¿bowych (praca lub nauka)?
+4,Ile godzin dziennie korzysta Pan(i) z Internetu w celach prywatnych (np. rozrywka)?
+5,Przegl¹dam zasoby Internetu w celach prywatnych
+6,Przegl¹dam zasoby Internetu w celach s³u¿bowych
+7,Prowadzê konwersacjê poprzez Internet (czat, komunikatory itp.)
+8,Korzystam z poczty e-mail w celach prywatnych
+9,Korzystam z poczty e-mail w celach s³u¿bowych
+10,Pracujê poprzez Internet
+11,Korzystam ze specjalistycznego oprogramowania komputerowego u¿ywanego w firmie w której pracujê
+12,Korzystam z oprogramowania biurowego (edytory tekstu, arkusze kalkulacyjne itp.)
+13,Ogl¹dam  filmy
+14,Gram w komputerowe gry
+15,Inne
+16,Czy zdarza siê Panu(i) spêdzaæ w Internecie wiêcej czasu ni¿ to by³o pierwotnie zaplanowane?
+17,Czy czuje Pan(i) niepokój jeœli nie ma Pan(i) mo¿liwoœci dostêpu do Internetu lub dostêp ograniczony?
+18,Czy aby uzyskaæ zadowolenie z korzystania z Internetu potrzebuje Pan(i) coraz wiêkszej iloœci czasu przeznaczonego na tê aktywnoœæ? 
+19,Czy podejmowa³ Pan(i) próby ograniczenia iloœci czasu spêdzanego na korzystaniu z Internetu  które zakoñczy³y siê niepowodzeniem?
+20,Czy korzysta Pan(i) z komputera w celu ucieczki od problemów ¿ycia codziennego?
+21,Czy korzysta Pan(i) z Internetu w celu ucieczki od problemów ¿ycia codziennego?
+22,Czy zdarzy³o siê Panu(i) zaniedbywaæ obowi¹zki domowe lub s³u¿bowe na rzecz czasu poœwiêconego na korzystanie z komputera?
+23,Czy zdarzy³o siê Panu(i) zaniedbywaæ obowi¹zki domowe lub s³u¿bowe na rzecz czasu poœwiêconego na korzystanie z Internetu?
+24,Czy Pana(i) zdaniem komputer zabiera czas  który powinien byæ przeznaczony w ci¹gu dnia na inne aktywnoœci?
+25,Czy Pana(i) zdaniem Internet zabiera czas  który powinien byæ przeznaczony w ci¹gu dnia na inne aktywnoœci?
+26,Czy Pana(i) zdaniem korzystanie z telefonu komórkowego zabiera czas  który powinien byæ przeznaczony w ci¹gu dnia na inne aktywnoœci?
+27,Czy posiada Pan(i) konto poczty e-mail? 
+28,Czy odczuwa Pan(i) niepokój jeœli nie ma Pan(i) mo¿liwoœci sprawdzenia swojej poczty e-mail?
+29,Czy po otrzymaniu e-maila odczuwa Pan(i) potrzebê natychmiastowej odpowiedzi na niego?
+30,Czy Pana(i) zdaniem korzystanie z e-maila ogranicza Panu(i) wolnoœæ?
+31,Czy korzysta Pan(i) z telefonu komórkowego?
+32,Czy czuje Pan(i) niepokój jeœli wychodz¹c z domu nie zabierze Pan(i) ze sob¹ telefonu komórkowego
+33,Czy czuje siê Pan(i) zaniepokojony jeœli nie ma Pan(i) mo¿liwoœci odebrania dzwoni¹cego telefonu komórkowego lub SMS-a  który w³aœnie nadszed³?
+34,Czy Pana(i) zdaniem korzystanie z telefonu komórkowego ogranicza Panu(i) wolnoœæ?
+35,Czy korzysta Pan(i) z telefonu komórkowego w celu ucieczki od problemów ¿ycia codziennego?
+36,Czy zdarzy³o siê Panu(i) zaniedbywaæ obowi¹zki domowe lub s³u¿bowe na rzecz czasu poœwiêconego na korzystanie z telefonu komórkowego?
+37,Czy podejmowa³ Pan(i) próby zawarcia nowych znajomoœci poprzez Internet?
+38,Czy zdarzy³o siê Panu(i) poznaæ w Internecie inn¹ osobê ni¿ ta za któr¹ siê podawa³a?
+39,Czy uwa¿a Pan(i)  ¿e ³atwoœæ zawierania nowych znajomoœci poprzez Internet jest zagro¿eniem dla sta³ych zwi¹zków?
+40,Czy zdarzy³o siê w Pana(i) otoczeniu  ¿eby znajomoœæ zawarta poprzez Internet by³a przyczyn¹ rozpadu sta³ego zwi¹zku?
+41,Czy zdarzy³o siê Panu(i) wybieraæ rozmowê poprzez Internet z osob¹ znajom¹ zamiast osobistego kontaktu w realnym œwiecie?  
+42,Czy zdarzy³o siê Panu(i) dostawaæ niemoralne propozycje poprzez Internet?
+43,Czy spotka³ Pan(i) w Internecie osobê  która Pana(i) zdaniem cierpia³a na dewiacjê na tle seksualnym?
+44,Czy uwa¿a Pan(i)  ¿e ³atwy dostêp do treœci pornograficznych umieszczanych w Internecie mo¿e zagra¿aæ prawid³owemu rozwojowi  emocjonalnemu m³odych ludzi? 
+45,Czy Pana(i) zdaniem czêste korzystanie jednego lub obojga partnerów ze stron o treœciach pornograficznych w Internecie mo¿e zagra¿aæ trwa³oœci sta³ego zwi¹zku?
+46,Czy zetkn¹³ siê Pan(i) w swoim otoczeniu z przypadkami uzale¿nienia od pornografii umieszczanej w Internecie?
+47,Czy gra Pan(i) w komputerowe gry?
+48,Czy po zakoñczeniu grania w komputerow¹ grê walki czuje Pan(i) u siebie wzrost agresji?
+49,Czy zdarzy³o siê Panu(i) graæ w komputerowe gry kosztem czasu przeznaczonego na pracê lub naukê?
+50,Czy odczuwa Pan(i) dolegliwoœci krêgos³upa zwi¹zane z korzystaniem z komputera?
+51,Czy pogorszy³ siê Panu(i) wzrok odk¹d zacz¹³ Pan(i) korzystaæ z komputera?
+52,Czy zaniedbuje Pan(i) aktywnoœæ fizyczn¹ na rzecz czasu spêdzonego przy komputerze?
+53,Czy zauwa¿y³ Pan(i) u siebie lub swoich znajomych sk³onnoœæ do u¿ywania w mowie potocznej zwrotów powszechnie stosowanych w internetowych rozmowach i wiadomoœciach SMS?
+54,Czy Pana(i) zdaniem komputeryzacja przyczyni³a siê do uproszczenia jêzyka u¿ywanego w mowie i w piœmie?
+55,Czy Pana(i) zdaniem przenikanie internetowego i SMS-owego s³ownictwa do mowy potocznej jest zjawiskiem negatywnym?
+56,Czy obawia siê Pan(i)Pan(i), ¿e wspó³czesny cz³owiek utraci³ anonimowoœæ poprzez pojawienie siê Internetu?
+57,Czy zetkn¹³ siê Pan(i) z umieszczeniem nieakceptowanych przez Pana(¹) treœci w Internecie na temat Pana(i) lub Pana(i) znajomych przez osoby nieupowa¿nione?
+58,Czy uwa¿a Pan(i) operacje bankowe wykonywane drog¹ internetow¹ za bezpieczne?
+59,Czy obawia siê Pan(i) kradzie¿y przez hakerów danych ze swojego komputera?
+60,Czy zdarzy³o siê Panu(i) lub komuœ z Pana(i) znajomych byæ ofiar¹ kradzie¿y danych przez hakerów komputerowych?
+61,Czy uwa¿a Pan(i) operacje bankowe wykonywane drog¹ internetow¹ za bezpieczne?
+62,Czy zdarzy³o siê Panu(i) lub Pana(i) znajomym byæ ofiar¹ internetowej przestêpczoœci bankowej?
+63,Czy zdaniem Pana(i) pojawienie siê komputerów mia³o wp³yw na wzrost bezrobocia?
+64,W  pytaniu proszê zaznaczyæ znakiem „OdpowiedŸ” najwa¿niejsze wed³ug Pana(i) zagro¿enie zwi¹zane z komputeryzacj¹. Proszê zaznaczyæ 3 odpowiedzi.
+65,Ataki komputerowych hakerów.
+66,Zagro¿enia zwi¹zane z internetow¹ przestêpczoœci¹ bankow¹.
+67,Mo¿liwoœæ umieszczenia niechcianych treœci w Internecie na swój temat lub temat osób najbli¿szych
+68,Dzia³alnoœæ w Internecie osób z ró¿nymi dewiacjami.
+69,£atwy dostêp dzieci i m³odzie¿y do materia³ów o treœci pornograficznej.
+70,Uzale¿nienie od komputera i Internetu.
+71,Uzale¿nienie od korzystania z poczty e-mail i SMS-ów.
+72,Uzale¿nienie od gier komputerowych.
+73,Przenikanie przez Internet niechcianych treœci (spam niechciane informacje i reklamy).
+74,Oszustwa internetowe (nieuczciwe sklepy internetowe sprzeda¿ falsyfikatów jako towarów oryginaln
+75,Choroby cywilizacyjne (np. wady postawy  wady wzroku)
+76,Smog elektromagnetyczny (tj. pole elektromagnetyczne wywo³ane przez urz¹dzenia elektroniczne)
+77,P³eæ
+78,Wiek
+79,Miejsce zamieszkania
+80,Pochodzenie spo³eczne
+81,Stan cywilny
+82,Miesiêczny dochód (netto) na 1 osobê w gospodarstwie domowym
+83,Wykonywane zajêcie
+84,Zajmowane stanowisko
+85,Sta¿ pracy (na stanowisku zwi¹zanym z prac¹ przy komputerze)

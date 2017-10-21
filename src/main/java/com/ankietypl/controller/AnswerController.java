@@ -43,7 +43,7 @@ public class AnswerController {
     }
 
 
-//    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     @DeleteMapping("delete/id/{id}")
     public ResponseEntity<Answer> deleteAnswer(@PathVariable Optional<Long> id) {
         if (!id.equals(null)) {
@@ -61,7 +61,7 @@ public class AnswerController {
     }
 
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @RequestMapping(value = "/id/{id}")
     public ResponseEntity<Answer> getDetailsOfAnswer(@PathVariable Optional<Long> id) {
         if (id.isPresent()) {
@@ -76,10 +76,10 @@ public class AnswerController {
     }
 
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN') or hasAnyAuthority('ROLE_USER')")
     @PostMapping("/put/{id}/{answer}")
     public ResponseEntity<Answer> update(@PathVariable long id, @RequestBody Answer answer) {
-        System.out.println(id+ " "+ answer.toString());
+//        System.out.println(id+ " "+ answer.toString());
         answerRepository.update(Long.valueOf(id), answer);
         return new ResponseEntity<Answer>(answer, new HttpHeaders(), HttpStatus.OK);
     }
@@ -88,7 +88,7 @@ public class AnswerController {
     @Transactional
     @PostMapping("/update/")
     public ResponseEntity<Answer> updateAnswer(@RequestBody Answer answer) {
-        System.out.println(answer);
+//        System.out.println(answer);
         answerRepository.updateA(answer.getId(), answer.getAnswer());
         return new ResponseEntity<Answer>(answer, new HttpHeaders(), HttpStatus.OK);
     }

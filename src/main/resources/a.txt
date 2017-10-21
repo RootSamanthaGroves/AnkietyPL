@@ -1,0 +1,42 @@
+1,Do 1 godziny
+2,Od 2 do 3 godzin
+3,Od 4 do 5 godzin  
+4,Powy¿ej 6 godzin  
+5,Tak
+6,Nie
+7,Trudno powiedzieæ
+8,Kobieta
+9,Mê¿yczna
+10,Poni¿ej 19 lat  
+11,Od 20 lat do 25 lat
+12,Od 26 lat do 30 lat
+13,Od 31 lat do 40 lat
+14,Od 41 lat do 50 lat
+15,Powy¿ej 51  
+16,Miasto  
+17,Wieœ  
+18,Inteligenckie
+19,Robotnicze  
+20,Ch³opskie
+21,inne
+22,Panna/Kawaler
+23,Konkubina/Konkubent
+24, Mê¿atka/¯onaty  
+25,Rozwóka/Rozwodnik  
+26,Wdowa/Wdowiec
+27,Poni¿ej 500 z³ 
+28,Od 501 do 1000 z³
+29,Od 1001 do 2000 z³
+30,Powy¿ej 2001 z³
+31,Student kierunku Informatyka  
+32,Pracownik firmy informatycznej  
+33,Dyrektor firmy informatycznej   
+34,Kierownik zespo³u
+35,Specjalista   
+36,Pracownik szeregowy   
+37,0 lat
+38,Do 1 roku
+39,Od 2 do 5 lat
+40,Od 6 do 10 lat  
+41,Powy¿ej 11 lat  
+42,brak odp
