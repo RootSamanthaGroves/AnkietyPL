@@ -164,12 +164,12 @@ public class Init {
                     answer1.setId(idq);
                     question1.setAnswers(listOfAnswer);
                     listOfAnswer.add(answer1);
-                    questionRepository.update(id, question1);
+//                    questionRepository.update(id, question1);
                     nextId = id;
                 } else {
                     listOfAnswer.clear();
                     listOfAnswer.add(answer1);
-                    questionRepository.update(id, question1);
+//                    questionRepository.update(id, question1);
                     nextId = id;
                 }
 //                System.out.println("id " + id + " id2=" + idq);
@@ -177,8 +177,8 @@ public class Init {
             br.close();
 
 
-            survey.setQuestion(listOfQuestion);
-            surveyRepository.update(1, survey);
+//            survey.setQuestion(listOfQuestion);
+//            surveyRepository.update(1, survey);
 
         }
     }
